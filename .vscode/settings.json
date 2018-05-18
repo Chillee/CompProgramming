@@ -1,0 +1,32 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    "code-runner.runInTerminal": true,
+    "files.associations": {
+        "*.ml": "ocaml",
+        "*.mli": "ocaml",
+        "cmath": "cpp",
+        "ostream": "cpp",
+        "chrono": "cpp",
+        "complex": "cpp",
+        "tuple": "cpp",
+        "iostream": "cpp",
+        "limits": "cpp",
+        "valarray": "cpp",
+        "array": "cpp",
+        "bitset": "cpp",
+        "initializer_list": "cpp",
+        "string_view": "cpp",
+        "utility": "cpp",
+        "*.tcc": "cpp",
+        "algorithm": "cpp",
+        "future": "cpp",
+        "istream": "cpp",
+        "unordered_set": "cpp",
+        "unordered_map": "cpp",
+        "optional": "cpp",
+        "ratio": "cpp",
+        "system_error": "cpp",
+        "type_traits": "cpp"
+    },
+    "python.linting.enabled": false
+}

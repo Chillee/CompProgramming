@@ -1,0 +1,1231 @@
+Date,Home Team,Away Team,Home Score,Away Score,Winner
+10/25/2016,Cleveland Cavaliers,New York Knicks,117,88,Home
+10/25/2016,Portland Trail Blazers,Utah Jazz,113,104,Home
+10/25/2016,Golden State Warriors,San Antonio Spurs,100,129,Away
+10/26/2016,Orlando Magic,Miami Heat,96,108,Away
+10/26/2016,Indiana Pacers,Dallas Mavericks,130,121,Home
+10/26/2016,Boston Celtics,Brooklyn Nets,122,117,Home
+10/26/2016,Toronto Raptors,Detroit Pistons,109,91,Home
+10/26/2016,Milwaukee Bucks,Charlotte Hornets,96,107,Away
+10/26/2016,Memphis Grizzlies,Minnesota Timberwolves,102,98,Home
+10/26/2016,New Orleans Pelicans,Denver Nuggets,102,107,Away
+10/26/2016,Philadelphia 76ers,Oklahoma City Thunder,97,103,Away
+10/26/2016,Phoenix Suns,Sacramento Kings,94,113,Away
+10/26/2016,Los Angeles Lakers,Houston Rockets,120,114,Home
+10/27/2016,Atlanta Hawks,Washington Wizards,114,99,Home
+10/27/2016,Chicago Bulls,Boston Celtics,105,99,Home
+10/27/2016,Sacramento Kings,San Antonio Spurs,94,102,Away
+10/27/2016,Portland Trail Blazers,LA Clippers,106,114,Away
+10/28/2016,Toronto Raptors,Cleveland Cavaliers,91,94,Away
+10/28/2016,Brooklyn Nets,Indiana Pacers,103,94,Home
+10/28/2016,Detroit Pistons,Orlando Magic,108,82,Home
+10/28/2016,Oklahoma City Thunder,Phoenix Suns,113,110,Home
+10/28/2016,Miami Heat,Charlotte Hornets,91,97,Away
+10/28/2016,Dallas Mavericks,Houston Rockets,98,106,Away
+10/28/2016,Utah Jazz,Los Angeles Lakers,96,89,Home
+10/28/2016,New Orleans Pelicans,Golden State Warriors,114,122,Away
+10/29/2016,Philadelphia 76ers,Atlanta Hawks,72,104,Away
+10/29/2016,Charlotte Hornets,Boston Celtics,98,104,Away
+10/29/2016,New York Knicks,Memphis Grizzlies,111,104,Home
+10/29/2016,Cleveland Cavaliers,Orlando Magic,105,99,Home
+10/29/2016,Chicago Bulls,Indiana Pacers,118,101,Home
+10/29/2016,Milwaukee Bucks,Brooklyn Nets,110,108,Home
+10/29/2016,San Antonio Spurs,New Orleans Pelicans,98,79,Home
+10/29/2016,Denver Nuggets,Portland Trail Blazers,113,115,Away
+10/29/2016,Sacramento Kings,Minnesota Timberwolves,106,103,Home
+10/30/2016,LA Clippers,Utah Jazz,88,75,Home
+10/30/2016,Phoenix Suns,Golden State Warriors,100,106,Away
+10/30/2016,Miami Heat,San Antonio Spurs,99,106,Away
+10/30/2016,Detroit Pistons,Milwaukee Bucks,98,83,Home
+10/30/2016,Memphis Grizzlies,Washington Wizards,112,103,Home
+10/30/2016,Oklahoma City Thunder,Los Angeles Lakers,113,96,Home
+10/30/2016,Houston Rockets,Dallas Mavericks,93,92,Home
+10/31/2016,Toronto Raptors,Denver Nuggets,105,102,Home
+10/31/2016,Brooklyn Nets,Chicago Bulls,88,118,Away
+10/31/2016,Atlanta Hawks,Sacramento Kings,106,95,Home
+10/31/2016,LA Clippers,Phoenix Suns,116,98,Home
+11/1/2016,Philadelphia 76ers,Orlando Magic,101,103,Away
+11/1/2016,Cleveland Cavaliers,Houston Rockets,128,120,Home
+11/1/2016,Indiana Pacers,Los Angeles Lakers,115,108,Home
+11/1/2016,Miami Heat,Sacramento Kings,108,96,Home
+11/1/2016,Detroit Pistons,New York Knicks,102,89,Home
+11/1/2016,New Orleans Pelicans,Milwaukee Bucks,113,117,Away
+11/1/2016,Minnesota Timberwolves,Memphis Grizzlies,116,80,Home
+11/1/2016,San Antonio Spurs,Utah Jazz,91,106,Away
+11/1/2016,Portland Trail Blazers,Golden State Warriors,104,127,Away
+11/2/2016,Washington Wizards,Toronto Raptors,103,113,Away
+11/2/2016,Charlotte Hornets,Philadelphia 76ers,109,93,Home
+11/2/2016,Brooklyn Nets,Detroit Pistons,109,101,Home
+11/2/2016,New York Knicks,Houston Rockets,99,118,Away
+11/2/2016,Atlanta Hawks,Los Angeles Lakers,116,123,Away
+11/2/2016,Memphis Grizzlies,New Orleans Pelicans,89,83,Home
+11/2/2016,Boston Celtics,Chicago Bulls,107,100,Home
+11/2/2016,Utah Jazz,Dallas Mavericks,97,81,Home
+11/2/2016,Phoenix Suns,Portland Trail Blazers,118,115,Home
+11/2/2016,LA Clippers,Oklahoma City Thunder,83,85,Away
+11/3/2016,Orlando Magic,Sacramento Kings,102,94,Home
+11/3/2016,Milwaukee Bucks,Indiana Pacers,125,107,Home
+11/3/2016,Minnesota Timberwolves,Denver Nuggets,99,102,Away
+11/3/2016,Cleveland Cavaliers,Boston Celtics,128,122,Home
+11/3/2016,Golden State Warriors,Oklahoma City Thunder,122,96,Home
+11/4/2016,Washington Wizards,Atlanta Hawks,95,92,Home
+11/4/2016,Toronto Raptors,Miami Heat,96,87,Home
+11/4/2016,Brooklyn Nets,Charlotte Hornets,95,99,Away
+11/4/2016,Chicago Bulls,New York Knicks,104,117,Away
+11/4/2016,Memphis Grizzlies,LA Clippers,88,99,Away
+11/4/2016,New Orleans Pelicans,Phoenix Suns,111,112,Away
+11/4/2016,Dallas Mavericks,Portland Trail Blazers,95,105,Away
+11/4/2016,Utah Jazz,San Antonio Spurs,86,100,Away
+11/4/2016,Los Angeles Lakers,Golden State Warriors,117,97,Home
+11/5/2016,Oklahoma City Thunder,Minnesota Timberwolves,112,92,Home
+11/5/2016,Philadelphia 76ers,Cleveland Cavaliers,101,102,Away
+11/5/2016,Orlando Magic,Washington Wizards,88,86,Home
+11/5/2016,Detroit Pistons,Denver Nuggets,103,86,Home
+11/5/2016,Indiana Pacers,Chicago Bulls,111,94,Home
+11/5/2016,Atlanta Hawks,Houston Rockets,112,97,Home
+11/5/2016,Milwaukee Bucks,Sacramento Kings,117,91,Home
+11/5/2016,San Antonio Spurs,LA Clippers,92,116,Away
+11/6/2016,New York Knicks,Utah Jazz,109,114,Away
+11/6/2016,Memphis Grizzlies,Portland Trail Blazers,94,100,Away
+11/6/2016,Toronto Raptors,Sacramento Kings,91,96,Away
+11/6/2016,Dallas Mavericks,Milwaukee Bucks,86,75,Home
+11/6/2016,Boston Celtics,Denver Nuggets,107,123,Away
+11/6/2016,Los Angeles Lakers,Phoenix Suns,119,108,Home
+11/7/2016,Philadelphia 76ers,Utah Jazz,84,109,Away
+11/7/2016,Washington Wizards,Houston Rockets,106,114,Away
+11/7/2016,Charlotte Hornets,Indiana Pacers,122,100,Home
+11/7/2016,Chicago Bulls,Orlando Magic,112,80,Home
+11/7/2016,Oklahoma City Thunder,Miami Heat,97,85,Home
+11/7/2016,LA Clippers,Detroit Pistons,114,82,Home
+11/7/2016,Golden State Warriors,New Orleans Pelicans,116,106,Home
+11/8/2016,Cleveland Cavaliers,Atlanta Hawks,106,110,Away
+11/8/2016,Brooklyn Nets,Minnesota Timberwolves,119,110,Home
+11/8/2016,Memphis Grizzlies,Denver Nuggets,108,107,Home
+11/8/2016,Portland Trail Blazers,Phoenix Suns,124,121,Home
+11/8/2016,Los Angeles Lakers,Dallas Mavericks,97,109,Away
+11/8/2016,Sacramento Kings,New Orleans Pelicans,102,94,Home
+11/9/2016,New York Knicks,Brooklyn Nets,110,96,Home
+11/9/2016,Washington Wizards,Boston Celtics,118,93,Home
+11/9/2016,Charlotte Hornets,Utah Jazz,104,98,Home
+11/9/2016,Orlando Magic,Minnesota Timberwolves,107,123,Away
+11/9/2016,Indiana Pacers,Philadelphia 76ers,122,115,Home
+11/9/2016,Atlanta Hawks,Chicago Bulls,115,107,Home
+11/9/2016,Oklahoma City Thunder,Toronto Raptors,102,112,Away
+11/9/2016,Phoenix Suns,Detroit Pistons,107,100,Home
+11/9/2016,San Antonio Spurs,Houston Rockets,99,101,Away
+11/9/2016,LA Clippers,Portland Trail Blazers,111,80,Home
+11/9/2016,Golden State Warriors,Dallas Mavericks,116,95,Home
+11/10/2016,Milwaukee Bucks,New Orleans Pelicans,106,112,Away
+11/10/2016,Miami Heat,Chicago Bulls,95,98,Away
+11/10/2016,Denver Nuggets,Golden State Warriors,101,125,Away
+11/10/2016,Sacramento Kings,Los Angeles Lakers,91,101,Away
+11/11/2016,Philadelphia 76ers,Indiana Pacers,109,105,Home
+11/11/2016,Washington Wizards,Cleveland Cavaliers,94,105,Away
+11/11/2016,Charlotte Hornets,Toronto Raptors,111,113,Away
+11/11/2016,Orlando Magic,Utah Jazz,74,87,Away
+11/11/2016,Boston Celtics,New York Knicks,115,87,Home
+11/11/2016,Oklahoma City Thunder,LA Clippers,108,110,Away
+11/11/2016,San Antonio Spurs,Detroit Pistons,96,86,Home
+11/11/2016,Portland Trail Blazers,Sacramento Kings,122,120,Home
+11/12/2016,New Orleans Pelicans,Los Angeles Lakers,99,126,Away
+11/12/2016,Indiana Pacers,Boston Celtics,99,105,Away
+11/12/2016,Toronto Raptors,New York Knicks,118,107,Home
+11/12/2016,Atlanta Hawks,Philadelphia 76ers,117,96,Home
+11/12/2016,Chicago Bulls,Washington Wizards,106,95,Home
+11/12/2016,Houston Rockets,San Antonio Spurs,100,106,Away
+11/12/2016,Minnesota Timberwolves,LA Clippers,105,119,Away
+11/12/2016,Miami Heat,Utah Jazz,91,102,Away
+11/12/2016,Milwaukee Bucks,Memphis Grizzlies,106,96,Home
+11/12/2016,Denver Nuggets,Detroit Pistons,95,106,Away
+11/12/2016,Phoenix Suns,Brooklyn Nets,104,122,Away
+11/13/2016,Cleveland Cavaliers,Charlotte Hornets,100,93,Home
+11/13/2016,Oklahoma City Thunder,Orlando Magic,117,119,Away
+11/13/2016,Minnesota Timberwolves,Los Angeles Lakers,125,99,Home
+11/13/2016,Golden State Warriors,Phoenix Suns,133,120,Home
+11/13/2016,Portland Trail Blazers,Denver Nuggets,112,105,Home
+11/14/2016,Indiana Pacers,Orlando Magic,88,69,Home
+11/14/2016,New York Knicks,Dallas Mavericks,93,77,Home
+11/14/2016,Detroit Pistons,Oklahoma City Thunder,104,88,Home
+11/14/2016,New Orleans Pelicans,Boston Celtics,106,105,Home
+11/14/2016,Houston Rockets,Philadelphia 76ers,115,88,Home
+11/14/2016,San Antonio Spurs,Miami Heat,94,90,Home
+11/14/2016,Utah Jazz,Memphis Grizzlies,96,102,Away
+11/14/2016,LA Clippers,Brooklyn Nets,127,95,Home
+11/15/2016,Cleveland Cavaliers,Toronto Raptors,121,117,Home
+11/15/2016,Miami Heat,Atlanta Hawks,90,93,Away
+11/15/2016,Minnesota Timberwolves,Charlotte Hornets,108,115,Away
+11/15/2016,Portland Trail Blazers,Chicago Bulls,88,113,Away
+11/15/2016,Los Angeles Lakers,Brooklyn Nets,125,118,Home
+11/16/2016,Philadelphia 76ers,Washington Wizards,109,102,Home
+11/16/2016,Orlando Magic,New Orleans Pelicans,89,82,Home
+11/16/2016,Indiana Pacers,Cleveland Cavaliers,103,93,Home
+11/16/2016,Boston Celtics,Dallas Mavericks,90,83,Home
+11/16/2016,New York Knicks,Detroit Pistons,105,102,Home
+11/16/2016,Atlanta Hawks,Milwaukee Bucks,107,100,Home
+11/16/2016,Oklahoma City Thunder,Houston Rockets,105,103,Home
+11/16/2016,Toronto Raptors,Golden State Warriors,121,127,Away
+11/16/2016,Denver Nuggets,Phoenix Suns,120,104,Home
+11/16/2016,LA Clippers,Memphis Grizzlies,107,111,Away
+11/16/2016,Sacramento Kings,San Antonio Spurs,105,110,Away
+11/17/2016,Washington Wizards,New York Knicks,119,112,Home
+11/17/2016,Miami Heat,Milwaukee Bucks,96,73,Home
+11/17/2016,Houston Rockets,Portland Trail Blazers,126,109,Home
+11/17/2016,Minnesota Timberwolves,Philadelphia 76ers,110,86,Home
+11/17/2016,Utah Jazz,Chicago Bulls,77,85,Away
+11/18/2016,Charlotte Hornets,Atlanta Hawks,100,96,Home
+11/18/2016,Cleveland Cavaliers,Detroit Pistons,104,81,Home
+11/18/2016,Indiana Pacers,Phoenix Suns,96,116,Away
+11/18/2016,New Orleans Pelicans,Portland Trail Blazers,113,101,Home
+11/18/2016,Oklahoma City Thunder,Brooklyn Nets,124,105,Home
+11/18/2016,Boston Celtics,Golden State Warriors,88,104,Away
+11/18/2016,Dallas Mavericks,Memphis Grizzlies,64,80,Away
+11/18/2016,Denver Nuggets,Toronto Raptors,111,113,Away
+11/18/2016,Los Angeles Lakers,San Antonio Spurs,107,116,Away
+11/18/2016,Sacramento Kings,LA Clippers,115,121,Away
+11/19/2016,Houston Rockets,Utah Jazz,111,102,Home
+11/19/2016,New Orleans Pelicans,Charlotte Hornets,121,116,Home
+11/19/2016,Washington Wizards,Miami Heat,111,114,Away
+11/19/2016,Orlando Magic,Dallas Mavericks,95,87,Home
+11/19/2016,Detroit Pistons,Boston Celtics,92,94,Away
+11/19/2016,Philadelphia 76ers,Phoenix Suns,120,105,Home
+11/19/2016,Memphis Grizzlies,Minnesota Timberwolves,93,71,Home
+11/19/2016,Milwaukee Bucks,Golden State Warriors,121,124,Away
+11/19/2016,LA Clippers,Chicago Bulls,102,95,Home
+11/20/2016,New York Knicks,Atlanta Hawks,104,94,Home
+11/20/2016,Brooklyn Nets,Portland Trail Blazers,109,129,Away
+11/20/2016,Oklahoma City Thunder,Indiana Pacers,111,115,Away
+11/20/2016,Sacramento Kings,Toronto Raptors,102,99,Home
+11/20/2016,Denver Nuggets,Utah Jazz,105,91,Home
+11/20/2016,Los Angeles Lakers,Chicago Bulls,110,118,Away
+11/21/2016,Philadelphia 76ers,Miami Heat,101,94,Home
+11/21/2016,Washington Wizards,Phoenix Suns,106,101,Home
+11/21/2016,Charlotte Hornets,Memphis Grizzlies,90,105,Away
+11/21/2016,Indiana Pacers,Golden State Warriors,83,120,Away
+11/21/2016,Detroit Pistons,Houston Rockets,96,99,Away
+11/21/2016,Milwaukee Bucks,Orlando Magic,93,89,Home
+11/21/2016,Minnesota Timberwolves,Boston Celtics,93,99,Away
+11/21/2016,San Antonio Spurs,Dallas Mavericks,96,91,Home
+11/21/2016,LA Clippers,Toronto Raptors,123,115,Home
+11/22/2016,New York Knicks,Portland Trail Blazers,107,103,Home
+11/22/2016,Atlanta Hawks,New Orleans Pelicans,94,112,Away
+11/22/2016,Denver Nuggets,Chicago Bulls,110,107,Home
+11/22/2016,Los Angeles Lakers,Oklahoma City Thunder,111,109,Home
+11/23/2016,Philadelphia 76ers,Memphis Grizzlies,99,104,Away
+11/23/2016,Charlotte Hornets,San Antonio Spurs,114,119,Away
+11/23/2016,Orlando Magic,Phoenix Suns,87,92,Away
+11/23/2016,Cleveland Cavaliers,Portland Trail Blazers,137,125,Home
+11/23/2016,Indiana Pacers,Atlanta Hawks,85,96,Away
+11/23/2016,Brooklyn Nets,Boston Celtics,92,111,Away
+11/23/2016,Detroit Pistons,Miami Heat,107,84,Home
+11/23/2016,Houston Rockets,Toronto Raptors,102,115,Away
+11/23/2016,Dallas Mavericks,LA Clippers,104,124,Away
+11/23/2016,Utah Jazz,Denver Nuggets,108,83,Home
+11/23/2016,New Orleans Pelicans,Minnesota Timberwolves,117,96,Home
+11/23/2016,Golden State Warriors,Los Angeles Lakers,149,106,Home
+11/23/2016,Sacramento Kings,Oklahoma City Thunder,116,101,Home
+11/25/2016,Boston Celtics,San Antonio Spurs,103,109,Away
+11/25/2016,Orlando Magic,Washington Wizards,91,94,Away
+11/25/2016,Cleveland Cavaliers,Dallas Mavericks,128,90,Home
+11/25/2016,New York Knicks,Charlotte Hornets,113,111,Home
+11/25/2016,Philadelphia 76ers,Chicago Bulls,89,105,Away
+11/25/2016,Detroit Pistons,LA Clippers,108,97,Home
+11/25/2016,Utah Jazz,Atlanta Hawks,95,68,Home
+11/25/2016,Milwaukee Bucks,Toronto Raptors,99,105,Away
+11/25/2016,Memphis Grizzlies,Miami Heat,81,90,Away
+11/25/2016,Indiana Pacers,Brooklyn Nets,118,97,Home
+11/25/2016,Denver Nuggets,Oklahoma City Thunder,129,132,Away
+11/25/2016,Phoenix Suns,Minnesota Timberwolves,85,98,Away
+11/25/2016,Portland Trail Blazers,New Orleans Pelicans,119,104,Home
+11/25/2016,Los Angeles Lakers,Golden State Warriors,85,109,Away
+11/25/2016,Sacramento Kings,Houston Rockets,104,117,Away
+11/26/2016,Washington Wizards,San Antonio Spurs,100,112,Away
+11/26/2016,Charlotte Hornets,New York Knicks,107,102,Home
+11/26/2016,Oklahoma City Thunder,Detroit Pistons,106,88,Home
+11/26/2016,Miami Heat,Memphis Grizzlies,107,110,Away
+11/26/2016,Golden State Warriors,Minnesota Timberwolves,115,102,Home
+11/27/2016,Philadelphia 76ers,Cleveland Cavaliers,108,112,Away
+11/27/2016,Phoenix Suns,Denver Nuggets,114,120,Away
+11/27/2016,Brooklyn Nets,Sacramento Kings,105,122,Away
+11/27/2016,Orlando Magic,Milwaukee Bucks,96,104,Away
+11/27/2016,Indiana Pacers,LA Clippers,91,70,Home
+11/27/2016,Dallas Mavericks,New Orleans Pelicans,91,81,Home
+11/27/2016,Portland Trail Blazers,Houston Rockets,114,130,Away
+11/27/2016,Los Angeles Lakers,Atlanta Hawks,109,94,Home
+11/28/2016,Washington Wizards,Sacramento Kings,101,95,Home
+11/28/2016,Toronto Raptors,Philadelphia 76ers,122,95,Home
+11/28/2016,New York Knicks,Oklahoma City Thunder,103,112,Away
+11/28/2016,Miami Heat,Boston Celtics,104,112,Away
+11/28/2016,Memphis Grizzlies,Charlotte Hornets,85,104,Away
+11/28/2016,Minnesota Timberwolves,Utah Jazz,103,112,Away
+11/28/2016,Golden State Warriors,Atlanta Hawks,105,100,Home
+11/29/2016,Charlotte Hornets,Detroit Pistons,89,112,Away
+11/29/2016,Brooklyn Nets,LA Clippers,127,122,Home
+11/29/2016,Milwaukee Bucks,Cleveland Cavaliers,118,101,Home
+11/29/2016,New Orleans Pelicans,Los Angeles Lakers,105,88,Home
+11/29/2016,San Antonio Spurs,Orlando Magic,83,95,Away
+11/29/2016,Utah Jazz,Houston Rockets,120,101,Home
+11/30/2016,Boston Celtics,Detroit Pistons,114,121,Away
+11/30/2016,Toronto Raptors,Memphis Grizzlies,120,105,Home
+11/30/2016,Chicago Bulls,Los Angeles Lakers,90,96,Away
+11/30/2016,Oklahoma City Thunder,Washington Wizards,126,115,Home
+11/30/2016,Minnesota Timberwolves,New York Knicks,104,106,Away
+11/30/2016,Dallas Mavericks,San Antonio Spurs,87,94,Away
+11/30/2016,Denver Nuggets,Miami Heat,98,106,Away
+11/30/2016,Phoenix Suns,Atlanta Hawks,109,107,Home
+11/30/2016,Portland Trail Blazers,Indiana Pacers,131,109,Home
+12/1/2016,Charlotte Hornets,Dallas Mavericks,97,87,Home
+12/1/2016,Brooklyn Nets,Milwaukee Bucks,93,111,Away
+12/1/2016,Memphis Grizzlies,Orlando Magic,95,94,Home
+12/1/2016,Cleveland Cavaliers,LA Clippers,94,113,Away
+12/1/2016,Utah Jazz,Miami Heat,110,111,Away
+12/1/2016,Golden State Warriors,Houston Rockets,127,132,Away
+12/2/2016,Philadelphia 76ers,Orlando Magic,88,105,Away
+12/2/2016,Boston Celtics,Sacramento Kings,97,92,Home
+12/2/2016,Toronto Raptors,Los Angeles Lakers,113,80,Home
+12/2/2016,New York Knicks,Minnesota Timberwolves,118,114,Home
+12/2/2016,Chicago Bulls,Cleveland Cavaliers,111,105,Home
+12/2/2016,New Orleans Pelicans,LA Clippers,96,114,Away
+12/2/2016,Atlanta Hawks,Detroit Pistons,85,121,Away
+12/2/2016,San Antonio Spurs,Washington Wizards,107,105,Home
+12/2/2016,Denver Nuggets,Houston Rockets,110,128,Away
+12/3/2016,Milwaukee Bucks,Brooklyn Nets,112,103,Home
+12/3/2016,Charlotte Hornets,Minnesota Timberwolves,120,125,Away
+12/3/2016,Toronto Raptors,Atlanta Hawks,128,84,Home
+12/3/2016,Philadelphia 76ers,Boston Celtics,106,107,Away
+12/3/2016,Memphis Grizzlies,Los Angeles Lakers,103,100,Home
+12/3/2016,Dallas Mavericks,Chicago Bulls,107,82,Home
+12/3/2016,Utah Jazz,Denver Nuggets,105,98,Home
+12/3/2016,Portland Trail Blazers,Miami Heat,99,92,Home
+12/3/2016,Golden State Warriors,Phoenix Suns,138,109,Home
+12/4/2016,Detroit Pistons,Orlando Magic,92,98,Away
+12/4/2016,Oklahoma City Thunder,New Orleans Pelicans,101,92,Home
+12/4/2016,New York Knicks,Sacramento Kings,106,98,Home
+12/4/2016,LA Clippers,Indiana Pacers,102,111,Away
+12/5/2016,Philadelphia 76ers,Denver Nuggets,98,106,Away
+12/5/2016,Toronto Raptors,Cleveland Cavaliers,112,116,Away
+12/5/2016,Brooklyn Nets,Washington Wizards,113,118,Away
+12/5/2016,Atlanta Hawks,Oklahoma City Thunder,99,102,Away
+12/5/2016,Chicago Bulls,Portland Trail Blazers,110,112,Away
+12/5/2016,Milwaukee Bucks,San Antonio Spurs,96,97,Away
+12/5/2016,New Orleans Pelicans,Memphis Grizzlies,108,110,Away
+12/5/2016,Houston Rockets,Boston Celtics,107,106,Home
+12/5/2016,Dallas Mavericks,Charlotte Hornets,101,109,Away
+12/5/2016,Los Angeles Lakers,Utah Jazz,101,107,Away
+12/5/2016,Golden State Warriors,Indiana Pacers,142,106,Home
+12/6/2016,Washington Wizards,Orlando Magic,116,124,Away
+12/6/2016,Miami Heat,New York Knicks,103,114,Away
+12/6/2016,Detroit Pistons,Chicago Bulls,102,91,Home
+12/6/2016,Memphis Grizzlies,Philadelphia 76ers,96,91,Home
+12/6/2016,Minnesota Timberwolves,San Antonio Spurs,91,105,Away
+12/6/2016,Utah Jazz,Phoenix Suns,112,105,Home
+12/7/2016,Charlotte Hornets,Detroit Pistons,87,77,Home
+12/7/2016,Orlando Magic,Boston Celtics,87,117,Away
+12/7/2016,Brooklyn Nets,Denver Nuggets,116,111,Home
+12/7/2016,Atlanta Hawks,Miami Heat,103,95,Home
+12/7/2016,Milwaukee Bucks,Portland Trail Blazers,115,107,Home
+12/7/2016,Houston Rockets,Los Angeles Lakers,134,95,Home
+12/7/2016,New York Knicks,Cleveland Cavaliers,94,126,Away
+12/7/2016,Dallas Mavericks,Sacramento Kings,89,120,Away
+12/7/2016,Phoenix Suns,Indiana Pacers,94,109,Away
+12/7/2016,LA Clippers,Golden State Warriors,98,115,Away
+12/8/2016,Toronto Raptors,Minnesota Timberwolves,124,110,Home
+12/8/2016,Washington Wizards,Denver Nuggets,92,85,Home
+12/8/2016,Memphis Grizzlies,Portland Trail Blazers,88,86,Home
+12/8/2016,New Orleans Pelicans,Philadelphia 76ers,88,99,Away
+12/8/2016,Utah Jazz,Golden State Warriors,99,106,Away
+12/8/2016,Chicago Bulls,San Antonio Spurs,95,91,Home
+12/9/2016,Charlotte Hornets,Orlando Magic,109,88,Home
+12/9/2016,Cleveland Cavaliers,Miami Heat,114,84,Home
+12/9/2016,Boston Celtics,Toronto Raptors,94,101,Away
+12/9/2016,Milwaukee Bucks,Atlanta Hawks,110,114,Away
+12/9/2016,Oklahoma City Thunder,Houston Rockets,99,102,Away
+12/9/2016,Minnesota Timberwolves,Detroit Pistons,90,117,Away
+12/9/2016,Dallas Mavericks,Indiana Pacers,111,103,Home
+12/9/2016,Los Angeles Lakers,Phoenix Suns,115,119,Away
+12/9/2016,Sacramento Kings,New York Knicks,100,103,Away
+12/10/2016,Washington Wizards,Milwaukee Bucks,110,105,Home
+12/10/2016,Orlando Magic,Denver Nuggets,113,121,Away
+12/10/2016,Indiana Pacers,Portland Trail Blazers,118,111,Home
+12/10/2016,Cleveland Cavaliers,Charlotte Hornets,116,105,Home
+12/10/2016,Chicago Bulls,Miami Heat,105,100,Home
+12/10/2016,Memphis Grizzlies,Golden State Warriors,110,89,Home
+12/10/2016,Houston Rockets,Dallas Mavericks,109,87,Home
+12/10/2016,San Antonio Spurs,Brooklyn Nets,130,101,Home
+12/10/2016,Utah Jazz,Sacramento Kings,104,84,Home
+12/10/2016,LA Clippers,New Orleans Pelicans,133,105,Home
+12/11/2016,Detroit Pistons,Philadelphia 76ers,79,97,Away
+12/11/2016,Oklahoma City Thunder,Boston Celtics,99,96,Home
+12/11/2016,Minnesota Timberwolves,Golden State Warriors,108,116,Away
+12/11/2016,Phoenix Suns,New Orleans Pelicans,119,120,Away
+12/11/2016,Los Angeles Lakers,New York Knicks,112,118,Away
+12/12/2016,Indiana Pacers,Charlotte Hornets,110,94,Home
+12/12/2016,Toronto Raptors,Milwaukee Bucks,122,100,Home
+12/12/2016,Miami Heat,Washington Wizards,112,101,Home
+12/12/2016,Houston Rockets,Brooklyn Nets,122,118,Home
+12/12/2016,Dallas Mavericks,Denver Nuggets,112,92,Home
+12/12/2016,LA Clippers,Portland Trail Blazers,121,120,Home
+12/12/2016,Sacramento Kings,Los Angeles Lakers,116,92,Home
+12/13/2016,Cleveland Cavaliers,Memphis Grizzlies,103,86,Home
+12/13/2016,Atlanta Hawks,Orlando Magic,120,131,Away
+12/13/2016,Chicago Bulls,Minnesota Timberwolves,94,99,Away
+12/13/2016,New Orleans Pelicans,Golden State Warriors,109,113,Away
+12/13/2016,Phoenix Suns,New York Knicks,113,111,Home
+12/13/2016,Portland Trail Blazers,Oklahoma City Thunder,114,95,Home
+12/14/2016,Philadelphia 76ers,Toronto Raptors,114,123,Away
+12/14/2016,Washington Wizards,Charlotte Hornets,109,106,Home
+12/14/2016,Orlando Magic,LA Clippers,108,113,Away
+12/14/2016,Miami Heat,Indiana Pacers,95,89,Home
+12/14/2016,Brooklyn Nets,Los Angeles Lakers,107,97,Home
+12/14/2016,Memphis Grizzlies,Cleveland Cavaliers,93,85,Home
+12/14/2016,Houston Rockets,Sacramento Kings,132,98,Home
+12/14/2016,Dallas Mavericks,Detroit Pistons,85,95,Away
+12/14/2016,Utah Jazz,Oklahoma City Thunder,109,89,Home
+12/14/2016,San Antonio Spurs,Boston Celtics,108,101,Home
+12/15/2016,Milwaukee Bucks,Chicago Bulls,108,97,Home
+12/15/2016,New Orleans Pelicans,Indiana Pacers,102,95,Home
+12/15/2016,Denver Nuggets,Portland Trail Blazers,132,120,Home
+12/15/2016,Phoenix Suns,San Antonio Spurs,92,107,Away
+12/15/2016,Golden State Warriors,New York Knicks,103,90,Home
+12/16/2016,Washington Wizards,Detroit Pistons,122,108,Home
+12/16/2016,Orlando Magic,Brooklyn Nets,118,111,Home
+12/16/2016,Boston Celtics,Charlotte Hornets,96,88,Home
+12/16/2016,Toronto Raptors,Atlanta Hawks,121,125,Away
+12/16/2016,Chicago Bulls,Milwaukee Bucks,69,95,Away
+12/16/2016,Memphis Grizzlies,Sacramento Kings,92,96,Away
+12/16/2016,Houston Rockets,New Orleans Pelicans,122,100,Home
+12/16/2016,Philadelphia 76ers,Los Angeles Lakers,89,100,Away
+12/16/2016,Miami Heat,LA Clippers,98,102,Away
+12/16/2016,Utah Jazz,Dallas Mavericks,103,100,Home
+12/17/2016,Oklahoma City Thunder,Phoenix Suns,114,101,Home
+12/17/2016,Detroit Pistons,Indiana Pacers,90,105,Away
+12/17/2016,Atlanta Hawks,Charlotte Hornets,99,107,Away
+12/17/2016,Cleveland Cavaliers,Los Angeles Lakers,119,108,Home
+12/17/2016,Minnesota Timberwolves,Houston Rockets,109,111,Away
+12/17/2016,Denver Nuggets,New York Knicks,127,114,Home
+12/17/2016,Golden State Warriors,Portland Trail Blazers,135,90,Home
+12/18/2016,Washington Wizards,LA Clippers,117,110,Home
+12/18/2016,Memphis Grizzlies,Utah Jazz,73,82,Away
+12/18/2016,Philadelphia 76ers,Brooklyn Nets,108,107,Home
+12/18/2016,Orlando Magic,Toronto Raptors,79,109,Away
+12/18/2016,Miami Heat,Boston Celtics,95,105,Away
+12/18/2016,Dallas Mavericks,Sacramento Kings,99,79,Home
+12/18/2016,San Antonio Spurs,New Orleans Pelicans,113,100,Home
+12/19/2016,Indiana Pacers,Washington Wizards,107,105,Home
+12/19/2016,Chicago Bulls,Detroit Pistons,113,82,Home
+12/19/2016,Oklahoma City Thunder,Atlanta Hawks,108,110,Away
+12/19/2016,Minnesota Timberwolves,Phoenix Suns,115,108,Home
+12/19/2016,Denver Nuggets,Dallas Mavericks,117,107,Home
+12/20/2016,Philadelphia 76ers,New Orleans Pelicans,93,108,Away
+12/20/2016,Charlotte Hornets,Los Angeles Lakers,117,113,Home
+12/20/2016,Toronto Raptors,Brooklyn Nets,116,104,Home
+12/20/2016,New York Knicks,Indiana Pacers,118,111,Home
+12/20/2016,Miami Heat,Orlando Magic,130,136,Away
+12/20/2016,Milwaukee Bucks,Cleveland Cavaliers,108,114,Away
+12/20/2016,Memphis Grizzlies,Boston Celtics,109,112,Away
+12/20/2016,Houston Rockets,San Antonio Spurs,100,102,Away
+12/20/2016,LA Clippers,Denver Nuggets,119,102,Home
+12/20/2016,Golden State Warriors,Utah Jazz,104,74,Home
+12/20/2016,Sacramento Kings,Portland Trail Blazers,126,121,Home
+12/21/2016,Cleveland Cavaliers,Milwaukee Bucks,113,102,Home
+12/21/2016,Atlanta Hawks,Minnesota Timberwolves,84,92,Away
+12/21/2016,Detroit Pistons,Memphis Grizzlies,86,98,Away
+12/21/2016,Chicago Bulls,Washington Wizards,97,107,Away
+12/21/2016,New Orleans Pelicans,Oklahoma City Thunder,110,121,Away
+12/21/2016,Utah Jazz,Sacramento Kings,93,94,Away
+12/21/2016,Phoenix Suns,Houston Rockets,111,125,Away
+12/21/2016,Portland Trail Blazers,Dallas Mavericks,95,96,Away
+12/22/2016,Brooklyn Nets,Golden State Warriors,101,117,Away
+12/22/2016,New York Knicks,Orlando Magic,106,95,Home
+12/22/2016,Miami Heat,Los Angeles Lakers,115,107,Home
+12/22/2016,Indiana Pacers,Boston Celtics,102,109,Away
+12/22/2016,LA Clippers,San Antonio Spurs,106,101,Home
+12/23/2016,Charlotte Hornets,Chicago Bulls,103,91,Home
+12/23/2016,Orlando Magic,Los Angeles Lakers,109,90,Home
+12/23/2016,Cleveland Cavaliers,Brooklyn Nets,119,99,Home
+12/23/2016,Boston Celtics,Oklahoma City Thunder,112,117,Away
+12/23/2016,Detroit Pistons,Golden State Warriors,113,119,Away
+12/23/2016,Milwaukee Bucks,Washington Wizards,123,96,Home
+12/23/2016,Memphis Grizzlies,Houston Rockets,115,109,Home
+12/23/2016,New Orleans Pelicans,Miami Heat,91,87,Home
+12/23/2016,Minnesota Timberwolves,Sacramento Kings,105,109,Away
+12/23/2016,Denver Nuggets,Atlanta Hawks,108,109,Away
+12/23/2016,Utah Jazz,Toronto Raptors,98,104,Away
+12/23/2016,Phoenix Suns,Philadelphia 76ers,123,116,Home
+12/23/2016,Portland Trail Blazers,San Antonio Spurs,90,110,Away
+12/23/2016,LA Clippers,Dallas Mavericks,88,90,Away
+12/25/2016,New York Knicks,Boston Celtics,114,119,Away
+12/25/2016,Cleveland Cavaliers,Golden State Warriors,109,108,Home
+12/25/2016,San Antonio Spurs,Chicago Bulls,119,100,Home
+12/25/2016,Oklahoma City Thunder,Minnesota Timberwolves,112,100,Home
+12/25/2016,Los Angeles Lakers,LA Clippers,111,102,Home
+12/26/2016,Washington Wizards,Milwaukee Bucks,107,102,Home
+12/26/2016,Orlando Magic,Memphis Grizzlies,112,102,Home
+12/26/2016,Brooklyn Nets,Charlotte Hornets,120,118,Home
+12/26/2016,Detroit Pistons,Cleveland Cavaliers,106,90,Home
+12/26/2016,Chicago Bulls,Indiana Pacers,90,85,Home
+12/26/2016,New Orleans Pelicans,Dallas Mavericks,111,104,Home
+12/26/2016,Houston Rockets,Phoenix Suns,131,115,Home
+12/26/2016,Minnesota Timberwolves,Atlanta Hawks,104,90,Home
+12/26/2016,Portland Trail Blazers,Toronto Raptors,91,95,Away
+12/26/2016,LA Clippers,Denver Nuggets,102,106,Away
+12/26/2016,Sacramento Kings,Philadelphia 76ers,102,100,Home
+12/27/2016,Boston Celtics,Memphis Grizzlies,113,103,Home
+12/27/2016,Miami Heat,Oklahoma City Thunder,94,106,Away
+12/27/2016,Dallas Mavericks,Houston Rockets,107,123,Away
+12/27/2016,Los Angeles Lakers,Utah Jazz,100,102,Away
+12/28/2016,Washington Wizards,Indiana Pacers,111,105,Home
+12/28/2016,Orlando Magic,Charlotte Hornets,101,120,Away
+12/28/2016,Atlanta Hawks,New York Knicks,102,98,Home
+12/28/2016,Detroit Pistons,Milwaukee Bucks,94,119,Away
+12/28/2016,Chicago Bulls,Brooklyn Nets,101,99,Home
+12/28/2016,New Orleans Pelicans,LA Clippers,102,98,Home
+12/28/2016,San Antonio Spurs,Phoenix Suns,119,98,Home
+12/28/2016,Denver Nuggets,Minnesota Timberwolves,105,103,Home
+12/28/2016,Portland Trail Blazers,Sacramento Kings,102,89,Home
+12/28/2016,Golden State Warriors,Toronto Raptors,121,111,Home
+12/29/2016,Charlotte Hornets,Miami Heat,91,82,Home
+12/29/2016,Memphis Grizzlies,Oklahoma City Thunder,114,80,Home
+12/29/2016,Cleveland Cavaliers,Boston Celtics,124,118,Home
+12/29/2016,Utah Jazz,Philadelphia 76ers,100,83,Home
+12/29/2016,Phoenix Suns,Toronto Raptors,99,91,Home
+12/29/2016,Los Angeles Lakers,Dallas Mavericks,89,101,Away
+12/30/2016,Indiana Pacers,Chicago Bulls,111,101,Home
+12/30/2016,Washington Wizards,Brooklyn Nets,118,95,Home
+12/30/2016,Boston Celtics,Miami Heat,117,114,Home
+12/30/2016,New Orleans Pelicans,New York Knicks,104,92,Home
+12/30/2016,Houston Rockets,LA Clippers,140,116,Home
+12/30/2016,Minnesota Timberwolves,Milwaukee Bucks,116,99,Home
+12/30/2016,Atlanta Hawks,Detroit Pistons,105,98,Home
+12/30/2016,San Antonio Spurs,Portland Trail Blazers,110,94,Home
+12/30/2016,Denver Nuggets,Philadelphia 76ers,122,124,Away
+12/30/2016,Golden State Warriors,Dallas Mavericks,108,99,Home
+12/31/2016,Sacramento Kings,Memphis Grizzlies,98,112,Away
+12/31/2016,Chicago Bulls,Milwaukee Bucks,96,116,Away
+12/31/2016,Houston Rockets,New York Knicks,129,122,Home
+12/31/2016,Charlotte Hornets,Cleveland Cavaliers,109,121,Away
+12/31/2016,Utah Jazz,Phoenix Suns,91,86,Home
+12/31/2016,Oklahoma City Thunder,LA Clippers,114,88,Home
+1/1/2017,Atlanta Hawks,San Antonio Spurs,114,112,Home
+1/1/2017,Miami Heat,Detroit Pistons,98,107,Away
+1/1/2017,Indiana Pacers,Orlando Magic,117,104,Home
+1/1/2017,Minnesota Timberwolves,Portland Trail Blazers,89,95,Away
+1/1/2017,Los Angeles Lakers,Toronto Raptors,114,123,Away
+1/2/2017,Milwaukee Bucks,Oklahoma City Thunder,98,94,Home
+1/2/2017,Cleveland Cavaliers,New Orleans Pelicans,90,82,Home
+1/2/2017,Brooklyn Nets,Utah Jazz,89,101,Away
+1/2/2017,New York Knicks,Orlando Magic,103,115,Away
+1/2/2017,Chicago Bulls,Charlotte Hornets,118,111,Home
+1/2/2017,Houston Rockets,Washington Wizards,101,91,Home
+1/2/2017,LA Clippers,Phoenix Suns,109,98,Home
+1/2/2017,Golden State Warriors,Denver Nuggets,127,119,Home
+1/3/2017,Philadelphia 76ers,Minnesota Timberwolves,93,91,Home
+1/3/2017,Boston Celtics,Utah Jazz,115,104,Home
+1/3/2017,Detroit Pistons,Indiana Pacers,116,121,Away
+1/3/2017,Dallas Mavericks,Washington Wizards,113,105,Home
+1/3/2017,San Antonio Spurs,Toronto Raptors,110,82,Home
+1/3/2017,Denver Nuggets,Sacramento Kings,113,120,Away
+1/3/2017,Phoenix Suns,Miami Heat,99,90,Home
+1/3/2017,Los Angeles Lakers,Memphis Grizzlies,116,102,Home
+1/4/2017,Charlotte Hornets,Oklahoma City Thunder,123,112,Home
+1/4/2017,Orlando Magic,Atlanta Hawks,92,111,Away
+1/4/2017,New York Knicks,Milwaukee Bucks,104,105,Away
+1/4/2017,Cleveland Cavaliers,Chicago Bulls,94,106,Away
+1/4/2017,LA Clippers,Memphis Grizzlies,115,106,Home
+1/4/2017,Golden State Warriors,Portland Trail Blazers,125,117,Home
+1/4/2017,Sacramento Kings,Miami Heat,102,107,Away
+1/5/2017,Indiana Pacers,Brooklyn Nets,121,109,Home
+1/5/2017,Toronto Raptors,Utah Jazz,101,93,Home
+1/5/2017,Detroit Pistons,Charlotte Hornets,115,114,Home
+1/5/2017,New Orleans Pelicans,Atlanta Hawks,94,99,Away
+1/5/2017,Houston Rockets,Oklahoma City Thunder,118,116,Home
+1/5/2017,Dallas Mavericks,Phoenix Suns,95,102,Away
+1/5/2017,Portland Trail Blazers,Los Angeles Lakers,118,109,Home
+1/5/2017,Denver Nuggets,San Antonio Spurs,99,127,Away
+1/6/2017,Washington Wizards,Minnesota Timberwolves,112,105,Home
+1/6/2017,Orlando Magic,Houston Rockets,93,100,Away
+1/6/2017,Boston Celtics,Philadelphia 76ers,110,106,Home
+1/6/2017,Brooklyn Nets,Cleveland Cavaliers,108,116,Away
+1/6/2017,Milwaukee Bucks,New York Knicks,111,116,Away
+1/6/2017,Los Angeles Lakers,Miami Heat,127,100,Home
+1/6/2017,Golden State Warriors,Memphis Grizzlies,119,128,Away
+1/6/2017,Sacramento Kings,LA Clippers,98,106,Away
+1/7/2017,Indiana Pacers,New York Knicks,123,109,Home
+1/7/2017,Boston Celtics,New Orleans Pelicans,117,108,Home
+1/7/2017,Chicago Bulls,Toronto Raptors,123,118,Home
+1/7/2017,Oklahoma City Thunder,Denver Nuggets,121,106,Home
+1/7/2017,Minnesota Timberwolves,Utah Jazz,92,94,Away
+1/7/2017,Dallas Mavericks,Atlanta Hawks,82,97,Away
+1/7/2017,San Antonio Spurs,Charlotte Hornets,102,85,Home
+1/8/2017,Portland Trail Blazers,Detroit Pistons,124,125,Away
+1/8/2017,Brooklyn Nets,Philadelphia 76ers,95,105,Away
+1/8/2017,LA Clippers,Miami Heat,98,86,Home
+1/8/2017,Milwaukee Bucks,Washington Wizards,101,107,Away
+1/8/2017,Toronto Raptors,Houston Rockets,122,129,Away
+1/8/2017,Memphis Grizzlies,Utah Jazz,88,79,Home
+1/8/2017,Phoenix Suns,Cleveland Cavaliers,116,120,Away
+1/8/2017,Sacramento Kings,Golden State Warriors,106,117,Away
+1/8/2017,Los Angeles Lakers,Orlando Magic,111,95,Home
+1/9/2017,New York Knicks,New Orleans Pelicans,96,110,Away
+1/9/2017,Chicago Bulls,Oklahoma City Thunder,94,109,Away
+1/9/2017,Minnesota Timberwolves,Dallas Mavericks,101,92,Home
+1/10/2017,Washington Wizards,Chicago Bulls,101,99,Home
+1/10/2017,Toronto Raptors,Boston Celtics,114,106,Home
+1/10/2017,Brooklyn Nets,Atlanta Hawks,97,117,Away
+1/10/2017,Houston Rockets,Charlotte Hornets,121,114,Home
+1/10/2017,San Antonio Spurs,Milwaukee Bucks,107,109,Away
+1/10/2017,Utah Jazz,Cleveland Cavaliers,100,92,Home
+1/10/2017,Los Angeles Lakers,Portland Trail Blazers,87,108,Away
+1/10/2017,Golden State Warriors,Miami Heat,107,95,Home
+1/10/2017,Sacramento Kings,Detroit Pistons,100,94,Home
+1/11/2017,Philadelphia 76ers,New York Knicks,98,97,Home
+1/11/2017,Oklahoma City Thunder,Memphis Grizzlies,103,95,Home
+1/11/2017,Minnesota Timberwolves,Houston Rockets,119,105,Home
+1/11/2017,Boston Celtics,Washington Wizards,117,108,Home
+1/11/2017,LA Clippers,Orlando Magic,105,96,Home
+1/11/2017,Portland Trail Blazers,Cleveland Cavaliers,102,86,Home
+1/12/2017,Brooklyn Nets,New Orleans Pelicans,95,104,Away
+1/12/2017,New York Knicks,Chicago Bulls,104,89,Home
+1/12/2017,San Antonio Spurs,Los Angeles Lakers,134,94,Home
+1/12/2017,Denver Nuggets,Indiana Pacers,140,112,Home
+1/12/2017,Golden State Warriors,Detroit Pistons,127,107,Home
+1/12/2017,Phoenix Suns,Dallas Mavericks,108,113,Away
+1/13/2017,Toronto Raptors,Brooklyn Nets,132,113,Home
+1/13/2017,Philadelphia 76ers,Charlotte Hornets,102,93,Home
+1/13/2017,Milwaukee Bucks,Miami Heat,116,108,Home
+1/13/2017,Houston Rockets,Memphis Grizzlies,105,110,Away
+1/13/2017,Minnesota Timberwolves,Oklahoma City Thunder,96,86,Home
+1/13/2017,Atlanta Hawks,Boston Celtics,101,103,Away
+1/13/2017,Portland Trail Blazers,Orlando Magic,109,115,Away
+1/13/2017,Sacramento Kings,Cleveland Cavaliers,108,120,Away
+1/13/2017,Utah Jazz,Detroit Pistons,110,77,Home
+1/14/2017,LA Clippers,Los Angeles Lakers,113,97,Home
+1/14/2017,Chicago Bulls,New Orleans Pelicans,107,99,Home
+1/14/2017,Washington Wizards,Philadelphia 76ers,109,93,Home
+1/14/2017,Utah Jazz,Orlando Magic,114,107,Home
+1/14/2017,Phoenix Suns,San Antonio Spurs,108,105,Home
+1/15/2017,Toronto Raptors,New York Knicks,116,101,Home
+1/15/2017,Atlanta Hawks,Milwaukee Bucks,111,98,Home
+1/15/2017,Dallas Mavericks,Minnesota Timberwolves,98,87,Home
+1/15/2017,Brooklyn Nets,Houston Rockets,112,137,Away
+1/15/2017,Sacramento Kings,Oklahoma City Thunder,118,122,Away
+1/15/2017,Memphis Grizzlies,Chicago Bulls,104,108,Away
+1/15/2017,Los Angeles Lakers,Detroit Pistons,97,102,Away
+1/16/2017,New York Knicks,Atlanta Hawks,107,108,Away
+1/16/2017,Washington Wizards,Portland Trail Blazers,120,101,Home
+1/16/2017,Milwaukee Bucks,Philadelphia 76ers,104,113,Away
+1/16/2017,Indiana Pacers,New Orleans Pelicans,98,95,Home
+1/16/2017,Denver Nuggets,Orlando Magic,125,112,Home
+1/16/2017,Boston Celtics,Charlotte Hornets,108,98,Home
+1/16/2017,Golden State Warriors,Cleveland Cavaliers,126,91,Home
+1/16/2017,Phoenix Suns,Utah Jazz,101,106,Away
+1/16/2017,LA Clippers,Oklahoma City Thunder,120,98,Home
+1/17/2017,Brooklyn Nets,Toronto Raptors,109,119,Away
+1/17/2017,Miami Heat,Houston Rockets,109,103,Home
+1/17/2017,Chicago Bulls,Dallas Mavericks,98,99,Away
+1/17/2017,San Antonio Spurs,Minnesota Timberwolves,122,114,Home
+1/17/2017,Los Angeles Lakers,Denver Nuggets,121,127,Away
+1/18/2017,Philadelphia 76ers,Toronto Raptors,94,89,Home
+1/18/2017,Washington Wizards,Memphis Grizzlies,104,101,Home
+1/18/2017,Charlotte Hornets,Portland Trail Blazers,107,85,Home
+1/18/2017,Boston Celtics,New York Knicks,106,117,Away
+1/18/2017,New Orleans Pelicans,Orlando Magic,118,98,Home
+1/18/2017,Houston Rockets,Milwaukee Bucks,111,92,Home
+1/18/2017,Detroit Pistons,Atlanta Hawks,118,95,Home
+1/18/2017,Golden State Warriors,Oklahoma City Thunder,121,100,Home
+1/18/2017,Sacramento Kings,Indiana Pacers,100,106,Away
+1/19/2017,Cleveland Cavaliers,Phoenix Suns,118,103,Home
+1/19/2017,Miami Heat,Dallas Mavericks,99,95,Home
+1/19/2017,New York Knicks,Washington Wizards,110,113,Away
+1/19/2017,San Antonio Spurs,Denver Nuggets,118,104,Home
+1/19/2017,LA Clippers,Minnesota Timberwolves,101,104,Away
+1/20/2017,Philadelphia 76ers,Portland Trail Blazers,93,92,Home
+1/20/2017,Charlotte Hornets,Toronto Raptors,113,78,Home
+1/20/2017,Orlando Magic,Milwaukee Bucks,112,96,Home
+1/20/2017,Memphis Grizzlies,Sacramento Kings,107,91,Home
+1/20/2017,New Orleans Pelicans,Brooklyn Nets,114,143,Away
+1/20/2017,Houston Rockets,Golden State Warriors,108,125,Away
+1/20/2017,Atlanta Hawks,Chicago Bulls,102,93,Home
+1/20/2017,Dallas Mavericks,Utah Jazz,107,112,Away
+1/20/2017,Los Angeles Lakers,Indiana Pacers,108,95,Home
+1/21/2017,Boston Celtics,Portland Trail Blazers,123,127,Away
+1/21/2017,Detroit Pistons,Washington Wizards,113,112,Home
+1/21/2017,Charlotte Hornets,Brooklyn Nets,112,105,Home
+1/21/2017,Atlanta Hawks,Philadelphia 76ers,110,93,Home
+1/21/2017,New York Knicks,Phoenix Suns,105,107,Away
+1/21/2017,Miami Heat,Milwaukee Bucks,109,97,Home
+1/21/2017,Memphis Grizzlies,Houston Rockets,95,119,Away
+1/21/2017,Cleveland Cavaliers,San Antonio Spurs,115,118,Away
+1/21/2017,Denver Nuggets,LA Clippers,123,98,Home
+1/21/2017,Utah Jazz,Indiana Pacers,109,100,Home
+1/21/2017,Chicago Bulls,Sacramento Kings,102,99,Home
+1/22/2017,Orlando Magic,Golden State Warriors,98,118,Away
+1/22/2017,Dallas Mavericks,Los Angeles Lakers,122,73,Home
+1/22/2017,Toronto Raptors,Phoenix Suns,103,115,Away
+1/22/2017,Minnesota Timberwolves,Denver Nuggets,111,108,Home
+1/23/2017,Charlotte Hornets,Washington Wizards,99,109,Away
+1/23/2017,Brooklyn Nets,San Antonio Spurs,86,112,Away
+1/23/2017,Atlanta Hawks,LA Clippers,105,115,Away
+1/23/2017,Miami Heat,Golden State Warriors,105,102,Home
+1/23/2017,Detroit Pistons,Sacramento Kings,104,109,Away
+1/23/2017,Milwaukee Bucks,Houston Rockets,127,114,Home
+1/23/2017,New Orleans Pelicans,Cleveland Cavaliers,124,122,Home
+1/23/2017,Indiana Pacers,New York Knicks,103,109,Away
+1/23/2017,Utah Jazz,Oklahoma City Thunder,95,97,Away
+1/24/2017,Toronto Raptors,San Antonio Spurs,106,108,Away
+1/24/2017,Philadelphia 76ers,LA Clippers,121,110,Home
+1/24/2017,Washington Wizards,Boston Celtics,123,108,Home
+1/24/2017,Orlando Magic,Chicago Bulls,92,100,Away
+1/24/2017,Denver Nuggets,Utah Jazz,103,93,Home
+1/24/2017,Phoenix Suns,Minnesota Timberwolves,111,112,Away
+1/25/2017,Cleveland Cavaliers,Sacramento Kings,112,116,Away
+1/25/2017,Boston Celtics,Houston Rockets,120,109,Home
+1/25/2017,Brooklyn Nets,Miami Heat,106,109,Away
+1/25/2017,Chicago Bulls,Atlanta Hawks,114,119,Away
+1/25/2017,Milwaukee Bucks,Philadelphia 76ers,109,114,Away
+1/25/2017,Memphis Grizzlies,Toronto Raptors,101,99,Home
+1/25/2017,New Orleans Pelicans,Oklahoma City Thunder,105,114,Away
+1/25/2017,Charlotte Hornets,Golden State Warriors,103,113,Away
+1/25/2017,Dallas Mavericks,New York Knicks,103,95,Home
+1/25/2017,Portland Trail Blazers,Los Angeles Lakers,105,98,Home
+1/26/2017,Oklahoma City Thunder,Dallas Mavericks,109,98,Home
+1/26/2017,Minnesota Timberwolves,Indiana Pacers,103,109,Away
+1/26/2017,Denver Nuggets,Phoenix Suns,127,120,Home
+1/26/2017,Utah Jazz,Los Angeles Lakers,96,88,Home
+1/27/2017,Philadelphia 76ers,Houston Rockets,118,123,Away
+1/27/2017,Cleveland Cavaliers,Brooklyn Nets,124,116,Home
+1/27/2017,Indiana Pacers,Sacramento Kings,115,111,Home
+1/27/2017,Boston Celtics,Orlando Magic,128,98,Home
+1/27/2017,Toronto Raptors,Milwaukee Bucks,102,86,Home
+1/27/2017,New York Knicks,Charlotte Hornets,110,107,Home
+1/27/2017,Chicago Bulls,Miami Heat,88,100,Away
+1/27/2017,New Orleans Pelicans,San Antonio Spurs,119,103,Home
+1/27/2017,Atlanta Hawks,Washington Wizards,86,112,Away
+1/27/2017,Portland Trail Blazers,Memphis Grizzlies,112,109,Home
+1/28/2017,Charlotte Hornets,Sacramento Kings,106,109,Away
+1/28/2017,Miami Heat,Detroit Pistons,116,103,Home
+1/28/2017,Milwaukee Bucks,Boston Celtics,108,112,Away
+1/28/2017,Golden State Warriors,LA Clippers,144,98,Home
+1/28/2017,Utah Jazz,Memphis Grizzlies,95,102,Away
+1/28/2017,Phoenix Suns,Denver Nuggets,112,123,Away
+1/28/2017,Minnesota Timberwolves,Brooklyn Nets,129,109,Home
+1/29/2017,Atlanta Hawks,New York Knicks,142,139,Home
+1/29/2017,Cleveland Cavaliers,Oklahoma City Thunder,107,91,Home
+1/29/2017,Indiana Pacers,Houston Rockets,120,101,Home
+1/29/2017,New Orleans Pelicans,Washington Wizards,94,107,Away
+1/29/2017,Toronto Raptors,Orlando Magic,113,114,Away
+1/29/2017,Chicago Bulls,Philadelphia 76ers,121,108,Home
+1/29/2017,San Antonio Spurs,Dallas Mavericks,101,105,Away
+1/29/2017,Portland Trail Blazers,Golden State Warriors,111,113,Away
+1/30/2017,Philadelphia 76ers,Sacramento Kings,122,119,Home
+1/30/2017,Miami Heat,Brooklyn Nets,104,96,Home
+1/30/2017,Minnesota Timberwolves,Orlando Magic,111,105,Home
+1/30/2017,Boston Celtics,Detroit Pistons,113,109,Home
+1/30/2017,Dallas Mavericks,Cleveland Cavaliers,104,97,Home
+1/30/2017,Phoenix Suns,Memphis Grizzlies,96,115,Away
+1/31/2017,Washington Wizards,New York Knicks,117,101,Home
+1/31/2017,Toronto Raptors,New Orleans Pelicans,108,106,Home
+1/31/2017,Houston Rockets,Sacramento Kings,105,83,Home
+1/31/2017,San Antonio Spurs,Oklahoma City Thunder,108,94,Home
+1/31/2017,Portland Trail Blazers,Charlotte Hornets,115,98,Home
+1/31/2017,Los Angeles Lakers,Denver Nuggets,120,116,Home
+2/1/2017,Orlando Magic,Indiana Pacers,88,98,Away
+2/1/2017,Cleveland Cavaliers,Minnesota Timberwolves,125,97,Home
+2/1/2017,Boston Celtics,Toronto Raptors,109,104,Home
+2/1/2017,Brooklyn Nets,New York Knicks,90,95,Away
+2/1/2017,Miami Heat,Atlanta Hawks,116,93,Home
+2/1/2017,Detroit Pistons,New Orleans Pelicans,118,98,Home
+2/1/2017,Dallas Mavericks,Philadelphia 76ers,113,95,Home
+2/1/2017,Denver Nuggets,Memphis Grizzlies,99,119,Away
+2/1/2017,Utah Jazz,Milwaukee Bucks,104,88,Home
+2/1/2017,Phoenix Suns,LA Clippers,114,124,Away
+2/1/2017,Oklahoma City Thunder,Chicago Bulls,100,128,Away
+2/1/2017,Golden State Warriors,Charlotte Hornets,126,111,Home
+2/2/2017,Washington Wizards,Los Angeles Lakers,116,108,Home
+2/2/2017,Houston Rockets,Atlanta Hawks,108,113,Away
+2/2/2017,San Antonio Spurs,Philadelphia 76ers,102,86,Home
+2/2/2017,LA Clippers,Golden State Warriors,120,133,Away
+2/3/2017,Orlando Magic,Toronto Raptors,102,94,Home
+2/3/2017,Brooklyn Nets,Indiana Pacers,97,106,Away
+2/3/2017,Detroit Pistons,Minnesota Timberwolves,116,108,Home
+2/3/2017,Houston Rockets,Chicago Bulls,121,117,Home
+2/3/2017,Oklahoma City Thunder,Memphis Grizzlies,114,102,Home
+2/3/2017,Boston Celtics,Los Angeles Lakers,113,107,Home
+2/3/2017,Denver Nuggets,Milwaukee Bucks,121,117,Home
+2/3/2017,Sacramento Kings,Phoenix Suns,103,105,Away
+2/3/2017,Portland Trail Blazers,Dallas Mavericks,104,108,Away
+2/4/2017,Washington Wizards,New Orleans Pelicans,105,91,Home
+2/4/2017,Atlanta Hawks,Orlando Magic,113,86,Home
+2/4/2017,Indiana Pacers,Detroit Pistons,105,84,Home
+2/4/2017,Miami Heat,Philadelphia 76ers,125,102,Home
+2/4/2017,New York Knicks,Cleveland Cavaliers,104,111,Away
+2/4/2017,Utah Jazz,Charlotte Hornets,105,98,Home
+2/4/2017,Phoenix Suns,Milwaukee Bucks,112,137,Away
+2/4/2017,San Antonio Spurs,Denver Nuggets,121,97,Home
+2/4/2017,Minnesota Timberwolves,Memphis Grizzlies,99,107,Away
+2/4/2017,Sacramento Kings,Golden State Warriors,109,106,Home
+2/5/2017,Brooklyn Nets,Toronto Raptors,95,103,Away
+2/5/2017,Boston Celtics,LA Clippers,107,102,Home
+2/5/2017,Oklahoma City Thunder,Portland Trail Blazers,105,99,Home
+2/6/2017,New York Knicks,Los Angeles Lakers,107,121,Away
+2/6/2017,Washington Wizards,Cleveland Cavaliers,135,140,Away
+2/6/2017,Indiana Pacers,Oklahoma City Thunder,93,90,Home
+2/6/2017,Toronto Raptors,LA Clippers,118,109,Home
+2/6/2017,Atlanta Hawks,Utah Jazz,95,120,Away
+2/6/2017,Detroit Pistons,Philadelphia 76ers,113,96,Home
+2/6/2017,New Orleans Pelicans,Phoenix Suns,111,106,Home
+2/6/2017,Minnesota Timberwolves,Miami Heat,113,115,Away
+2/6/2017,Denver Nuggets,Dallas Mavericks,110,87,Home
+2/6/2017,Memphis Grizzlies,San Antonio Spurs,89,74,Home
+2/6/2017,Sacramento Kings,Chicago Bulls,107,112,Away
+2/7/2017,Charlotte Hornets,Brooklyn Nets,111,107,Home
+2/7/2017,Houston Rockets,Orlando Magic,128,104,Home
+2/7/2017,Dallas Mavericks,Portland Trail Blazers,113,114,Away
+2/8/2017,Philadelphia 76ers,San Antonio Spurs,103,111,Away
+2/8/2017,Indiana Pacers,Cleveland Cavaliers,117,132,Away
+2/8/2017,Brooklyn Nets,Washington Wizards,110,114,Away
+2/8/2017,Atlanta Hawks,Denver Nuggets,117,106,Home
+2/8/2017,Detroit Pistons,Los Angeles Lakers,121,102,Home
+2/8/2017,Milwaukee Bucks,Miami Heat,88,106,Away
+2/8/2017,Memphis Grizzlies,Phoenix Suns,110,91,Home
+2/8/2017,New Orleans Pelicans,Utah Jazz,94,127,Away
+2/8/2017,Minnesota Timberwolves,Toronto Raptors,112,109,Home
+2/8/2017,New York Knicks,LA Clippers,115,119,Away
+2/8/2017,Golden State Warriors,Chicago Bulls,123,92,Home
+2/8/2017,Sacramento Kings,Boston Celtics,108,92,Home
+2/9/2017,Charlotte Hornets,Houston Rockets,95,107,Away
+2/9/2017,Orlando Magic,Philadelphia 76ers,111,112,Away
+2/9/2017,Oklahoma City Thunder,Cleveland Cavaliers,118,109,Home
+2/9/2017,Dallas Mavericks,Utah Jazz,112,105,Home
+2/9/2017,Portland Trail Blazers,Boston Celtics,111,120,Away
+2/10/2017,Brooklyn Nets,Miami Heat,99,108,Away
+2/10/2017,New York Knicks,Denver Nuggets,123,131,Away
+2/10/2017,Detroit Pistons,San Antonio Spurs,92,103,Away
+2/10/2017,Milwaukee Bucks,Los Angeles Lakers,114,122,Away
+2/10/2017,Memphis Grizzlies,Golden State Warriors,107,122,Away
+2/10/2017,Minnesota Timberwolves,New Orleans Pelicans,106,122,Away
+2/10/2017,Washington Wizards,Indiana Pacers,112,107,Home
+2/10/2017,Sacramento Kings,Atlanta Hawks,108,107,Home
+2/10/2017,Phoenix Suns,Chicago Bulls,115,97,Home
+2/11/2017,Charlotte Hornets,LA Clippers,102,107,Away
+2/11/2017,Indiana Pacers,Milwaukee Bucks,100,116,Away
+2/11/2017,Philadelphia 76ers,Miami Heat,117,109,Home
+2/11/2017,Cleveland Cavaliers,Denver Nuggets,125,109,Home
+2/11/2017,Houston Rockets,Phoenix Suns,133,102,Home
+2/11/2017,Oklahoma City Thunder,Golden State Warriors,114,130,Away
+2/11/2017,Dallas Mavericks,Orlando Magic,112,80,Home
+2/11/2017,Utah Jazz,Boston Celtics,104,112,Away
+2/12/2017,Minnesota Timberwolves,Chicago Bulls,117,89,Home
+2/12/2017,New York Knicks,San Antonio Spurs,94,90,Home
+2/12/2017,Toronto Raptors,Detroit Pistons,101,102,Away
+2/12/2017,Sacramento Kings,New Orleans Pelicans,105,99,Home
+2/13/2017,Washington Wizards,Oklahoma City Thunder,120,98,Home
+2/13/2017,Charlotte Hornets,Philadelphia 76ers,99,105,Away
+2/13/2017,Brooklyn Nets,Memphis Grizzlies,103,112,Away
+2/13/2017,Miami Heat,Orlando Magic,107,116,Away
+2/13/2017,Milwaukee Bucks,Detroit Pistons,102,89,Home
+2/13/2017,Indiana Pacers,San Antonio Spurs,106,110,Away
+2/13/2017,Dallas Mavericks,Boston Celtics,98,111,Away
+2/13/2017,Denver Nuggets,Golden State Warriors,132,110,Home
+2/13/2017,Utah Jazz,LA Clippers,72,88,Away
+2/13/2017,Phoenix Suns,New Orleans Pelicans,108,110,Away
+2/13/2017,Portland Trail Blazers,Atlanta Hawks,104,109,Away
+2/14/2017,Chicago Bulls,Toronto Raptors,105,94,Home
+2/14/2017,Minnesota Timberwolves,Cleveland Cavaliers,108,116,Away
+2/14/2017,Los Angeles Lakers,Sacramento Kings,96,97,Away
+2/15/2017,Orlando Magic,San Antonio Spurs,79,107,Away
+2/15/2017,Cleveland Cavaliers,Indiana Pacers,113,104,Home
+2/15/2017,Boston Celtics,Philadelphia 76ers,116,108,Home
+2/15/2017,Toronto Raptors,Charlotte Hornets,90,85,Home
+2/15/2017,Brooklyn Nets,Milwaukee Bucks,125,129,Away
+2/15/2017,Detroit Pistons,Dallas Mavericks,98,91,Home
+2/15/2017,Memphis Grizzlies,New Orleans Pelicans,91,95,Away
+2/15/2017,Houston Rockets,Miami Heat,109,117,Away
+2/15/2017,Denver Nuggets,Minnesota Timberwolves,99,112,Away
+2/15/2017,Utah Jazz,Portland Trail Blazers,111,88,Home
+2/15/2017,Phoenix Suns,Los Angeles Lakers,137,101,Home
+2/15/2017,Oklahoma City Thunder,New York Knicks,116,105,Home
+2/15/2017,LA Clippers,Atlanta Hawks,99,84,Home
+2/15/2017,Golden State Warriors,Sacramento Kings,109,86,Home
+2/16/2017,Indiana Pacers,Washington Wizards,98,111,Away
+2/16/2017,Chicago Bulls,Boston Celtics,104,103,Home
+2/23/2017,Orlando Magic,Portland Trail Blazers,103,112,Away
+2/23/2017,Detroit Pistons,Charlotte Hornets,114,108,Home
+2/23/2017,New Orleans Pelicans,Houston Rockets,99,129,Away
+2/23/2017,Cleveland Cavaliers,New York Knicks,119,104,Home
+2/23/2017,Golden State Warriors,LA Clippers,123,113,Home
+2/23/2017,Sacramento Kings,Denver Nuggets,116,100,Home
+2/24/2017,Philadelphia 76ers,Washington Wizards,120,112,Home
+2/24/2017,Indiana Pacers,Memphis Grizzlies,102,92,Home
+2/24/2017,Toronto Raptors,Boston Celtics,107,97,Home
+2/24/2017,Chicago Bulls,Phoenix Suns,128,121,Home
+2/24/2017,Milwaukee Bucks,Utah Jazz,95,109,Away
+2/24/2017,Oklahoma City Thunder,Los Angeles Lakers,110,93,Home
+2/24/2017,Minnesota Timberwolves,Dallas Mavericks,97,84,Home
+2/24/2017,Atlanta Hawks,Miami Heat,90,108,Away
+2/24/2017,Denver Nuggets,Brooklyn Nets,129,109,Home
+2/24/2017,LA Clippers,San Antonio Spurs,97,105,Away
+2/25/2017,Sacramento Kings,Charlotte Hornets,85,99,Away
+2/25/2017,Orlando Magic,Atlanta Hawks,105,86,Home
+2/25/2017,New York Knicks,Philadelphia 76ers,110,109,Home
+2/25/2017,Miami Heat,Indiana Pacers,113,95,Home
+2/25/2017,Dallas Mavericks,New Orleans Pelicans,96,83,Home
+2/25/2017,Cleveland Cavaliers,Chicago Bulls,99,117,Away
+2/25/2017,Houston Rockets,Minnesota Timberwolves,142,130,Home
+2/25/2017,Golden State Warriors,Brooklyn Nets,112,95,Home
+2/26/2017,Los Angeles Lakers,San Antonio Spurs,98,119,Away
+2/26/2017,Milwaukee Bucks,Phoenix Suns,100,96,Home
+2/26/2017,Denver Nuggets,Memphis Grizzlies,98,105,Away
+2/26/2017,Washington Wizards,Utah Jazz,92,102,Away
+2/26/2017,Toronto Raptors,Portland Trail Blazers,112,106,Home
+2/26/2017,Detroit Pistons,Boston Celtics,98,104,Away
+2/26/2017,Oklahoma City Thunder,New Orleans Pelicans,118,110,Home
+2/26/2017,LA Clippers,Charlotte Hornets,124,121,Home
+2/27/2017,New York Knicks,Toronto Raptors,91,92,Away
+2/27/2017,Philadelphia 76ers,Golden State Warriors,108,119,Away
+2/27/2017,Cleveland Cavaliers,Milwaukee Bucks,102,95,Home
+2/27/2017,Boston Celtics,Atlanta Hawks,98,114,Away
+2/27/2017,Houston Rockets,Indiana Pacers,108,117,Away
+2/27/2017,Dallas Mavericks,Miami Heat,96,89,Home
+2/27/2017,Sacramento Kings,Minnesota Timberwolves,88,102,Away
+2/28/2017,Washington Wizards,Golden State Warriors,112,108,Home
+2/28/2017,Detroit Pistons,Portland Trail Blazers,120,113,Home
+2/28/2017,Chicago Bulls,Denver Nuggets,107,125,Away
+2/28/2017,Memphis Grizzlies,Phoenix Suns,130,112,Home
+2/28/2017,Oklahoma City Thunder,Utah Jazz,109,106,Home
+2/28/2017,Los Angeles Lakers,Charlotte Hornets,104,109,Away
+3/1/2017,Orlando Magic,New York Knicks,90,101,Away
+3/1/2017,Toronto Raptors,Washington Wizards,96,105,Away
+3/1/2017,Atlanta Hawks,Dallas Mavericks,100,95,Home
+3/1/2017,Miami Heat,Philadelphia 76ers,125,98,Home
+3/1/2017,Milwaukee Bucks,Denver Nuggets,98,110,Away
+3/1/2017,New Orleans Pelicans,Detroit Pistons,109,86,Home
+3/1/2017,Boston Celtics,Cleveland Cavaliers,103,99,Home
+3/1/2017,San Antonio Spurs,Indiana Pacers,100,99,Home
+3/1/2017,Utah Jazz,Minnesota Timberwolves,80,107,Away
+3/1/2017,LA Clippers,Houston Rockets,103,122,Away
+3/1/2017,Sacramento Kings,Brooklyn Nets,100,109,Away
+3/2/2017,Chicago Bulls,Golden State Warriors,94,87,Home
+3/2/2017,Phoenix Suns,Charlotte Hornets,120,103,Home
+3/2/2017,Portland Trail Blazers,Oklahoma City Thunder,114,109,Home
+3/3/2017,Philadelphia 76ers,New York Knicks,105,102,Home
+3/3/2017,Washington Wizards,Toronto Raptors,106,114,Away
+3/3/2017,Orlando Magic,Miami Heat,110,99,Home
+3/3/2017,Milwaukee Bucks,LA Clippers,112,101,Home
+3/3/2017,Atlanta Hawks,Cleveland Cavaliers,130,135,Away
+3/3/2017,Dallas Mavericks,Memphis Grizzlies,104,100,Home
+3/3/2017,Utah Jazz,Brooklyn Nets,112,97,Home
+3/3/2017,Phoenix Suns,Oklahoma City Thunder,118,111,Home
+3/3/2017,New Orleans Pelicans,San Antonio Spurs,98,101,Away
+3/3/2017,Los Angeles Lakers,Boston Celtics,95,115,Away
+3/4/2017,Philadelphia 76ers,Detroit Pistons,106,136,Away
+3/4/2017,Milwaukee Bucks,Toronto Raptors,101,94,Home
+3/4/2017,Miami Heat,Cleveland Cavaliers,120,92,Home
+3/4/2017,Chicago Bulls,LA Clippers,91,101,Away
+3/4/2017,Denver Nuggets,Charlotte Hornets,102,112,Away
+3/4/2017,Houston Rockets,Memphis Grizzlies,123,108,Home
+3/4/2017,San Antonio Spurs,Minnesota Timberwolves,97,90,Home
+3/4/2017,Portland Trail Blazers,Brooklyn Nets,130,116,Home
+3/5/2017,Atlanta Hawks,Indiana Pacers,96,97,Away
+3/5/2017,New York Knicks,Golden State Warriors,105,112,Away
+3/5/2017,Phoenix Suns,Boston Celtics,109,106,Home
+3/5/2017,Washington Wizards,Orlando Magic,115,114,Home
+3/5/2017,Sacramento Kings,Utah Jazz,109,110,Away
+3/5/2017,Dallas Mavericks,Oklahoma City Thunder,104,89,Home
+3/5/2017,Los Angeles Lakers,New Orleans Pelicans,97,105,Away
+3/6/2017,Philadelphia 76ers,Milwaukee Bucks,98,112,Away
+3/6/2017,Orlando Magic,New York Knicks,105,113,Away
+3/6/2017,Cleveland Cavaliers,Miami Heat,98,106,Away
+3/6/2017,Atlanta Hawks,Golden State Warriors,111,119,Away
+3/6/2017,Detroit Pistons,Chicago Bulls,109,95,Home
+3/6/2017,Memphis Grizzlies,Brooklyn Nets,109,122,Away
+3/6/2017,Charlotte Hornets,Indiana Pacers,100,88,Home
+3/6/2017,San Antonio Spurs,Houston Rockets,112,110,Home
+3/6/2017,Denver Nuggets,Sacramento Kings,108,96,Home
+3/6/2017,Utah Jazz,New Orleans Pelicans,88,83,Home
+3/6/2017,LA Clippers,Boston Celtics,116,102,Home
+3/7/2017,Oklahoma City Thunder,Portland Trail Blazers,121,126,Away
+3/7/2017,Dallas Mavericks,Los Angeles Lakers,122,111,Home
+3/7/2017,Phoenix Suns,Washington Wizards,127,131,Away
+3/8/2017,Orlando Magic,Chicago Bulls,98,91,Home
+3/8/2017,Atlanta Hawks,Brooklyn Nets,110,105,Home
+3/8/2017,Miami Heat,Charlotte Hornets,108,101,Home
+3/8/2017,Milwaukee Bucks,New York Knicks,104,93,Home
+3/8/2017,New Orleans Pelicans,Toronto Raptors,87,94,Away
+3/8/2017,Houston Rockets,Utah Jazz,108,115,Away
+3/8/2017,Minnesota Timberwolves,LA Clippers,107,91,Home
+3/8/2017,Indiana Pacers,Detroit Pistons,115,98,Home
+3/8/2017,San Antonio Spurs,Sacramento Kings,114,104,Home
+3/8/2017,Denver Nuggets,Washington Wizards,113,123,Away
+3/8/2017,Golden State Warriors,Boston Celtics,86,99,Away
+3/9/2017,Detroit Pistons,Cleveland Cavaliers,106,101,Home
+3/9/2017,Memphis Grizzlies,LA Clippers,98,114,Away
+3/9/2017,Oklahoma City Thunder,San Antonio Spurs,102,92,Home
+3/9/2017,Portland Trail Blazers,Philadelphia 76ers,114,108,Home
+3/9/2017,Phoenix Suns,Los Angeles Lakers,110,122,Away
+3/10/2017,Charlotte Hornets,Orlando Magic,121,81,Home
+3/10/2017,Chicago Bulls,Houston Rockets,94,115,Away
+3/10/2017,Milwaukee Bucks,Indiana Pacers,99,85,Home
+3/10/2017,Minnesota Timberwolves,Golden State Warriors,103,102,Home
+3/10/2017,Atlanta Hawks,Toronto Raptors,105,99,Home
+3/10/2017,Denver Nuggets,Boston Celtics,119,99,Home
+3/10/2017,Dallas Mavericks,Brooklyn Nets,105,96,Home
+3/10/2017,Sacramento Kings,Washington Wizards,122,130,Away
+3/11/2017,Oklahoma City Thunder,Utah Jazz,112,104,Home
+3/11/2017,LA Clippers,Philadelphia 76ers,112,100,Home
+3/11/2017,Detroit Pistons,New York Knicks,112,92,Home
+3/11/2017,Charlotte Hornets,New Orleans Pelicans,122,125,Away
+3/11/2017,Orlando Magic,Cleveland Cavaliers,104,116,Away
+3/11/2017,Milwaukee Bucks,Minnesota Timberwolves,102,95,Home
+3/11/2017,Miami Heat,Toronto Raptors,104,89,Home
+3/11/2017,San Antonio Spurs,Golden State Warriors,107,85,Home
+3/11/2017,Memphis Grizzlies,Atlanta Hawks,90,107,Away
+3/11/2017,Dallas Mavericks,Phoenix Suns,98,100,Away
+3/11/2017,Portland Trail Blazers,Washington Wizards,124,125,Away
+3/11/2017,Sacramento Kings,Denver Nuggets,92,105,Away
+3/12/2017,Boston Celtics,Chicago Bulls,100,80,Home
+3/12/2017,Brooklyn Nets,New York Knicks,120,112,Home
+3/12/2017,Indiana Pacers,Miami Heat,102,98,Home
+3/12/2017,Phoenix Suns,Portland Trail Blazers,101,110,Away
+3/12/2017,Houston Rockets,Cleveland Cavaliers,117,112,Home
+3/12/2017,Los Angeles Lakers,Philadelphia 76ers,116,118,Away
+3/13/2017,Charlotte Hornets,Chicago Bulls,109,115,Away
+3/13/2017,Toronto Raptors,Dallas Mavericks,100,78,Home
+3/13/2017,Memphis Grizzlies,Milwaukee Bucks,113,93,Home
+3/13/2017,San Antonio Spurs,Atlanta Hawks,107,99,Home
+3/13/2017,Minnesota Timberwolves,Washington Wizards,119,104,Home
+3/13/2017,Utah Jazz,LA Clippers,114,108,Home
+3/13/2017,Sacramento Kings,Orlando Magic,120,115,Home
+3/13/2017,Denver Nuggets,Los Angeles Lakers,129,101,Home
+3/14/2017,Cleveland Cavaliers,Detroit Pistons,128,96,Home
+3/14/2017,Brooklyn Nets,Oklahoma City Thunder,104,122,Away
+3/14/2017,New York Knicks,Indiana Pacers,87,81,Home
+3/14/2017,New Orleans Pelicans,Portland Trail Blazers,100,77,Home
+3/14/2017,Golden State Warriors,Philadelphia 76ers,106,104,Home
+3/15/2017,Washington Wizards,Dallas Mavericks,107,112,Away
+3/15/2017,Indiana Pacers,Charlotte Hornets,98,77,Home
+3/15/2017,Boston Celtics,Minnesota Timberwolves,117,104,Home
+3/15/2017,Miami Heat,New Orleans Pelicans,120,112,Home
+3/15/2017,Detroit Pistons,Utah Jazz,83,97,Away
+3/15/2017,Chicago Bulls,Memphis Grizzlies,91,98,Away
+3/15/2017,Houston Rockets,Los Angeles Lakers,139,100,Home
+3/15/2017,San Antonio Spurs,Portland Trail Blazers,106,110,Away
+3/15/2017,Phoenix Suns,Sacramento Kings,101,107,Away
+3/15/2017,LA Clippers,Milwaukee Bucks,96,97,Away
+3/16/2017,Cleveland Cavaliers,Utah Jazz,91,83,Home
+3/16/2017,Toronto Raptors,Oklahoma City Thunder,102,123,Away
+3/16/2017,New York Knicks,Brooklyn Nets,110,121,Away
+3/16/2017,Atlanta Hawks,Memphis Grizzlies,91,103,Away
+3/16/2017,Denver Nuggets,LA Clippers,129,114,Home
+3/16/2017,Golden State Warriors,Orlando Magic,122,92,Home
+3/17/2017,Philadelphia 76ers,Dallas Mavericks,116,74,Home
+3/17/2017,Washington Wizards,Chicago Bulls,112,107,Home
+3/17/2017,Brooklyn Nets,Boston Celtics,95,98,Away
+3/17/2017,Detroit Pistons,Toronto Raptors,75,87,Away
+3/17/2017,New Orleans Pelicans,Houston Rockets,128,112,Home
+3/17/2017,Miami Heat,Minnesota Timberwolves,123,105,Home
+3/17/2017,Phoenix Suns,Orlando Magic,103,109,Away
+3/17/2017,Los Angeles Lakers,Milwaukee Bucks,103,107,Away
+3/18/2017,Oklahoma City Thunder,Sacramento Kings,110,94,Home
+3/18/2017,Atlanta Hawks,Portland Trail Blazers,97,113,Away
+3/18/2017,Charlotte Hornets,Washington Wizards,98,93,Home
+3/18/2017,LA Clippers,Cleveland Cavaliers,108,78,Home
+3/18/2017,Chicago Bulls,Utah Jazz,95,86,Home
+3/18/2017,Memphis Grizzlies,San Antonio Spurs,104,96,Home
+3/18/2017,Denver Nuggets,Houston Rockets,105,109,Away
+3/18/2017,Golden State Warriors,Milwaukee Bucks,117,92,Home
+3/19/2017,Brooklyn Nets,Dallas Mavericks,104,111,Away
+3/19/2017,Philadelphia 76ers,Boston Celtics,105,99,Home
+3/19/2017,Detroit Pistons,Phoenix Suns,112,95,Home
+3/19/2017,New Orleans Pelicans,Minnesota Timberwolves,123,109,Home
+3/19/2017,Toronto Raptors,Indiana Pacers,116,91,Home
+3/19/2017,Miami Heat,Portland Trail Blazers,104,115,Away
+3/19/2017,San Antonio Spurs,Sacramento Kings,118,102,Home
+3/19/2017,Los Angeles Lakers,Cleveland Cavaliers,120,125,Away
+3/20/2017,Charlotte Hornets,Atlanta Hawks,105,90,Home
+3/20/2017,Orlando Magic,Philadelphia 76ers,112,109,Home
+3/20/2017,Indiana Pacers,Utah Jazz,107,100,Home
+3/20/2017,Boston Celtics,Washington Wizards,110,102,Home
+3/20/2017,Houston Rockets,Denver Nuggets,125,124,Home
+3/20/2017,Oklahoma City Thunder,Golden State Warriors,95,111,Away
+3/20/2017,LA Clippers,New York Knicks,114,105,Home
+3/21/2017,Toronto Raptors,Chicago Bulls,122,120,Home
+3/21/2017,Brooklyn Nets,Detroit Pistons,98,96,Home
+3/21/2017,Miami Heat,Phoenix Suns,112,97,Home
+3/21/2017,New Orleans Pelicans,Memphis Grizzlies,95,82,Home
+3/21/2017,Dallas Mavericks,Golden State Warriors,87,112,Away
+3/21/2017,Minnesota Timberwolves,San Antonio Spurs,93,100,Away
+3/21/2017,Portland Trail Blazers,Milwaukee Bucks,90,93,Away
+3/21/2017,Los Angeles Lakers,LA Clippers,109,133,Away
+3/22/2017,Orlando Magic,Charlotte Hornets,102,109,Away
+3/22/2017,Boston Celtics,Indiana Pacers,109,100,Home
+3/22/2017,Chicago Bulls,Detroit Pistons,117,95,Home
+3/22/2017,Oklahoma City Thunder,Philadelphia 76ers,122,97,Home
+3/22/2017,Washington Wizards,Atlanta Hawks,104,100,Home
+3/22/2017,Denver Nuggets,Cleveland Cavaliers,126,113,Home
+3/22/2017,Sacramento Kings,Milwaukee Bucks,98,116,Away
+3/22/2017,Utah Jazz,New York Knicks,108,101,Home
+3/23/2017,Brooklyn Nets,Phoenix Suns,126,98,Home
+3/23/2017,Miami Heat,Toronto Raptors,84,101,Away
+3/23/2017,Dallas Mavericks,LA Clippers,97,95,Home
+3/23/2017,San Antonio Spurs,Memphis Grizzlies,97,90,Home
+3/23/2017,Portland Trail Blazers,New York Knicks,110,95,Home
+3/24/2017,Washington Wizards,Brooklyn Nets,129,108,Home
+3/24/2017,Charlotte Hornets,Cleveland Cavaliers,105,112,Away
+3/24/2017,Orlando Magic,Detroit Pistons,115,87,Home
+3/24/2017,Indiana Pacers,Denver Nuggets,117,125,Away
+3/24/2017,Boston Celtics,Phoenix Suns,130,120,Home
+3/24/2017,Chicago Bulls,Philadelphia 76ers,107,117,Away
+3/24/2017,Milwaukee Bucks,Atlanta Hawks,100,97,Home
+3/24/2017,Houston Rockets,New Orleans Pelicans,117,107,Home
+3/24/2017,Los Angeles Lakers,Minnesota Timberwolves,130,119,Home
+3/24/2017,Golden State Warriors,Sacramento Kings,114,100,Home
+3/25/2017,LA Clippers,Utah Jazz,108,95,Home
+3/25/2017,Cleveland Cavaliers,Washington Wizards,115,127,Away
+3/25/2017,Dallas Mavericks,Toronto Raptors,86,94,Away
+3/25/2017,San Antonio Spurs,New York Knicks,106,98,Home
+3/25/2017,Portland Trail Blazers,Minnesota Timberwolves,112,100,Home
+3/26/2017,Charlotte Hornets,Phoenix Suns,120,106,Home
+3/26/2017,Atlanta Hawks,Brooklyn Nets,92,107,Away
+3/26/2017,LA Clippers,Sacramento Kings,97,98,Away
+3/26/2017,Milwaukee Bucks,Chicago Bulls,94,109,Away
+3/26/2017,Houston Rockets,Oklahoma City Thunder,137,125,Home
+3/26/2017,Indiana Pacers,Philadelphia 76ers,107,94,Home
+3/26/2017,Boston Celtics,Miami Heat,112,108,Home
+3/26/2017,Golden State Warriors,Memphis Grizzlies,106,94,Home
+3/26/2017,Denver Nuggets,New Orleans Pelicans,90,115,Away
+3/26/2017,Los Angeles Lakers,Portland Trail Blazers,81,97,Away
+3/27/2017,Toronto Raptors,Orlando Magic,131,112,Home
+3/27/2017,New York Knicks,Detroit Pistons,109,95,Home
+3/27/2017,San Antonio Spurs,Cleveland Cavaliers,103,74,Home
+3/27/2017,Dallas Mavericks,Oklahoma City Thunder,91,92,Away
+3/27/2017,Sacramento Kings,Memphis Grizzlies,91,90,Home
+3/27/2017,Utah Jazz,New Orleans Pelicans,108,100,Home
+3/28/2017,Charlotte Hornets,Milwaukee Bucks,108,118,Away
+3/28/2017,Indiana Pacers,Minnesota Timberwolves,114,115,Away
+3/28/2017,Brooklyn Nets,Philadelphia 76ers,101,106,Away
+3/28/2017,Atlanta Hawks,Phoenix Suns,95,91,Home
+3/28/2017,Detroit Pistons,Miami Heat,96,97,Away
+3/28/2017,Houston Rockets,Golden State Warriors,106,113,Away
+3/28/2017,Portland Trail Blazers,Denver Nuggets,122,113,Home
+3/28/2017,Los Angeles Lakers,Washington Wizards,108,119,Away
+3/29/2017,Philadelphia 76ers,Atlanta Hawks,92,99,Away
+3/29/2017,Orlando Magic,Oklahoma City Thunder,106,114,Away
+3/29/2017,Boston Celtics,Milwaukee Bucks,100,103,Away
+3/29/2017,Toronto Raptors,Charlotte Hornets,106,110,Away
+3/29/2017,New York Knicks,Miami Heat,88,105,Away
+3/29/2017,Memphis Grizzlies,Indiana Pacers,110,97,Home
+3/29/2017,New Orleans Pelicans,Dallas Mavericks,121,118,Home
+3/29/2017,San Antonio Spurs,Golden State Warriors,98,110,Away
+3/29/2017,LA Clippers,Washington Wizards,133,124,Home
+3/29/2017,Sacramento Kings,Utah Jazz,82,112,Away
+3/30/2017,Detroit Pistons,Brooklyn Nets,90,89,Home
+3/30/2017,Chicago Bulls,Cleveland Cavaliers,99,93,Home
+3/30/2017,Minnesota Timberwolves,Los Angeles Lakers,119,104,Home
+3/30/2017,Phoenix Suns,LA Clippers,118,124,Away
+3/30/2017,Portland Trail Blazers,Houston Rockets,117,107,Home
+3/31/2017,Toronto Raptors,Indiana Pacers,111,100,Home
+3/31/2017,Charlotte Hornets,Denver Nuggets,122,114,Home
+3/31/2017,Cleveland Cavaliers,Philadelphia 76ers,122,105,Home
+3/31/2017,Boston Celtics,Orlando Magic,117,116,Home
+3/31/2017,Milwaukee Bucks,Detroit Pistons,108,105,Home
+3/31/2017,Memphis Grizzlies,Dallas Mavericks,99,90,Home
+3/31/2017,New Orleans Pelicans,Sacramento Kings,117,89,Home
+3/31/2017,Miami Heat,New York Knicks,94,98,Away
+3/31/2017,Utah Jazz,Washington Wizards,95,88,Home
+3/31/2017,Oklahoma City Thunder,San Antonio Spurs,95,100,Away
+3/31/2017,Golden State Warriors,Houston Rockets,107,98,Home
+4/1/2017,LA Clippers,Los Angeles Lakers,115,104,Home
+4/1/2017,Chicago Bulls,Atlanta Hawks,106,104,Home
+4/1/2017,Brooklyn Nets,Orlando Magic,121,111,Home
+4/1/2017,Minnesota Timberwolves,Sacramento Kings,117,123,Away
+4/1/2017,Portland Trail Blazers,Phoenix Suns,130,117,Home
+4/2/2017,Oklahoma City Thunder,Charlotte Hornets,101,113,Away
+4/2/2017,Los Angeles Lakers,Memphis Grizzlies,108,103,Home
+4/2/2017,Milwaukee Bucks,Dallas Mavericks,105,109,Away
+4/2/2017,New York Knicks,Boston Celtics,94,110,Away
+4/2/2017,New Orleans Pelicans,Chicago Bulls,110,117,Away
+4/2/2017,Toronto Raptors,Philadelphia 76ers,113,105,Home
+4/2/2017,Brooklyn Nets,Atlanta Hawks,91,82,Home
+4/2/2017,Miami Heat,Denver Nuggets,113,116,Away
+4/2/2017,Cleveland Cavaliers,Indiana Pacers,135,130,Home
+4/2/2017,San Antonio Spurs,Utah Jazz,109,103,Home
+4/2/2017,Golden State Warriors,Washington Wizards,139,115,Home
+4/2/2017,Phoenix Suns,Houston Rockets,116,123,Away
+4/3/2017,Minnesota Timberwolves,Portland Trail Blazers,110,109,Home
+4/4/2017,Philadelphia 76ers,Brooklyn Nets,118,141,Away
+4/4/2017,Washington Wizards,Charlotte Hornets,118,111,Home
+4/4/2017,Cleveland Cavaliers,Orlando Magic,122,102,Home
+4/4/2017,Indiana Pacers,Toronto Raptors,108,90,Home
+4/4/2017,New Orleans Pelicans,Denver Nuggets,131,134,Away
+4/4/2017,Oklahoma City Thunder,Milwaukee Bucks,110,79,Home
+4/4/2017,New York Knicks,Chicago Bulls,100,91,Home
+4/4/2017,San Antonio Spurs,Memphis Grizzlies,95,89,Home
+4/4/2017,Golden State Warriors,Minnesota Timberwolves,121,107,Home
+4/4/2017,Sacramento Kings,Dallas Mavericks,98,87,Home
+4/4/2017,Utah Jazz,Portland Trail Blazers,106,87,Home
+4/5/2017,Charlotte Hornets,Miami Heat,99,112,Away
+4/5/2017,Detroit Pistons,Toronto Raptors,102,105,Away
+4/5/2017,Memphis Grizzlies,Oklahoma City Thunder,100,103,Away
+4/5/2017,Houston Rockets,Denver Nuggets,110,104,Home
+4/5/2017,Boston Celtics,Cleveland Cavaliers,91,114,Away
+4/5/2017,San Antonio Spurs,Los Angeles Lakers,95,102,Away
+4/5/2017,Phoenix Suns,Golden State Warriors,111,120,Away
+4/5/2017,LA Clippers,Dallas Mavericks,112,101,Home
+4/6/2017,Philadelphia 76ers,Chicago Bulls,90,102,Away
+4/6/2017,Orlando Magic,Brooklyn Nets,115,107,Home
+4/6/2017,Indiana Pacers,Milwaukee Bucks,104,89,Home
+4/6/2017,New York Knicks,Washington Wizards,103,106,Away
+4/6/2017,Atlanta Hawks,Boston Celtics,123,116,Home
+4/6/2017,Portland Trail Blazers,Minnesota Timberwolves,105,98,Home
+4/7/2017,Cleveland Cavaliers,Atlanta Hawks,100,114,Away
+4/7/2017,Toronto Raptors,Miami Heat,96,94,Home
+4/7/2017,Memphis Grizzlies,New York Knicks,101,88,Home
+4/7/2017,Houston Rockets,Detroit Pistons,109,114,Away
+4/7/2017,Dallas Mavericks,San Antonio Spurs,89,102,Away
+4/7/2017,Denver Nuggets,New Orleans Pelicans,122,106,Home
+4/7/2017,Utah Jazz,Minnesota Timberwolves,120,113,Home
+4/7/2017,Phoenix Suns,Oklahoma City Thunder,120,99,Home
+4/7/2017,Los Angeles Lakers,Sacramento Kings,98,94,Home
+4/8/2017,Brooklyn Nets,Chicago Bulls,107,106,Home
+4/8/2017,Charlotte Hornets,Boston Celtics,114,121,Away
+4/8/2017,Orlando Magic,Indiana Pacers,112,127,Away
+4/8/2017,Philadelphia 76ers,Milwaukee Bucks,82,90,Away
+4/8/2017,Washington Wizards,Miami Heat,103,106,Away
+4/8/2017,San Antonio Spurs,LA Clippers,87,98,Away
+4/8/2017,Portland Trail Blazers,Utah Jazz,101,86,Home
+4/8/2017,Golden State Warriors,New Orleans Pelicans,123,101,Home
+4/9/2017,New York Knicks,Toronto Raptors,97,110,Away
+4/9/2017,Atlanta Hawks,Cleveland Cavaliers,126,125,Home
+4/9/2017,Denver Nuggets,Oklahoma City Thunder,105,106,Away
+4/9/2017,Phoenix Suns,Dallas Mavericks,124,111,Home
+4/9/2017,Sacramento Kings,Houston Rockets,128,135,Away
+4/9/2017,Memphis Grizzlies,Detroit Pistons,90,103,Away
+4/9/2017,Los Angeles Lakers,Minnesota Timberwolves,110,109,Home
+4/10/2017,Philadelphia 76ers,Indiana Pacers,111,120,Away
+4/10/2017,Boston Celtics,Brooklyn Nets,114,105,Home
+4/10/2017,Miami Heat,Cleveland Cavaliers,124,121,Home
+4/10/2017,Chicago Bulls,Orlando Magic,122,75,Home
+4/10/2017,Milwaukee Bucks,Charlotte Hornets,89,79,Home
+4/10/2017,Detroit Pistons,Washington Wizards,101,105,Away
+4/10/2017,Portland Trail Blazers,San Antonio Spurs,99,98,Home
+4/10/2017,LA Clippers,Houston Rockets,125,96,Home
+4/10/2017,Golden State Warriors,Utah Jazz,99,105,Away
+4/11/2017,Atlanta Hawks,Charlotte Hornets,103,76,Home
+4/11/2017,Minnesota Timberwolves,Oklahoma City Thunder,98,100,Away
+4/11/2017,Dallas Mavericks,Denver Nuggets,91,109,Away
+4/11/2017,Los Angeles Lakers,New Orleans Pelicans,108,96,Home
+4/11/2017,Sacramento Kings,Phoenix Suns,129,104,Home
+4/12/2017,Orlando Magic,Detroit Pistons,113,109,Home
+4/12/2017,Cleveland Cavaliers,Toronto Raptors,83,98,Away
+4/12/2017,Boston Celtics,Milwaukee Bucks,112,94,Home
+4/12/2017,New York Knicks,Philadelphia 76ers,114,113,Home
+4/12/2017,Miami Heat,Washington Wizards,110,102,Home
+4/12/2017,Chicago Bulls,Brooklyn Nets,112,73,Home
+4/12/2017,Memphis Grizzlies,Dallas Mavericks,93,100,Away
+4/12/2017,Houston Rockets,Minnesota Timberwolves,123,118,Home
+4/12/2017,Oklahoma City Thunder,Denver Nuggets,105,111,Away
+4/12/2017,Indiana Pacers,Atlanta Hawks,104,86,Home
+4/12/2017,Utah Jazz,San Antonio Spurs,101,97,Home
+4/12/2017,LA Clippers,Sacramento Kings,115,95,Home
+4/12/2017,Golden State Warriors,Los Angeles Lakers,109,94,Home
+4/12/2017,Portland Trail Blazers,New Orleans Pelicans,100,103,Away
