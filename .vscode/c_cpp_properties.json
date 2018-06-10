@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/usr/include/c++/8.1.0/x86_64-pc-linux-gnu",
+                "/usr/include/c++/8.1.0",
+                "/usr/include/c++/8.1.0/x86_64-pc-linux-gnu"
+            ],
+            "defines": [],
+            "compilerPath": "/opt/cuda/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-x64"
+        }
+    ],
+    "version": 4
+}
