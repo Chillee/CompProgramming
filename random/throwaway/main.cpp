@@ -2,4 +2,8 @@
 
 using namespace std;
 
-int main() { int x = 5; }
+int main() {
+    vector<int> test;
+    sort(test.rbegin(), test.rend());
+    cout << test.size() << endl;
+}

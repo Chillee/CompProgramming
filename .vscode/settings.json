@@ -31,7 +31,11 @@
         "deque": "cpp",
         "forward_list": "cpp",
         "list": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "variant": "cpp",
+        "hash_map": "cpp",
+        "numeric": "cpp",
+        "scoped_allocator": "cpp"
     },
     "python.linting.enabled": false
 }
