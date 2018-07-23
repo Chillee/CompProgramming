@@ -3,9 +3,11 @@
 using namespace std;
 
 int main() {
-    vector<int> a = {5, 10};
-    auto lb = lower_bound(a.begin(), a.end(), 4);
-    // lb--;
+    vector<int> a = {};
+    auto lb = lower_bound(a.begin(), a.end(), 6);
+    if (lb != a.begin()) {
+        lb--;
+    }
     if (lb == a.begin()) {
         cout << "at beginning" << endl;
     }
