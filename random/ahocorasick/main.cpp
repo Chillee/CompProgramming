@@ -6,13 +6,11 @@ const int MAXN = 1e5 + 5;
 const int MAXCHAR = 26;
 
 struct Vertex {
-    int next[MAXCHAR];
+    int next[MAXCHAR], go[MAXCHAR];
     int leaf = -1;
     int p = -1;
     char pch;
-    int link = -1;
-    int leaflink = -1;
-    int go[MAXCHAR];
+    int link = -1, leaflink = -1;
 
     Vertex(int p = -1, char ch = '$') : p(p), pch(ch) {
         fill(begin(next), end(next), -1);
@@ -43,6 +41,7 @@ int get_link(int v) {
             trie[v].link = 0;
         else
             trie[v].link = go(get_link(trie[v].p), trie[v].pch);
+        trie[v].leaflink = (trie[trie[v].link].leaf != -1) ? trie[v].link : trie[trie[v].link].leaflink;
     }
     return trie[v].link;
 }
@@ -58,22 +57,6 @@ int go(int v, char ch) {
     return trie[v].go[c];
 }
 
-int getleaf(int i) {
-    if (trie[i].leaflink != -1) {
-        return trie[i].leaflink;
-    }
-    int nxt = get_link(i);
-    if (nxt > 0) {
-        if (trie[nxt].leaf != -1) {
-            trie[i].leaflink = nxt;
-        } else {
-            trie[i].leaflink = getleaf(nxt);
-        }
-        return trie[i].leaflink;
-    }
-    return 0;
-}
-
 string S;
 vector<string> M;
 vector<int> results[MAXN];
@@ -81,24 +64,26 @@ vector<int> results[MAXN];
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    string S = "abbb abbababbbab";
-    M = {"b", "ab", "bb", "abb", "bbb", "a", "abbb"};
+    string S = "aaabbbbaaabababab";
+    M = {"abbbbaaabab", "aaabbbbaaaba", "baaabab", "abbbbaaababa"};
     for (int i = 0; i < M.size(); i++) {
         add_string(M[i], i);
     }
+    for (int i = 1; i < trie.size(); i++) //
+        get_link(i);                      //
 
     int v = 0;
     for (int i = 0; i < S.size(); i++) {
+        get_link(v);
         v = go(v, S[i]);
         int cur = v;
-        while (getleaf(cur) > 0) {
-            cur = getleaf(cur);
+        while (cur != -1 && trie[cur].leaf != -1) {
             results[trie[cur].leaf].push_back(i);
-        }
-        if (trie[v].leaf != -1) {
-            results[trie[v].leaf].push_back(i);
+            get_link(cur);
+            cur = trie[cur].leaflink;
         }
     }
+
     for (int i = 0; i < M.size(); i++) {
         cout << "Found instances for " << M[i] << ": ";
         for (auto j : results[i]) {

@@ -5,7 +5,7 @@ using namespace std;
 int main() {
     // Generating subsets
     int N = 4;
-    for (int i = 0; i < (1 << N); i++) {
+    for (int i = (1 << N) - 1; i >= 0; i--) {
         for (int j = 0; j < N; j++) {
             if (i & (1 << j)) {
                 cout << "1";

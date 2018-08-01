@@ -2,10 +2,14 @@
 
 using namespace std;
 
-const int MAXN = 1e6 + 5;
-int seg[2 * MAXN];
-int N;
+random_device rd; // only used once to initialise (seed) engine
+mt19937 rng(rd());
+uniform_int_distribution<int> uni(0, 1e6);
 
+const int MAXN = 1e6 + 5;
+int N = 1e6;
+
+int seg[2 * MAXN];
 void build() {
     for (int i = N - 1; i >= 0; i--)
         seg[i] = seg[i << 1] + seg[i << 1 | 1];
@@ -28,17 +32,18 @@ int query(int l, int r) {
 }
 
 int main() {
-    N = 8;
-    for (int i = 0; i < N; i++) {
-        seg[i + N] = i;
+    clock_t begin = clock();
+    for (int i = 0; i < 1e5; i++) {
+        modify(uni(rng), i);
     }
-    build();
-    assert(query(1, 5) == 10);
-    assert(query(0, 8) == 28);
-    modify(2, 5);
-    cout << query(0, 8) << endl;
-    assert(query(0, 8) == 31);
-
-    cout << "Passed test cases" << endl;
+    for (int i = 0; i < 1e5; i++) {
+        int a = uni(rng);
+        int b = uni(rng);
+        if (a > b) {
+            swap(a, b);
+        }
+        query(a, b);
+    }
+    cout << (double)(clock() - begin) / CLOCKS_PER_SEC << endl;
     return 0;
 }

@@ -6,13 +6,11 @@ const int MAXN = 1e5 + 5;
 const int MAXCHAR = 26;
 
 struct Vertex {
-    int next[MAXCHAR];
+    int next[MAXCHAR], go[MAXCHAR];
     int leaf = -1;
     int p = -1;
     char pch;
-    int link = -1;
-    int leaflink = -1;
-    int go[MAXCHAR];
+    int link = -1, leaflink = -1;
 
     Vertex(int p = -1, char ch = '$') : p(p), pch(ch) {
         fill(begin(next), end(next), -1);
@@ -43,6 +41,7 @@ int get_link(int v) {
             trie[v].link = 0;
         else
             trie[v].link = go(get_link(trie[v].p), trie[v].pch);
+        trie[v].leaflink = (trie[trie[v].link].leaf != -1) ? trie[v].link : trie[trie[v].link].leaflink;
     }
     return trie[v].link;
 }
@@ -56,22 +55,6 @@ int go(int v, char ch) {
             trie[v].go[c] = v == 0 ? 0 : go(get_link(v), ch);
     }
     return trie[v].go[c];
-}
-
-int getleaf(int i) {
-    if (trie[i].leaflink != -1) {
-        return trie[i].leaflink;
-    }
-    int nxt = get_link(i);
-    if (nxt > 0) {
-        if (trie[nxt].leaf != -1) {
-            trie[i].leaflink = nxt;
-        } else {
-            trie[i].leaflink = getleaf(nxt);
-        }
-        return trie[i].leaflink;
-    }
-    return 0;
 }
 
 string S;
@@ -91,16 +74,15 @@ int main() {
         add_string(M[i], i);
     }
 
+    for (int i = 1; i < trie.size(); i++) //
+        get_link(i);                      //
     int v = 0;
     for (int i = 0; i < S.size(); i++) {
         v = go(v, S[i]);
         int cur = v;
-        while (getleaf(cur) > 0) {
-            cur = getleaf(cur);
+        while (cur != -1 && trie[cur].leaf != -1) {
             results[trie[cur].leaf].push_back(i);
-        }
-        if (trie[v].leaf != -1) {
-            results[trie[v].leaf].push_back(i);
+            cur = trie[cur].leaflink;
         }
     }
     for (int i = 0; i < N; i++) {

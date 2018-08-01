@@ -8,9 +8,9 @@ typedef struct info {
     int right;
 } info;
 
-info seg[2 * MAXN];
 int N;
 string S;
+
 info combine(info l, info r) {
     info res;
     res.left = l.left + r.left;
@@ -19,6 +19,7 @@ info combine(info l, info r) {
     return res;
 }
 
+info seg[2 * MAXN];
 void build() {
     for (int i = N - 1; i > 0; --i)
         seg[i] = combine(seg[i << 1], seg[i << 1 | 1]);

@@ -139,19 +139,15 @@ int main() {
         ll ylength = min(ydu, ydd);
         ll ans = min(max(xlength, yd), max(ylength, xd));
         if (res.rdsolo) {
-            // cout << "RD" << endl;
             ans = min(ans, max(xdr, ydd));
         }
         if (res.ldsolo) {
-            // cout << "LD" << endl;
             ans = min(ans, max(xdl, ydd));
         }
         if (res.rusolo) {
-            // cout << "RU" << endl;
             ans = min(ans, max(xdr, ydu));
         }
         if (res.lusolo) {
-            // cout << "LU" << endl;
             ans = min(ans, max(xdl, ydu));
         }
         cout << ans << endl;
