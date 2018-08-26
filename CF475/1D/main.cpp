@@ -41,6 +41,7 @@ int get_link(int v) {
             trie[v].link = 0;
         else
             trie[v].link = go(get_link(trie[v].p), trie[v].pch);
+        get_link(trie[v].link);
         trie[v].leaflink = (trie[trie[v].link].leaf != -1) ? trie[v].link : trie[trie[v].link].leaflink;
     }
     return trie[v].link;
@@ -74,13 +75,12 @@ int main() {
         add_string(M[i], i);
     }
 
-    for (int i = 1; i < trie.size(); i++) //
-        get_link(i);                      //
     int v = 0;
     for (int i = 0; i < S.size(); i++) {
         v = go(v, S[i]);
-        int cur = v;
-        while (cur != -1 && trie[cur].leaf != -1) {
+        get_link(v);
+        int cur = trie[v].leaf == -1 ? trie[v].leaflink : v;
+        while (cur != -1) {
             results[trie[cur].leaf].push_back(i);
             cur = trie[cur].leaflink;
         }

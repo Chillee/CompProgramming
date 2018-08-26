@@ -6,20 +6,21 @@ const int MAXN = 1e5 + 5;
 const int INF = 1 << 30;
 int N, M;
 
-vector<pair<int, int>> adjlist[MAXN];
+typedef array<int, 2> pii;
+vector<pii> adjlist[MAXN];
 int dist[MAXN];
 void dijkstra(int start) {
-    fill(dist, dist + N, INF);
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    fill(dist, dist + MAXN, INF);
+    priority_queue<pii, vector<pii>, greater<pii>> pq;
     pq.push({0, start});
     while (!pq.empty()) {
-        auto t = pq.top();
+        auto cur = pq.top();
         pq.pop();
-        if (dist[t.second] <= t.first)
+        if (dist[cur[1]] <= cur[0])
             continue;
-        dist[t.second] = t.first;
-        for (auto i : adjlist[t.second]) {
-            pq.push({t.first + i.second, i.first});
+        dist[cur[1]] = cur[0];
+        for (auto i : adjlist[cur[1]]) {
+            pq.push({i[0] + cur[0], i[1]});
         }
     }
 }
@@ -30,8 +31,8 @@ int main() {
         int a, b, d;
         cin >> a >> b >> d;
         a--, b--;
-        adjlist[a].push_back({b, d});
-        adjlist[b].push_back({a, d});
+        adjlist[a].push_back({d, b});
+        adjlist[b].push_back({d, a});
     }
     dijkstra(0);
     for (int i = 0; i < N; i++) {

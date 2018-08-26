@@ -6,91 +6,80 @@ const ll MAXN = 1e5 + 5;
 const ll MAXBITS = 22;
 
 ll N, M;
-ll H;
 ll A[MAXN];
-ll seg[MAXBITS][2 * MAXN];
-ll lazy[MAXBITS][2 * MAXN];
-ll bit;
 
-void apply(ll p, ll value, ll k) {
-    if (value == 0) {
-        return;
-    }
-    seg[bit][p] = (k - seg[bit][p]);
-    if (p < N) {
-        lazy[bit][p] ^= value;
-    }
-}
+struct Tree;
+Tree *newNode();
+struct Tree {
+    Tree *pl, *pr;
+    ll l, r, val[MAXBITS], lazy[MAXBITS];
 
-void propDown(ll p) {
-    ll k = 1 << (H - 1);
-    for (ll s = H; s > 0; s--, k >>= 1) {
-        ll i = p >> s;
-        if (lazy[i] != 0) {
-            apply(i << 1, lazy[bit][i], k);
-            apply(i << 1 | 1, lazy[bit][i], k);
-            lazy[bit][i] = 0;
+    void updateVal() {
+        for (ll i = 0; i < MAXBITS; i++) {
+            val[i] = pl->val[i] + pr->val[i];
         }
     }
-}
-
-void propUp(ll p) {
-    ll k = 2;
-    while (p > 1) {
-        p >>= 1;
-        seg[bit][p] = seg[bit][p << 1] + seg[bit][p << 1 | 1];
-        if (lazy[bit][p]) {
-            seg[bit][p] = k - seg[bit][p];
+    void propagate() { pl->apply(lazy), pr->apply(lazy), fill(lazy, lazy + MAXBITS, 0); }
+    void apply(ll x[MAXBITS]) {
+        for (ll i = 0; i < MAXBITS; i++) {
+            if (x[i] == 0)
+                continue;
+            lazy[i] ^= x[i], val[i] = (r - l) - val[i];
         }
-        k <<= 1;
     }
-}
 
-void inc(ll l, ll r, ll val) {
-    l += N, r += N;
-    ll l0 = l, r0 = r, k = 1;
-    for (; l < r; l >>= 1, r >>= 1, k <<= 1) {
-        if (l & 1)
-            apply(l++, val, k);
-        if (r & 1)
-            apply(--r, val, k);
-    }
-    propUp(l0);
-    propUp(r0 - 1);
-}
-
-ll query(ll l, ll r) {
-    l += N, r += N;
-    propDown(l);
-    propDown(r - 1);
-    ll res = 0;
-    for (; l < r; l >>= 1, r >>= 1) {
-        if (l & 1) {
-            res += seg[bit][l++];
+    void build(ll curl, ll curr) {
+        l = curl, r = curr;
+        if (l + 1 == r) {
+            for (ll i = 0; i < MAXBITS; i++) {
+                val[i] = (A[l] & (1 << i)) ? 1 : 0;
+            }
+            return;
         }
-        if (r & 1)
-            res += seg[bit][--r];
+        (pl = newNode())->build(l, l + r >> 1);
+        (pr = newNode())->build(l + r >> 1, r);
+        updateVal();
     }
-    return res;
-}
-int main() {
+    void modify(ll curl, ll curr, ll x[MAXBITS]) {
+        if (curl <= l && r <= curr) {
+            apply(x);
+            return;
+        }
+        if (curr <= l || r <= curl)
+            return;
+        propagate();
+        pl->modify(curl, curr, x);
+        pr->modify(curl, curr, x);
+        updateVal();
+    }
+    ll query(ll curl, ll curr) {
+        ll ans = 0;
+        if (curl <= l && r <= curr) {
+            for (ll i = 0; i < MAXBITS; i++) {
+                ans += val[i] * (1 << i);
+            }
+            return ans;
+        }
+        if (curr <= l || r <= curl)
+            return 0;
+        propagate();
+        return pl->query(curl, curr) + pr->query(curl, curr);
+    }
+};
+ll bufSize = MAXN * 2;
+Tree buf[MAXN * 2];
+Tree *newNode() { return &buf[--bufSize]; }
+Tree *seg;
+
+signed main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
     cin >> N;
-    H = sizeof(ll) * 8 - __builtin_clzll(N);
     for (ll i = 0; i < N; i++) {
         cin >> A[i];
     }
-    for (bit = 0; bit < MAXBITS; bit++) {
-        for (ll i = 0; i < N; i++) {
-            seg[bit][i + N] = (A[i] & (1 << bit)) ? 1 : 0;
-        }
-    }
-    for (bit = 0; bit < MAXBITS; bit++) {
-        for (ll i = N; i < 2 * N; i++) {
-            propUp(i);
-        }
-    }
+    seg = newNode();
+    seg->build(0, N);
     ll M;
     cin >> M;
     for (ll i = 0; i < M; i++) {
@@ -101,17 +90,16 @@ int main() {
             cin >> a >> b;
             a--, b--;
             ll ans = 0;
-            for (bit = 0; bit < MAXBITS; bit++) {
-                ans += query(a, b + 1) * (1 << bit);
-            }
-            cout << ans << endl;
+            cout << seg->query(a, b + 1) << endl;
         } else {
             ll a, b, x;
             cin >> a >> b >> x;
             a--, b--;
-            for (bit = 0; bit < MAXBITS; bit++) {
-                inc(a, b + 1, (x & (1 << bit)) ? 1 : 0);
+            ll modify[MAXBITS];
+            for (ll bit = 0; bit < MAXBITS; bit++) {
+                modify[bit] = (x & (1 << bit)) ? 1 : 0;
             }
+            seg->modify(a, b + 1, modify);
         }
     }
 }

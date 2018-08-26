@@ -1,0 +1,9 @@
+Simple Problem Solving Log
+Problem (link): http://codeforces.com/problemset/problem/444/C
+Date: 8/9/18
+Estimated Time Used: 5 hours
+Total or Reading/Thinking/Coding/Debugging
+Algorithm: Interval merging + segtree.
+Status(Obvious/Medium/Hard/Hint/Editorial): Editorial
+Comments:
+Took me way too long to solve it. Initially I attempted solving it purely with a segment tree/lazy propagation. I'm not sure whether that method is infeasible, but after a long time of implementing it/testing it, I gave up and looked at the editorial.

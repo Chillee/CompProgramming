@@ -1,0 +1,8 @@
+Simple Problem Solving Log
+Problem (link): http://codeforces.com/problemset/problem/220/C
+Date: 8/12/18
+Estimated Time Used: not sure
+Algorithm: Keeping sets and thinking
+Status(Obvious/Medium/Hard/Hint/Editorial): Hint
+Comments:
+i initially had a misunderstanding of the problem (distance was modulo), that prevented me from thinking about the problem properly. I was storing the distances with a modulo for a while, but that just makes the problem a lot trickier to deal with. Kind of an ad hoc problem. Disappointed that I didn't solve this one quicker.

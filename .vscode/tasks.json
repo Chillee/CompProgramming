@@ -6,7 +6,7 @@
         {
             "label": "Run task with reading from input.txt",
             "type": "shell",
-            "command": "cd ${fileDirname} && g++ -O2 -std=c++14 ${file} -o main && ${fileDirname}/main < ${fileDirname}/input.txt",
+            "command": "cd ${fileDirname} && g++ -O2 -g -std=c++14 ${file} -o main && ${fileDirname}/main < ${fileDirname}/input.txt",
             "group": {
                 "kind": "build",
                 "isDefault": true

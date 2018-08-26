@@ -8,17 +8,17 @@ const int MAXN = 2e5 + 5;
 
 namespace std {
 
-typedef tuple<ll, ll> hash_t;
+typedef array<ll, 2> hash_t;
 template <> struct hash<hash_t> {
     inline size_t operator()(const hash_t &v) const { return get<0>(v) * 31 + get<1>(v); }
 };
 } // namespace std
 
 hash_t mods = {(int)1e9 + 9, (int)1e9 + 7}; // 1e9+13
-hash_t norm(hash_t x) { return {(get<0>(x) + get<0>(mods)) % get<0>(mods), (get<1>(x) + get<1>(mods)) % get<1>(mods)}; }
-hash_t operator+(hash_t a, hash_t b) { return norm({get<0>(a) + get<0>(b), get<1>(a) + get<1>(b)}); }
-hash_t operator-(hash_t a, hash_t b) { return norm({get<0>(a) - get<0>(b), get<1>(a) - get<1>(b)}); }
-hash_t operator*(hash_t a, hash_t b) { return norm({get<0>(a) * get<0>(b), get<1>(a) * get<1>(b)}); }
+hash_t norm(hash_t x) { return {(x[0] + mods[0]) % mods[0], (x[0] + mods[1]) % mods[1]}; }
+hash_t operator+(hash_t a, hash_t b) { return norm({a[0] + b[0], a[0] + b[1]}); }
+hash_t operator-(hash_t a, hash_t b) { return norm({a[0] - b[0], a[0] - b[1]}); }
+hash_t operator*(hash_t a, hash_t b) { return norm({a[0] * b[0], a[0] * b[1]}); }
 
 class RollingHash {
     ll p = 29;
@@ -27,10 +27,10 @@ class RollingHash {
 
   public:
     void add(int x) {
-        get<0>(hashes) = (get<0>(hashes) + (x + 1) * get<0>(pows)) % get<0>(mods);
-        get<0>(pows) = (get<0>(pows) * p) % get<0>(mods);
-        get<1>(hashes) = get<1>(hashes) + (x + 1) * get<1>(pows) % get<1>(mods);
-        get<1>(pows) = (get<1>(pows) * p) % get<1>(mods);
+        hashes[0] = (hashes[0] + (x + 1) * pows[0]) % mods[0];
+        pows[0] = (pows[0] * p) % mods[0];
+        hashes[1] = hashes[1] + (x + 1) * pows[1] % mods[1];
+        pows[1] = (pows[1] * p) % mods[1];
     }
     auto getHash() { return hashes; }
     auto getPows() { return pows; }
@@ -38,9 +38,9 @@ class RollingHash {
 
 int N, M;
 string S;
-tuple<ll, ll> hashes[26][MAXN];
+hash_t hashes[26][MAXN];
 vector<int> ords[MAXN];
-tuple<ll, ll> baseHash[MAXN];
+hash_t baseHash[MAXN];
 
 int main() {
     ios::sync_with_stdio(0);

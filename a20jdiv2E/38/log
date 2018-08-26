@@ -1,0 +1,10 @@
+Simple Problem Solving Log
+Problem (link): https://codeforces.com/contest/400/problem/E
+Date: 8/13/18
+Estimated Time Used: 1 hour
+Algorithm: Math + interval sets
+Status(Obvious/Medium/Hard/Hint/Editorial): Hint
+Comments:
+Handling all the corner cases when handling intervals in sets is pretty tricky.
+Takeaway:
+Handle edge cases completely separately when doing interval sets + lower_bound stuff. Ie: handle sets of size 0, then size 1, etc.
