@@ -17,6 +17,7 @@ signed main() {
     for (int i = 0; i < N; i++) {
         cin >> B[i];
     }
+    A[-5000] = 4;
     map<int, int> val;
     for (int i = 0; i < N; i++) {
         val[A[i]] = i;

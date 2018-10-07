@@ -27,7 +27,7 @@ struct chash {
 
 void benchmarkgp(string msg, vector<vec_t> &vals, int NUM_ITERS) {
     clock_t begin = clock();
-    gp_hash_table<int, int, chash> test;
+    cc_hash_table<int, int, chash> test;
 
     for (int t = 0; t < NUM_ITERS; t++) {
         for (auto i : vals) {
@@ -36,6 +36,7 @@ void benchmarkgp(string msg, vector<vec_t> &vals, int NUM_ITERS) {
     }
     cout << msg << ": " << string(60 - msg.size(), ' ') << "\t" << (double)(clock() - begin) / CLOCKS_PER_SEC << endl;
 }
+
 void benchmarkcc(string msg, vector<vec_t> &vals, int NUM_ITERS) {
     clock_t begin = clock();
     cc_hash_table<key, int, chash> test;

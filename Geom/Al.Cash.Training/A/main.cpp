@@ -10,6 +10,7 @@ struct pt {
     T x, y;
     pt operator+(pt p) { return {x + p.x, y + p.y}; }
     pt operator-(pt p) { return {x - p.x, y - p.y}; }
+    pt operator*(pt p) { return {x * p.x, y * p.x}; }
     pt operator*(T d) { return {x * d, y * d}; }
     pt operator/(T d) { return {x / d, y / d}; } // only for floatingpoint
 };
@@ -79,11 +80,11 @@ struct line {
     pt v;
     T c;
     // From direction vector v and offset c
-    line(pt v, T c) : v(v), c(c) {}
+    line(pt v, T c) : v(v), c(c) { assert(sq(v) != 0); }
     // From equation ax+by=c
-    line(T a, T b, T c) : v({b, -a}), c(c) {}
+    line(T a, T b, T c) : v({b, -a}), c(c) { assert(sq(v) != 0); }
     // From points P and Q
-    line(pt p, pt q) : v(q - p), c(cross(v, p)) {}
+    line(pt p, pt q) : v(q - p), c(cross(v, p)) { assert(sq(v) != 0); }
     // - these work with T = int
     T side(pt p) { return cross(v, p) - c; }
     double dist(pt p) { return abs(side(p)) / abs(v); }
@@ -165,9 +166,9 @@ double areaPolygon(vector<pt> &p) {
     return abs(area) / 2.0;
 }
 // true if P at least as high as A (blue part)
-bool half(pt a, pt p) { return p.y >= a.y; }
+bool above(pt a, pt p) { return p.y >= a.y; }
 // check if [PQ] crosses ray from A
-bool crossesRay(pt a, pt p, pt q) { return (half(q, a) - half(p, a)) * orient(a, p, q) > 0; }
+bool crossesRay(pt a, pt p, pt q) { return (above(q, a) - above(p, a)) * orient(a, p, q) > 0; }
 // if strict, returns false when A is on the boundary
 bool inPolygon(vector<pt> &p, pt a, bool strict = true) {
     int numCrossings = 0;
@@ -210,7 +211,6 @@ int circleCircle(pt o1, double r1, pt o2, double r2, pair<pt, pt> &out) {
     }
     return 1 + sgn(h2);
 }
-
 int tangents(pt o1, double r1, pt o2, double r2, bool inner, vector<pair<pt, pt>> &out) {
     if (inner)
         r2 = -r2;
@@ -264,7 +264,8 @@ bool inConvex(vector<pt> &poly, pt point, int top, bool strict = true) {
         return res == 0 ? !strict : (res < 0);
     }
 }
-T maxDistSq(vector<pt> &poly) { // only works for convex polygons
+// Max distance across a convex polygon
+T maxDistConvexSq(vector<pt> &poly) {
     int n = poly.size();
     auto res = T(0);
     for (int i = 0, j = n < 2 ? 0 : 1; i < j; ++i)
@@ -276,6 +277,7 @@ T maxDistSq(vector<pt> &poly) { // only works for convex polygons
     return res;
 }
 /* Convex End */
+
 signed main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -283,5 +285,5 @@ signed main() {
     freopen("angle1.out", "w", stdout);
     int a, b;
     cin >> a >> b;
-    cout << fixed << setprecision(5) << orientedAngle({0, 0}, {1, 0}, {a, b}) << endl;
+    cout << fixed << setprecision(10) << orientedAngle({0, 0}, {1, 0}, {a, b}) << endl;
 }

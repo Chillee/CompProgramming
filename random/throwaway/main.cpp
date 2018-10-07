@@ -1,69 +1,66 @@
 #include <bits/stdc++.h>
-#include <ext/pb_ds/assoc_container.hpp>
 
+#define endl '\n';
 using namespace std;
-using namespace __gnu_pbds;
 
-#define len(x) ((int)(x).size())
-#define x first
-#define y second
+const int MAXN = 1e5 + 5;
 
-using ll = long long;
-using llu = unsigned long long;
-using lld = long double;
+int N, M, P;
+vector<int> adjList[MAXN];
+int match[MAXN], dist[MAXN];
+const int NIL = 0;
 
-const int NM = 25;
-unsigned hash_f(unsigned x) {
-    x = ((x >> 16) ^ x) * 0x45d9f3b;
-    x = ((x >> 16) ^ x) * 0x45d9f3b;
-    x = (x >> 16) ^ x;
-    return x;
-}
-struct chash {
-    int operator()(int x) const { return hash_f(x); }
-};
-
-int n, m;
-
-ll k, a[NM][NM];
-gp_hash_table<ll, int, chash> mp[NM][NM];
-
-void right_bottom(int i, int j, int tot, ll mask = 0) {
-    if (i >= n || j >= m)
-        return;
-
-    mask ^= a[i][j];
-    if (i + j == tot) {
-        mp[i][j][mask]++;
-        return;
-    }
-    right_bottom(i + 1, j, tot, mask);
-    right_bottom(i, j + 1, tot, mask);
-}
-
-ll left_up(int i, int j, int tot, ll mask = 0) {
-    if (i < 0 || j < 0)
-        return 0;
-
-    if (n + m - i - j - 2 == tot) {
-        if (mp[i][j].find(k ^ mask) == mp[i][j].end())
-            return 0;
-        return mp[i][j][k ^ mask];
-    }
-    mask ^= a[i][j];
-    return left_up(i - 1, j, tot, mask) + left_up(i, j - 1, tot, mask);
-}
-
-int main() {
-    scanf("%d %d %lld", &n, &m, &k);
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            scanf("%lld", &a[i][j]);
+bool bfs() {
+    queue<int> Q;
+    fill(begin(dist), end(dist), -1);
+    for (int i = 1; i <= N; i++) {
+        if (match[i] == NIL) {
+            dist[i] = 0;
+            Q.push(i);
         }
     }
-    int total_len = n + m - 2;
-    right_bottom(0, 0, total_len / 2);
-    printf("%lld\n", left_up(n - 1, m - 1, total_len - total_len / 2));
+    while (!Q.empty()) {
+        int u = Q.front();
+        Q.pop();
+        for (auto i : adjList[u]) {
+            if (dist[match[i]] == -1) {
+                dist[match[i]] = dist[u] + 1;
+                Q.push(match[i]);
+            }
+        }
+    }
+    return (dist[NIL] != -1);
+}
 
-    return 0;
+bool dfs(int u) {
+    for (auto v : adjList[u]) {
+        if (match[v] == NIL || (dist[match[v]] == dist[u] + 1 && dfs(match[v]))) {
+            match[v] = u;
+            match[u] = v;
+            return true;
+        }
+    }
+    return false;
+}
+
+int hopcroft_karp() {
+    int matching = 0;
+    fill(begin(match), end(match), NIL);
+    while (bfs()) {
+        for (int i = 1; i <= N; i++)
+            if (match[i] == NIL && dfs(i))
+                matching++;
+    }
+    return matching;
+}
+signed main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> N >> M >> P;
+    for (int i = 0; i < P; i++) {
+        int a, b;
+        cin >> a >> b;
+        adjList[a].push_back(N + b);
+    }
+    cout << hopcroft_karp() << endl;
 }

@@ -14,6 +14,7 @@ bool isInside(pii pt, vector<pii> square) {
     return (pt.first >= square[0].first - EPS && pt.first <= square[2].first + EPS &&
             pt.second >= square[0].second - EPS && pt.second <= square[1].second + EPS);
 }
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
