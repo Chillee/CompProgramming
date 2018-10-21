@@ -3,64 +3,81 @@
 #define endl '\n';
 using namespace std;
 
-const int MAXN = 1e5 + 5;
+vector<int> suffix_array(string s) {
+    int n = s.size();
+    vector<int> sa(n), rank(n);
+    for (int i = 0; i < n; i++)
+        rank[i] = s[i], sa[i] = i;
+    for (int k = 0; k < n; k ? k *= 2 : k = 1) {
+        stable_sort(sa.begin(), sa.end(), [&](int i, int j) {
+            if (rank[i] == rank[j])
+                return rank[(i + k) % n] < rank[(j + k) % n];
+            return rank[i] < rank[j];
+        });
+        vector<int> nrank(n);
+        int r = 0;
+        for (int i = 1; i < n; i++) {
+            if (rank[sa[i]] != rank[sa[i - 1]])
+                r++;
+            else if (rank[(sa[i] + k) % n] != rank[(sa[i - 1] + k) % n])
+                r++;
+            nrank[sa[i]] = r;
+        }
+        rank = nrank;
+    }
+    return sa;
+}
 
-int N, M, P;
-vector<int> adjList[MAXN];
-int match[MAXN], dist[MAXN];
-const int NIL = 0;
-
-bool bfs() {
-    queue<int> Q;
-    fill(begin(dist), end(dist), -1);
-    for (int i = 1; i <= N; i++) {
-        if (match[i] == NIL) {
-            dist[i] = 0;
-            Q.push(i);
+string vowels = "aeiou";
+bool isVowel(char x) { return vowels.find(x) != -1; }
+void findSubstrings(string s) {
+    int lastConsonant = 0;
+    for (int i = s.size() - 1; i >= 0; i--) {
+        if (!isVowel(s[i])) {
+            lastConsonant = i;
+            break;
         }
     }
-    while (!Q.empty()) {
-        int u = Q.front();
-        Q.pop();
-        for (auto i : adjList[u]) {
-            if (dist[match[i]] == -1) {
-                dist[match[i]] = dist[u] + 1;
-                Q.push(match[i]);
+    auto suffixarray = suffix_array(s);
+    string fst;
+    for (auto i : suffixarray) {
+        if (i >= lastConsonant || !isVowel(s[i]))
+            continue;
+        int cPos;
+        for (int j = i; j < s.size(); j++) {
+            if (!isVowel(s[j])) {
+                cPos = j;
+                break;
             }
         }
+        fst = s.substr(i, cPos - i + 1);
+        break;
     }
-    return (dist[NIL] != -1);
-}
-
-bool dfs(int u) {
-    for (auto v : adjList[u]) {
-        if (match[v] == NIL || (dist[match[v]] == dist[u] + 1 && dfs(match[v]))) {
-            match[v] = u;
-            match[u] = v;
-            return true;
+    reverse(suffixarray.begin(), suffixarray.end());
+    string lst;
+    for (auto i : suffixarray) {
+        if (i >= lastConsonant || !isVowel(s[i]))
+            continue;
+        int cPos;
+        for (int j = s.size() - 1; j >= i; j--) {
+            if (!isVowel(s[j])) {
+                cPos = j;
+                break;
+            }
         }
+        lst = s.substr(i, cPos - i + 1);
+        break;
     }
-    return false;
+    cout << fst << endl;
+    cout << lst << endl;
 }
 
-int hopcroft_karp() {
-    int matching = 0;
-    fill(begin(match), end(match), NIL);
-    while (bfs()) {
-        for (int i = 1; i <= N; i++)
-            if (match[i] == NIL && dfs(i))
-                matching++;
-    }
-    return matching;
-}
 signed main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    cin >> N >> M >> P;
-    for (int i = 0; i < P; i++) {
-        int a, b;
-        cin >> a >> b;
-        adjList[a].push_back(N + b);
-    }
-    cout << hopcroft_karp() << endl;
+    findSubstrings("aba");
+    // auto res = suffix_array_construction("edcba");
+    // for (auto i : res) {
+    //     cout << i << endl;
+    // }
 }

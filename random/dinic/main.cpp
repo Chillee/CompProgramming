@@ -3,55 +3,67 @@
 using namespace std;
 
 typedef long long ll;
+
+int N, M;
+
 const ll MAXN = 5005;
-const ll INF = 1e18;
+
+inline void scan_uint(int *p) {
+    static char c;
+    while ((c = getchar_unlocked()) < '0')
+        ; // just to be safe
+    for (*p = c - '0'; (c = getchar_unlocked()) >= '0'; *p = *p * 10 + c - '0')
+        ;
+}
+
+const ll INF = 1e9 + 5;
+ll lim;
 
 struct edge {
-    ll a, b, cap, flow;
+    ll to, rev, cap, flow;
 };
 
-ll N, M;
-ll S, T, d[MAXN], ptr[MAXN], q[MAXN];
-vector<edge> e;
-vector<ll> g[MAXN];
+ll source, sink, d[MAXN], ptr[MAXN];
+vector<edge> adj[MAXN];
 
-void add_edge(ll a, ll b, ll cap) {
-    edge e1 = {a, b, cap, 0};
-    g[a].push_back(e.size());
-    e.push_back(e1);
+void add_edge(ll a, ll b, ll cap, ll rcap = -1) {
+    adj[a].push_back({b, adj[b].size(), cap, 0});
+    if (rcap == -1)
+        rcap = cap;
+    adj[b].push_back({a, adj[a].size() - 1, rcap, 0});
 }
 
 bool bfs() {
-    ll qh = 0, qt = 0;
-    q[qt++] = S;
-    fill(d, d + N, -1);
-    d[S] = 0;
-    while (qh < qt && d[T] == -1) {
-        ll v = q[qh++];
-        for (ll i = 0; i < g[v].size(); ++i) {
-            ll id = g[v][i], to = e[id].b;
-            if (d[to] == -1 && e[id].flow < e[id].cap) {
-                q[qt++] = to;
-                d[to] = d[v] + 1;
+    queue<ll> q;
+    q.push(source);
+    fill(begin(d), end(d), -1);
+    d[source] = 0;
+    while (!q.empty() && d[sink] == -1) {
+        ll v = q.front();
+        q.pop();
+        for (auto e : adj[v]) {
+            if (d[e.to] == -1 && e.flow < e.cap && e.cap - e.flow >= lim) {
+                q.push(e.to);
+                d[e.to] = d[v] + 1;
             }
         }
     }
-    return d[T] != -1;
+    return d[sink] != -1;
 }
 
 ll dfs(ll v, ll flow) {
     if (!flow)
         return 0;
-    if (v == T)
+    if (v == sink)
         return flow;
-    for (; ptr[v] < (ll)g[v].size(); ++ptr[v]) {
-        ll id = g[v][ptr[v]], to = e[id].b;
-        if (d[to] != d[v] + 1)
+    for (; ptr[v] < adj[v].size(); ++ptr[v]) {
+        edge &e = adj[v][ptr[v]];
+        if (d[e.to] != d[v] + 1 || !(e.cap - e.flow >= lim))
             continue;
-        ll pushed = dfs(to, min(flow, e[id].cap - e[id].flow));
+        ll pushed = dfs(e.to, min(flow, e.cap - e.flow));
         if (pushed) {
-            e[id].flow += pushed;
-            e[id ^ 1].flow -= pushed;
+            e.flow += pushed;
+            adj[e.to][e.rev].flow -= pushed;
             return pushed;
         }
     }
@@ -60,38 +72,38 @@ ll dfs(ll v, ll flow) {
 
 ll dinic() {
     ll flow = 0;
-    while (true) {
-        if (!bfs())
-            break;
-        fill(ptr, ptr + N, 0);
-        while (ll pushed = dfs(S, INF))
-            flow += pushed;
-    }
+    for (lim = 1 << 30; lim > 0; lim >>= 1)
+        while (bfs()) {
+            fill(begin(ptr), end(ptr), 0);
+            while (ll pushed = dfs(source, lim))
+                flow += pushed;
+        }
     return flow;
 }
-ll adj[MAXN][MAXN];
 
 signed main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    cin >> N >> M;
+    // cin >> N >> M;
+    scan_uint(&N);
+    scan_uint(&M);
     for (ll i = 0; i < M; i++) {
-        ll a, b, d;
-        cin >> a >> b >> d;
+        int a, b, d;
+        scan_uint(&a), scan_uint(&b), scan_uint(&d);
+        // cin >> a >> b >> d;
         a--, b--;
-        adj[a][b] += d;
-        adj[b][a] += d;
+        add_edge(a, b, d);
+        // adjmat[a][b] += d;
+        // adjmat[b][a] += d;
     }
-    for (ll i = 0; i < N; i++) {
-        for (ll j = i; j < N; j++) {
-            if (i == j)
-                continue;
-            if (adj[i][j] > 0 || adj[j][i] > 0) {
-                add_edge(j, i, adj[j][i]);
-                add_edge(i, j, adj[i][j]);
-            }
-        }
-    }
-    S = 0, T = N - 1;
+    // for (ll i = 0; i < N; i++) {
+    //     for (ll j = i; j < N; j++) {
+    //         if (i == j)
+    //             continue;
+    //         if (adjmat[i][j] > 0 || adjmat[j][i] > 0) {
+    //         }
+    //     }
+    // }
+    source = 0, sink = N - 1;
     cout << dinic() << endl;
 }
