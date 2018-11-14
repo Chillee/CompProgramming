@@ -25,7 +25,7 @@ void add_edge(int a, int b, int cap, int rcap = -1) {
 }
 
 bool bfs() {
-    queue<ll> q({source});
+    queue<int> q({source});
     fill(begin(d), end(d), -1);
     d[source] = 0;
     while (!q.empty() && d[sink] == -1) {
@@ -42,11 +42,9 @@ bool bfs() {
 }
 
 int dfs(int v, int flow) {
-    if (!flow)
-        return 0;
-    if (v == sink)
+    if (v == sink || !flow)
         return flow;
-    for (; ptr[v] < adj[v].size(); ++ptr[v]) {
+    for (; ptr[v] < adj[v].size(); ptr[v]++) {
         edge &e = adj[v][ptr[v]];
         if (d[e.to] != d[v] + 1)
             continue;

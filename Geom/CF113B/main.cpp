@@ -10,18 +10,20 @@ struct pt {
     T x, y;
     pt operator+(pt p) { return {x + p.x, y + p.y}; }
     pt operator-(pt p) { return {x - p.x, y - p.y}; }
+    pt operator-() { return {-x, -y}; }
+    pt operator*(pt p) { return {x * p.x, y * p.y}; }
     pt operator*(T d) { return {x * d, y * d}; }
-    pt operator/(T d) { return {x / d, y / d}; } // only for floatingpoint
+    pt operator/(T d) { return {x / d, y / d}; }
 };
 bool operator==(pt a, pt b) { return a.x == b.x && a.y == b.y; }
 bool operator!=(pt a, pt b) { return !(a == b); }
 bool operator<(pt a, pt b) { return a.y < b.y || (a.y == b.y && a.x < b.x); }
 bool operator>(pt a, pt b) { return b < a; }
+ostream &operator<<(ostream &os, pt p) { return cout << "(" << p.x << "," << p.y << ")"; }
+istream &operator>>(istream &is, pt &p) { return cin >> p.x >> p.y; }
 
 T sq(pt p) { return p.x * p.x + p.y * p.y; }
 double abs(pt p) { return sqrt(sq(p)); }
-ostream &operator<<(ostream &os, pt p) { return os << "(" << p.x << "," << p.y << ")"; }
-istream &operator>>(istream &is, pt &p) { return is >> p.x >> p.y; }
 
 template <typename T> int sgn(T x) { return (T(0) < x) - (x < T(0)); }
 pt translate(pt v, pt p) { return p + v; }
@@ -37,12 +39,13 @@ pt linearTransfo(pt p, pt q, pt r, pt fp, pt fq) {
 }
 bool isPerp(pt v, pt w) { return dot(v, w) == 0; }
 
-double angle(pt v, pt w) {
-    double cosTheta = dot(v, w) / abs(v) / abs(w);
+double angle(pt a, pt b, pt c) {
+    double cosTheta = dot(b - a, c - a) / abs(b - a) / abs(c - a);
     return acos(max(-1.0, min(1.0, cosTheta)));
 }
 
 T orient(pt a, pt b, pt c) { return cross(b - a, c - a); }
+T orient(pt b, pt c) { return cross(b, c); }
 bool inAngle(pt a, pt b, pt c, pt x) {
     assert(orient(a, b, c) != 0);
     if (orient(a, b, c) < 0)
@@ -51,9 +54,9 @@ bool inAngle(pt a, pt b, pt c, pt x) {
 }
 double orientedAngle(pt a, pt b, pt c) {
     if (orient(a, b, c) >= 0)
-        return angle(b - a, c - a);
+        return angle(a, b, c);
     else
-        return 2 * PI - angle(b - a, c - a);
+        return 2 * PI - angle(a, b, c);
 }
 bool isConvex(vector<pt> &p) {
     bool hasPos = false, hasNeg = false;
@@ -69,8 +72,7 @@ bool isConvex(vector<pt> &p) {
 pt pctr = {0, 0};
 bool half(pt p) { return cross(pctr, p) < 0 || (cross(pctr, p) == 0 && dot(pctr, p) < 0); }
 void polarSort(vector<pt> &v) {
-    sort(v.begin(), v.end(),
-         [](pt v, pt w) { return make_tuple(half(v), 0, sq(v)) < make_tuple(half(w), cross(v, w), sq(w)); });
+    sort(v.begin(), v.end(), [](pt v, pt w) { return make_tuple(half(v), 0, sq(v)) < make_tuple(half(w), cross(v, w), sq(w)); });
 }
 /* Point End */
 /* Line Start */
@@ -78,11 +80,11 @@ struct line {
     pt v;
     T c;
     // From direction vector v and offset c
-    line(pt v, T c) : v(v), c(c) {}
+    line(pt v, T c) : v(v), c(c) { assert(sq(v) != 0); }
     // From equation ax+by=c
-    line(T a, T b, T c) : v({b, -a}), c(c) {}
+    line(T a, T b, T c) : v({b, -a}), c(c) { assert(sq(v) != 0); }
     // From points P and Q
-    line(pt p, pt q) : v(q - p), c(cross(v, p)) {}
+    line(pt p, pt q) : v(q - p), c(cross(v, p)) { assert(sq(v) != 0); }
     // - these work with T = int
     T side(pt p) { return cross(v, p) - c; }
     double dist(pt p) { return abs(side(p)) / abs(v); }
@@ -105,7 +107,7 @@ bool inter(line l1, line l2, pt &out) {
     return true;
 }
 
-line intBisector(line l1, line l2, bool interior) {
+line bisector(line l1, line l2, bool interior) {
     assert(cross(l1.v, l2.v) != 0); // l1 and l2 cannot be parallel!
     double sign = interior ? 1 : -1;
     return {l2.v / abs(l2.v) + (l1.v / abs(l1.v)) * sign, l2.c / abs(l2.v) + sign * l1.c / abs(l1.v)};
@@ -156,17 +158,18 @@ double segSeg(pt a, pt b, pt c, pt d) {
 /* Line Segment End */
 /* Polygon Start */
 double areaTriangle(pt a, pt b, pt c) { return abs(cross(b - a, c - a)) / 2.0; }
-double areaPolygon(vector<pt> &p) {
+
+double areaPolygon(vector<pt> &p) { // if negative, p is in clock-wise order.
     double area = 0.0;
     for (int i = 0, n = p.size(); i < n; i++) {
         area += cross(p[i], p[(i + 1) % n]); // wrap back to 0 if i == n -1
     }
-    return abs(area) / 2.0;
+    return area / 2.0;
 }
 // true if P at least as high as A (blue part)
-bool half(pt a, pt p) { return p.y >= a.y; }
+bool above(pt a, pt p) { return p.y >= a.y; }
 // check if [PQ] crosses ray from A
-bool crossesRay(pt a, pt p, pt q) { return (half(q) - half(p)) * orient(a, p, q) > 0; }
+bool crossesRay(pt a, pt p, pt q) { return (above(q, a) - above(p, a)) * orient(a, p, q) > 0; }
 // if strict, returns false when A is on the boundary
 bool inPolygon(vector<pt> &p, pt a, bool strict = true) {
     int numCrossings = 0;
@@ -209,7 +212,6 @@ int circleCircle(pt o1, double r1, pt o2, double r2, pair<pt, pt> &out) {
     }
     return 1 + sgn(h2);
 }
-
 int tangents(pt o1, double r1, pt o2, double r2, bool inner, vector<pair<pt, pt>> &out) {
     if (inner)
         r2 = -r2;
@@ -244,28 +246,95 @@ vector<pt> convexHull(vector<pt> &pts) {
         hull.pop_back();
     return hull;
 }
+
 // if strict, returns false when A is on the boundary. Top can be found with max_element.
-bool inConvex(pt point, vector<pt> poly, int top, bool strict = true) {
-    if (point < poly[0] || point > poly[top])
+double det(pt a, pt b, pt c) { return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x); }
+bool inConvex(vector<pt> &l, pt p, bool strict = true) {
+    int a = 1, b = l.size() - 1, c;
+    if (det(l[0], l[a], l[b]) > 0)
+        swap(a, b);
+    if (det(l[0], l[a], p) > 0 || det(l[0], l[b], p) < 0 || (strict && (det(l[0], l[a], p) == 0 || det(l[0], l[b], p) == 0)))
         return false;
-    auto orientation = orient(poly[0], poly[top], point);
-    if (orientation == 0) {
-        if (point == poly[0] || point == poly[top])
-            return !strict;
-        return top == 1 || top + 1 == poly.size() ? !strict : true;
-    } else if (orientation < 0) {
-        auto itRight = lower_bound(begin(poly) + 1, begin(poly) + top, point);
-        int res = orient(itRight[-1], point, itRight[0]);
-        if (res == 0)
-            return !strict;
-        return res < 0;
-    } else {
-        auto itLeft = upper_bound(poly.rbegin(), poly.rend() - top - 1, point);
-        int res = orient(itLeft[0], point, itLeft == poly.rbegin() ? poly[0] : itLeft[-1]);
-        if (res == 0)
-            return !strict;
-        return res < 0;
+    while (abs(a - b) > 1) {
+        c = (a + b) / 2;
+        if (det(l[0], l[c], p) > 0)
+            b = c;
+        else
+            a = c;
     }
+    return det(l[a], l[b], p) < 0 ? true : !strict;
+}
+
+// Max distance across a convex polygon
+T maxDistConvexSq(vector<pt> &poly) {
+    int n = poly.size();
+    auto res = T(0);
+    for (int i = 0, j = n < 2 ? 0 : 1; i < j; ++i)
+        for (;; j = (j + 1) % n) {
+            res = max(res, sq(poly[i] - poly[j]));
+            if (orient(poly[(j + 1) % n] - poly[j], poly[i + 1] - poly[i]) >= 0)
+                break;
+        }
+    return res;
+}
+vector<pt> convexConvex(vector<pt> P, vector<pt> Q) {
+    const int n = P.size(), m = Q.size();
+    int a = 0, b = 0, aa = 0, ba = 0;
+    enum { Pin, Qin, Unknown } in = Unknown;
+    vector<pt> R;
+    do {
+        int a1 = (a + n - 1) % n, b1 = (b + m - 1) % m;
+        double C = cross(P[a] - P[a1], Q[b] - Q[b1]);
+        double A = cross(P[a1] - Q[b], P[a] - Q[b]);
+        double B = cross(Q[b1] - P[a], Q[b] - P[a]);
+        pt r;
+        if (properInter(P[a1], P[a], Q[b1], Q[b], r)) {
+            if (in == Unknown)
+                aa = ba = 0;
+            R.push_back(r);
+            in = B > 0 ? Pin : A > 0 ? Qin : in;
+        }
+        if (C == 0 && B == 0 && A == 0) {
+            if (in == Pin) {
+                b = (b + 1) % m;
+                ++ba;
+            } else {
+                a = (a + 1) % m;
+                ++aa;
+            }
+        } else if (C >= 0) {
+            if (A > 0) {
+                if (in == Pin)
+                    R.push_back(P[a]);
+                a = (a + 1) % n;
+                ++aa;
+            } else {
+                if (in == Qin)
+                    R.push_back(Q[b]);
+                b = (b + 1) % m;
+                ++ba;
+            }
+        } else {
+            if (B > 0) {
+                if (in == Qin)
+                    R.push_back(Q[b]);
+                b = (b + 1) % m;
+                ++ba;
+            } else {
+                if (in == Pin)
+                    R.push_back(P[a]);
+                a = (a + 1) % n;
+                ++aa;
+            }
+        }
+    } while ((aa < n || ba < m) && aa < 2 * n && ba < 2 * m);
+    if (in == Unknown) {
+        if (inConvex(Q, P[0]))
+            return P;
+        if (inConvex(P, Q[0]))
+            return Q;
+    }
+    return R;
 }
 /* Convex End */
 
@@ -274,8 +343,8 @@ vector<pt> A, B;
 signed main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    cout << inConvex({1, 0}, {{0, 0}, {2, 0}, {2, 1}}, 2, false) << endl;
-    return 0;
+    // cout << inConvex({1, 0}, {{0, 0}, {2, 0}, {2, 1}}, false) << endl;
+    // return 0;
     cin >> N;
     for (int i = 0; i < N; i++) {
         pt p;
@@ -290,9 +359,8 @@ signed main() {
     }
     A = convexHull(A);
     // B = convexHull(B);
-    int top = max_element(A.begin(), A.end()) - A.begin();
     for (auto p : B) {
-        if (!inConvex(p, A, top, true)) {
+        if (!inConvex(A, p, true)) {
             cout << "NO" << endl;
             return 0;
         }

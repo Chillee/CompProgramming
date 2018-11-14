@@ -4,11 +4,11 @@ using namespace std;
 
 typedef long long ll;
 
-int N, M;
+ll N, M;
 
 const ll MAXN = 5005;
 
-inline void scan_uint(int *p) {
+inline void scan_ull(ll *p) {
     static char c;
     while ((c = getchar_unlocked()) < '0')
         ; // just to be safe
@@ -17,12 +17,10 @@ inline void scan_uint(int *p) {
 }
 
 const ll INF = 1e9 + 5;
-ll lim;
-
 struct edge {
     ll to, rev, cap, flow;
 };
-
+int lim;
 ll source, sink, d[MAXN], ptr[MAXN];
 vector<edge> adj[MAXN];
 
@@ -34,15 +32,14 @@ void add_edge(ll a, ll b, ll cap, ll rcap = -1) {
 }
 
 bool bfs() {
-    queue<ll> q;
-    q.push(source);
+    queue<ll> q({source});
     fill(begin(d), end(d), -1);
     d[source] = 0;
     while (!q.empty() && d[sink] == -1) {
         ll v = q.front();
         q.pop();
         for (auto e : adj[v]) {
-            if (d[e.to] == -1 && e.flow < e.cap && e.cap - e.flow >= lim) {
+            if (d[e.to] == -1 && e.flow < e.cap && e.flow + lim <= e.cap) {
                 q.push(e.to);
                 d[e.to] = d[v] + 1;
             }
@@ -52,16 +49,13 @@ bool bfs() {
 }
 
 ll dfs(ll v, ll flow) {
-    if (!flow)
-        return 0;
-    if (v == sink)
+    if (v == sink || !flow)
         return flow;
-    for (; ptr[v] < adj[v].size(); ++ptr[v]) {
+    for (; ptr[v] < adj[v].size(); ptr[v]++) {
         edge &e = adj[v][ptr[v]];
-        if (d[e.to] != d[v] + 1 || !(e.cap - e.flow >= lim))
+        if (d[e.to] != d[v] + 1 || e.cap - e.flow < lim)
             continue;
-        ll pushed = dfs(e.to, min(flow, e.cap - e.flow));
-        if (pushed) {
+        if (ll pushed = dfs(e.to, min(flow, e.cap - e.flow))) {
             e.flow += pushed;
             adj[e.to][e.rev].flow -= pushed;
             return pushed;
@@ -70,7 +64,8 @@ ll dfs(ll v, ll flow) {
     return 0;
 }
 
-ll dinic() {
+ll dinic(ll s, ll t) {
+    source = s, sink = t;
     ll flow = 0;
     for (lim = 1 << 30; lim > 0; lim >>= 1)
         while (bfs()) {
@@ -85,11 +80,11 @@ signed main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
     // cin >> N >> M;
-    scan_uint(&N);
-    scan_uint(&M);
+    scan_ull(&N);
+    scan_ull(&M);
     for (ll i = 0; i < M; i++) {
-        int a, b, d;
-        scan_uint(&a), scan_uint(&b), scan_uint(&d);
+        ll a, b, d;
+        scan_ull(&a), scan_ull(&b), scan_ull(&d);
         // cin >> a >> b >> d;
         a--, b--;
         add_edge(a, b, d);
@@ -104,6 +99,6 @@ signed main() {
     //         }
     //     }
     // }
-    source = 0, sink = N - 1;
-    cout << dinic() << endl;
+    // source = 0, sink = N - 1;
+    cout << dinic(0, N - 1) << endl;
 }
