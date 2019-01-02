@@ -12,7 +12,7 @@ struct MinCostFlow {
     };
 
     int cost[MAXN][MAXN];
-    vector<edge> e;
+    vector<edge> edges;
     int dist[MAXN];
     int par[MAXN];
 
@@ -23,15 +23,15 @@ struct MinCostFlow {
             dist[s] = 0;
             while (true) {
                 bool change = false;
-                for (int i = 0; i < e.size(); i++) {
-                    int from = e[i].from, to = e[i].to;
-                    if (e[i].flow == e[i].cap)
+                for (int i = 0; i < edges.size(); i++) {
+                    edge e = edges[i];
+                    if (e.flow == e.cap)
                         continue;
-                    if (dist[from] == INF)
+                    if (dist[e.from] == INF)
                         continue;
-                    if (dist[to] > dist[from] + e[i].cost) {
-                        dist[to] = dist[from] + e[i].cost;
-                        par[to] = i;
+                    if (dist[e.to] > dist[e.from] + e.cost) {
+                        dist[e.to] = dist[e.from] + e.cost;
+                        par[e.to] = i;
                         change = true;
                     }
                 }
@@ -46,7 +46,7 @@ struct MinCostFlow {
             int push = flow;
             int cur = t;
             while (cur != s) {
-                edge tmp = e[par[cur]];
+                edge tmp = edges[par[cur]];
                 int from = tmp.from, can_push = tmp.cap - tmp.flow;
                 push = min(push, can_push);
                 cur = from;
@@ -55,10 +55,10 @@ struct MinCostFlow {
             flow -= push;
             cur = t;
             while (cur != s) {
-                edge tmp = e[par[cur]];
+                edge tmp = edges[par[cur]];
                 int from = tmp.from;
-                e[par[cur]].flow += push;
-                e[par[cur] ^ 1].flow -= push;
+                edges[par[cur]].flow += push;
+                edges[par[cur] ^ 1].flow -= push;
                 result += push * tmp.cost;
                 cur = from;
             }
@@ -70,10 +70,11 @@ struct MinCostFlow {
     }
 
     void addEdge(int from, int to, int cap, int cost) {
-        e.push_back({from, to, cap, 0, cost});
-        e.push_back({to, from, cap, cap, -cost});
+        edges.push_back({from, to, cap, 0, cost});
+        edges.push_back({to, from, cap, cap, -cost});
     }
 };
+
 struct Dinic {
     const static int MAXV = MAXN;
     const int INF = 1e9 + 5;

@@ -11,30 +11,29 @@ ll V[MAXN];
 ll dfsCnt = 0;
 vector<int> sccs[MAXN];
 
-vector<ll> adjlist[MAXN];
-ll num[MAXN], low[MAXN];
-bool curProcessing[MAXN];
-stack<ll> curVis;
+vector<ll> adj[MAXN];
+int num[MAXN], low[MAXN];
+bool isProcess[MAXN];
+stack<int> curVis;
 
-void tarjans(ll cur) {
+void tarjans(int cur) {
     num[cur] = low[cur] = dfsCnt++;
-    curProcessing[cur] = true;
+    isProcess[cur] = true;
     curVis.push(cur);
-    for (auto v : adjlist[cur]) {
-        if (num[v] == -1)
-            tarjans(v);
-        if (curProcessing[v])
-            low[cur] = min(low[cur], low[v]);
+    for (auto i : adj[cur]) {
+        if (num[i] == -1)
+            tarjans(i);
+        if (isProcess[i])
+            low[cur] = min(low[cur], low[i]);
     }
     if (num[cur] == low[cur]) {
-        while (curVis.top() != cur) {
-            ll t = curVis.top();
+        int t = -1;
+        while (t != cur) {
+            t = curVis.top();
             curVis.pop();
-            low[t] = low[cur];
-            curProcessing[t] = false;
+            low[t] = num[cur];
+            isProcess[t] = false;
         }
-        curVis.pop();
-        curProcessing[cur] = false;
     }
 }
 
@@ -50,7 +49,7 @@ int main() {
         ll a, b;
         cin >> a >> b;
         a--, b--;
-        adjlist[a].push_back(b);
+        adj[a].push_back(b);
     }
     for (ll i = 0; i < N; i++) {
         if (num[i] == -1)

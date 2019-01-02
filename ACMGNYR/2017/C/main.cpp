@@ -46,16 +46,6 @@ bool backtrack(int curR) {
                 grid[cur[0]][cur[1]] = i;
             }
         }
-        // if (curR > 2) {
-        //     // cou
-        //     for (int i = 0; i < R; i++) {
-        //         for (int j = 0; j < C; j++) {
-        //             cout << grid[i][j] + 1 << ' ';
-        //         }
-        //         cout << endl;
-        //     }
-        //     cout << endl;
-        // }
         for (auto i : regions[curR]) {
             if (!checkSpotValid(i[0], i[1])) {
                 failed = true;
@@ -64,13 +54,6 @@ bool backtrack(int curR) {
         }
         if (failed)
             continue;
-        // for (int i = 0; i < R; i++) {
-        //     for (int j = 0; j < C; j++) {
-        //         cout << grid[i][j] + 1 << ' ';
-        //     }
-        //     cout << endl;
-        // }
-        // cout << endl;
         bool res = backtrack(curR + 1);
         if (res)
             return true;
@@ -86,9 +69,7 @@ bool backtrack(int curR) {
     return false;
 }
 signed main() {
-    // ios::sync_with_stdio(0); cin.tie(0);
-    cin >> P;
-    for (int p = 0; p < P; p++) {
+    for (int p = 0; p < 1; p++) {
         for (int i = 0; i < MAXN; i++) {
             for (int j = 0; j < MAXN; j++) {
                 grid[i][j] = 0;
@@ -101,7 +82,7 @@ signed main() {
             regions[i].clear();
             orig[i].clear();
         }
-        cin >> K >> R >> C;
+        cin >> R >> C;
         for (int i = 0; i < R; i++) {
             for (int j = 0; j < C; j++) {
                 string t;
@@ -133,7 +114,6 @@ signed main() {
         }
         bool res = backtrack(0);
         // cout << res << endl;
-        cout << K << endl;
         for (int i = 0; i < R; i++) {
             cout << grid[i][0] + 1;
             for (int j = 1; j < C; j++) {

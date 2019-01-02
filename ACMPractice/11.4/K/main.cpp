@@ -4,13 +4,13 @@ using namespace std;
 
 const int MAXN = 22;
 struct Dinic {
-    const static int MAXV = MAXN;
+    const static int MAXV = 405;
     const int INF = 1e9 + 5;
     struct edge {
         int to, rev, cap, flow;
     };
-    const static int source = 0;
-    const static int sink = 1;
+    const static int s = MAXV - 2;
+    const static int t = MAXV - 1;
 
     int d[MAXV], ptr[MAXV];
     vector<edge> adj[MAXV];
@@ -23,10 +23,10 @@ struct Dinic {
     }
 
     bool bfs() {
-        queue<int> q({source});
+        queue<int> q({s});
         fill(begin(d), end(d), -1);
-        d[source] = 0;
-        while (!q.empty() && d[sink] == -1) {
+        d[s] = 0;
+        while (!q.empty() && d[t] == -1) {
             int v = q.front();
             q.pop();
             for (auto e : adj[v]) {
@@ -36,11 +36,11 @@ struct Dinic {
                 }
             }
         }
-        return d[sink] != -1;
+        return d[t] != -1;
     }
 
     int dfs(int v, int flow) {
-        if (v == sink || !flow)
+        if (v == t || !flow)
             return flow;
         for (; ptr[v] < adj[v].size(); ptr[v]++) {
             edge &e = adj[v][ptr[v]];
@@ -59,7 +59,7 @@ struct Dinic {
         int flow = 0;
         while (bfs()) {
             fill(begin(ptr), end(ptr), 0);
-            while (int pushed = dfs(source, INF))
+            while (int pushed = dfs(s, INF))
                 flow += pushed;
         }
         return flow;
@@ -85,18 +85,18 @@ signed main() {
     int lft = 0, rght = 0;
     for (int i = 0; i < R; i++) {
         for (int j = 0; j < C; j++) {
-            if (i + j & 1) {
-                dinic.add_edge(dinic.source, i * C + j + 2, 1 + grid[i][j]);
+            if ((i + j) & 1) {
+                dinic.add_edge(dinic.s, i * C + j, 1 + grid[i][j]);
                 lft += 1 + grid[i][j];
                 for (auto dir : dirs) {
                     int nr = i + dir[0];
                     int nc = j + dir[1];
                     if (!isValid(nr, nc))
                         continue;
-                    dinic.add_edge(i * C + j + 2, nr * C + nc + 2, 2);
+                    dinic.add_edge(i * C + j, nr * C + nc, 2);
                 }
             } else {
-                dinic.add_edge(i * C + j + 2, dinic.sink, 1 + grid[i][j]);
+                dinic.add_edge(i * C + j, dinic.t, 1 + grid[i][j]);
                 rght += 1 + grid[i][j];
             }
         }

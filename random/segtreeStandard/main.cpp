@@ -11,12 +11,11 @@ int N = 1e6;
 
 int seg[2 * MAXN];
 void build() {
-    for (int i = N - 1; i >= 0; i--)
+    for (int i = N - 1; i > 0; i--)
         seg[i] = seg[i << 1] + seg[i << 1 | 1];
 }
-
-void modify(int p, int val) {
-    for (seg[p += N] = val; p > 0; p >>= 1)
+void modify(int p, int x) {
+    for (seg[p += N] = x; p > 1; p >>= 1)
         seg[p >> 1] = seg[p] + seg[p ^ 1];
 }
 

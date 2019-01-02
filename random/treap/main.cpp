@@ -87,6 +87,72 @@ struct treap {
     }
 };
 
+struct Node {
+    Node *child[2], *parent;
+    bool reverse;
+    int value, size;
+    long long sum;
+};
+
+Node *nil, *root;
+
+void initTree() {
+    nil = new Node();
+    nil->child[0] = nil->child[1] = nil->parent = nil;
+    nil->value = nil->size = nil->sum = 0;
+    nil->reverse = false;
+    root = nil;
+}
+
+void update(Node *x) {
+    x->size = x->child[0]->size + x->child[1]->size + 1;
+    x->sum = x->child[0]->sum + x->child[1]->sum + x->value;
+}
+
+void setLink(Node *x, Node *y, int d) {
+    x->child[d] = y;
+    y->parent = x;
+}
+
+int getDir(Node *x, Node *y) { return x->child[0] == y ? 0 : 1; }
+
+void rotate(Node *x, int d) {
+    Node *y = x->child[d], *z = x->parent;
+    setLink(x, y->child[d ^ 1], d);
+    setLink(y, x, d ^ 1);
+    setLink(z, y, getDir(z, x));
+    update(x);
+    update(y);
+}
+
+void splay(Node *x) {
+    while (x->parent != nil) {
+        Node *y = x->parent, *z = y->parent;
+        int dy = getDir(y, x), dz = getDir(z, y);
+        if (z == nil)
+            rotate(y, dy);
+        else if (dy == dz)
+            rotate(z, dz), rotate(y, dy);
+        else
+            rotate(y, dy), rotate(z, dz);
+    }
+}
+
+Node *nodeAt(Node *x, int pos) {
+    while (pushDown(x), x->child[0]->size != pos)
+        if (pos < x->child[0]->size)
+            x = x->child[0];
+        else
+            pos -= x->child[0]->size + 1, x = x->child[1];
+    return splay(x), x;
+}
+
+void queryAssign(int pos, int value) {
+    root = nodeAt(root, pos);
+    root->value = value;
+    update(root);
+}
+
 signed main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -94,5 +160,4 @@ signed main() {
     t.insert(1);
     t.insert(3);
     t.insert(4);
-    cout << t.size() << endl;
 }

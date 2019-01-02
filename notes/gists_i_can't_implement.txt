@@ -1,0 +1,9 @@
+Manacher's
+Gaussian Elimination
+Suffix Array
+Hopcroft karp
+Convex Hull trick
+Min Cost FLow
+Geometry
+Treap
+Dinic's

@@ -25,12 +25,4 @@ signed main() {
         }
     }
     cout << phi[494] << endl;
-    // ll a, b, c, d;
-    // cin >> a >> b >> c >> d;
-    // a--, c--;
-    // ll ans = 0;
-    // for (int i = 1; i <= min(b, d); i++) {
-    //     ans += mobius[i] * (b / i - a / i) * (d / i - c / i);
-    // }
-    // cout << ans << endl;
 }

@@ -30,12 +30,6 @@ int main() {
                 }
             }
         }
-        // for (int i = 1; i <= N; i++) {
-        //     for (int j = 0; j < MAXM; j++) {
-        //         cout << dp[i][j] << ' ';
-        //     }
-        //     cout << endl;
-        // }
         int sum = 0;
         for (int i = 0; i < MAXM; i++) {
             sum += dp[N][i];

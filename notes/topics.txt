@@ -1,0 +1,156 @@
+Graph
+    DFS/BFS
+        Graph Coloring
+    Graph and Tree Representations
+Data Structures (C++ STL):
+    Stack/Queue
+    Priority Queue
+    Binary Search Tree
+    Hash Table
+Misc
+    Recursion
+    Binary Search
+    Computational Complexity
+Mathematics
+    Basic Formulas
+
+--------------------------
+Dynamic Programming
+    Knapsack problem
+    Longest increasing subsequence
+    DP on Trees
+    ...
+Graph
+    Dijkstra's Algorithm
+    Bellman Ford algorithm
+    Floyd Warshall Algorithm
+    Lowest Common Ancestor
+    Topological Sorting
+    Strongly Connected Components
+String
+    Knuth-Morris-Pratt Algorithm (KMP)
+Data Structures
+    Union Find/Disjoint Set
+        Minimum Spanning Tree (Kruskal's)
+    Segment Tree (basics)
+        Counting Inversions
+Mathematics
+    Modular Multiplicative Inverse
+    Sieve of Erastothenes
+    Binary Exponentiation
+    Efficient Prime Factorization
+    Probabilities
+    Binomial Coefficients
+    Euclid's Extended Algorithm
+Misc
+    Ternary Search
+    Backtracking
+    Co-ordinate Compression
+    Bit Twiddling Tricks
+
+--------------------------
+Dynamic Programming
+    Bitmask DP
+    Sum of Subsets DP
+    Basic Optimizations
+    DSU On Trees/Small to Large merging
+    Digit DP
+String
+    Tries
+    String Hashing
+    Suffix Array
+        LCP
+    Manacher's Algorithm
+    Aho-Corasick String Matching Algorithm
+Network Flow
+    Maximum Bipartite Matching
+    Max Flow
+        Dinic's Algorithm
+        Max Flow/Min Cut Theorem
+Data Structure
+    Segment Tree Intermediate
+        Lazy Propagation
+        Dynamic
+        Mergesort
+Mathematics
+    Mobius Inversion
+    Euler's Totient Function
+    Integration by Simpson's formula
+Misc
+    Sqrt-Decomposition
+Game Theory
+    Sprague-Grundy
+Geometry
+
+--------------------------
+Dynamic Programming
+    Optimizations
+        Convex Hull
+        Divide And Conquer
+        Knuth Optimization
+        Alien Trick
+Graph
+    Centroid Decomposition
+    Heavy-light Decomposition
+    Maximal Matching in a General Graph
+Network Flow
+    Hungarian Algorithm
+String
+    Suffix Automaton
+    Suffix Tree
+Data Structures
+    Link-Cut Tree
+    Treap/Cartesian Tree
+    Segment Tree Advanced
+        Persistent
+        2D
+Mo's Algorithm
+Mathematics
+    Discrete Log
+    Factorial modulo p
+    Matrix Exponentiation
+    Burnside's Lemma
+    Pollard Rho Integer Factorization
+    Miller-Rabin Primality Test
+    Gaussian Elimination
+    Binomial coefficients (nCr % M)
+    Catalan Numbers
+Fast Fourier Transform
+Misc
+    2-SAT
+
+
+Inclusion Exclusion Principle
+Stars and bars
+Two Pointers
+Segment Tree Beats
+
+Not Important/Not a Topic:
+Quicksort
+Merge Sort
+Radix Sort, Bucket Sort
+Heap / Priority Queue / Heapsort
+Counting Sort
+
+Might be important?
+Johnson's Algorithm
+Quick Select
+K-d tree
+Edit/Levenshtein Distance
+Sqrt Tree
+Lyndon factorization
+Kirchhoff Theorem
+Prüfer code
+Interval Tree
+
+Optional (I think they rarely pop up/obsoleted by other techniques)
+Binary Indexed Tree
+Sparse Table (LCP, RMQ)
+Stable Marriage Problem
+Z algorithm
+Eulerian Path
+Meet in the Middle
+Primitive Root
+Finding Bridges in O(N+M)
+Detecting Cycles in a Graph
+Rabin-Karp Algorithm

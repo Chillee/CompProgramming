@@ -4,9 +4,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Run task with reading from input.txt",
+            "label": "Read from input.txt",
             "type": "shell",
-            "command": "cd ${fileDirname} && g++ -O2 -g -std=c++14 ${file} -o main && ${fileDirname}/main < ${fileDirname}/input.txt",
+            "command": "cd ${fileDirname} && g++ -O2 -g -Wall -Wno-narrowing -Wno-sign-compare -std=c++14 ${file} -o main && time ${fileDirname}/main < ${fileDirname}/input.txt",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -16,7 +16,23 @@
                 "reveal": "always",
                 "focus": true,
                 "panel": "dedicated"
-            }
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build with sanitizers ",
+            "type": "shell",
+            "command": "cd ${fileDirname} && g++ -O2 -fsanitize=address,undefined -g -Wall -Wno-narrowing -Wno-sign-compare -std=c++14 ${file} -o main && ${fileDirname}/main < ${fileDirname}/input.txt",
+            "group": {
+                "kind": "build",
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated"
+            },
+            "problemMatcher": []
         }
     ]
 }

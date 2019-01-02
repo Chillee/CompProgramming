@@ -11,45 +11,43 @@ const int MAXN = 1e5 + 5;
 int N = 8;
 
 int A[MAXN];
-
 struct Tree {
     Tree *pl, *pr;
-    int l, r, val, lazy;
+    int nl = 0, nr = 0, val = 0;
 
     void updateVal() { val = pl->val + pr->val; }
-    void propagate() { pl->apply(lazy), pr->apply(lazy), lazy = 0; }
-    void apply(int x) { lazy += x, val += (r - l) * x; }
 
-    Tree(int l, int r) : l(l), r(r) {
-        if (l + 1 == r) {
-            val = A[l];
+    Tree(int l, int r) {
+        nl = l, nr = r;
+        if (nl + 1 == nr) {
+            val = A[nl];
             return;
         }
-        pl = new Tree(l, l + r >> 1);
-        pr = new Tree(l + r >> 1, r);
+        pl = new Tree(nl, nl + nr >> 1);
+        pr = new Tree(nl + nr >> 1, nr);
         updateVal();
     }
-    void modify(int curl, int curr, int x) {
-        if (curl <= l && curr >= r) {
-            apply(x);
+    void modify(int p, int x) {
+        if (p < nl || nr <= p) {
             return;
         }
-        if (curl >= r || curr <= l)
+        if (nl + 1 == nr) {
+            val = x;
             return;
-        propagate();
-        pl->modify(curl, curr, x);
-        pr->modify(curl, curr, x);
+        }
+        pl->modify(p, x);
+        pr->modify(p, x);
         updateVal();
     }
-    int query(int curl, int curr) {
-        if (curl <= l && curr >= r)
+    int query(int l, int r) {
+        if (l <= nl && r >= nr)
             return val;
-        if (curl >= r || l >= curr)
+        if (l >= nr || nl >= r)
             return 0;
-        propagate();
-        return pl->query(curl, curr) + pr->query(curl, curr);
+        return pl->query(l, r) + pr->query(l, r);
     }
-} * seg;
+};
+Tree *seg;
 
 signed main() {
     ios::sync_with_stdio(0);
@@ -60,14 +58,14 @@ signed main() {
     clock_t begin;
     begin = clock();
     seg = new Tree(0, N);
-    for (int i = 0; i < 1e7; i++) {
+    for (int i = 0; i < 1e5; i++) {
         int a = uni(rng), b = uni(rng);
         if (a > b) {
             swap(a, b);
         }
         seg->modify(a, b, uni(rng));
     }
-    for (int i = 0; i < 1e7; i++) {
+    for (int i = 0; i < 1e5; i++) {
         int a = uni(rng), b = uni(rng);
         if (a > b) {
             swap(a, b);
