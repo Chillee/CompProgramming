@@ -3,14 +3,6 @@
 
 using namespace std;
 
-static char buf[450 << 20];
-void *operator new(size_t s) {
-    static size_t i = sizeof buf;
-    assert(s < i);
-    return (void *)&buf[i -= s];
-}
-void operator delete(void *) {}
-
 typedef long long ll;
 
 typedef complex<double> cpx;
@@ -566,8 +558,8 @@ struct FFT5 {
         for (int k = 1; k < MAXN; k *= 2)
             for (int i = 0; i < MAXN; i += 2 * k)
                 for (int j = 0; j < k; j++) {
-                    cpx &x = rt[j + k], &y = a[i + j + k];
-                    cpx z(x.real() * y.real() - x.imag() * y.imag(), x.real() * y.imag() + y.real() * x.imag());
+                    auto x = (double *)&rt[j + k], y = (double *)&a[i + j + k];
+                    cpx z(x[0] * y[0] - x[1] * y[1], x[0] * y[1] + x[1] * y[0]);
                     a[i + j + k] = a[i + j] - z;
                     a[i + j] += z;
                 }
@@ -576,7 +568,7 @@ struct FFT5 {
     cpx in[MAXN], h[MAXN];
     void multiply(double a[], double b[]) {
         for (int i = 0; i < MAXN / 2; i++)
-            in[i] = cpx{a[i], b[i]};
+            in[i].real(a[i]), in[i].imag(b[i]);
 
         fft(in);
         for (int i = 0; i < MAXN; i++) {
@@ -586,6 +578,7 @@ struct FFT5 {
         fft(h);
     }
 };
+// tfg
 struct FFT6 {
     typedef double ld;
 
@@ -736,11 +729,66 @@ struct FFT6 {
     }
 };
 
-FFT1 *fft1;
-FFT2 fft2;
-FFT3 fft3;
+// TankEngineer's FFT
+// struct FFT7 {
+//     const int MOD = 1000003;
+//     const double PI = acos(-1);
+//     typedef complex<double> Complex;
+//     const static int N = MAXN, L = LOGN, MASK = (1 << L) - 1;
+//     Complex w[N];
+//     void FFTInit() {
+//         for (int i = 0; i < N; ++i) {
+//             w[i] = Complex(cos(2 * i * PI / N), sin(2 * i * PI / N));
+//         }
+//     }
+//     void FFT(Complex p[], int n) {
+//         for (int i = 1, j = 0; i < n - 1; ++i) {
+//             for (int s = n; j ^= s >>= 1, ~j & s;)
+//                 ;
+//             if (i < j) {
+//                 swap(p[i], p[j]);
+//             }
+//         }
+//         for (int d = 0; (1 << d) < n; ++d) {
+//             int m = 1 << d, m2 = m * 2, rm = n >> (d + 1);
+//             for (int i = 0; i < n; i += m2) {
+//                 for (int j = 0; j < m; ++j) {
+//                     Complex &p1 = p[i + j + m], &p2 = p[i + j];
+//                     Complex t = w[rm * j] * p1;
+//                     p1 = p2 - t;
+//                     p2 = p2 + t;
+//                 }
+//             }
+//         }
+//     }
+//     Complex A[N], B[N], C[N], D[N];
+//     void mul(int a[N], int b[N]) {
+//         for (int i = 0; i < N; ++i) {
+//             A[i] = Complex(a[i] >> L, a[i] & MASK);
+//             B[i] = Complex(b[i] >> L, b[i] & MASK);
+//         }
+//         FFT(A, N), FFT(B, N);
+//         for (int i = 0; i < N; ++i) {
+//             int j = (N - i) % N;
+//             Complex da = (A[i] - conj(A[j])) * Complex(0, -0.5), db = (A[i] + conj(A[j])) * Complex(0.5, 0),
+//                     dc = (B[i] - conj(B[j])) * Complex(0, -0.5), dd = (B[i] + conj(B[j])) * Complex(0.5, 0);
+//             C[j] = da * dd + da * dc * Complex(0, 1);
+//             D[j] = db * dd + db * dc * Complex(0, 1);
+//         }
+//         FFT(C, N), FFT(D, N);
+//         for (int i = 0; i < N; ++i) {
+//             long long da = (long long)(C[i].imag() / N + 0.5) % MOD, db = (long long)(C[i].real() / N + 0.5) % MOD,
+//                       dc = (long long)(D[i].imag() / N + 0.5) % MOD, dd = (long long)(D[i].real() / N + 0.5) % MOD;
+//             a[i] = ((dd << (L * 2)) + ((db + dc) << L) + da) % MOD;
+//         }
+//     }
+// };
+// FFT1 *fft1;
+// FFT2 fft2;
+// FFT3 fft3;
 FFT5 fft5;
-FFT6 fft6;
+// FFT6 fft6;
+// FFT7 fft7;
 cpx A[MAXN], B[MAXN];
 FFT3::complex<double> cA[MAXN], cB[MAXN];
 vector<double> vcA, vcB;
@@ -749,39 +797,40 @@ signed main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
     for (int i = 0; i < MAXN / 2; i++) {
-        Ao.push_back(uni(rng)), Bo.push_back(uni(rng));
-        // Ao.push_back(1), Bo.push_back(1);
+        // Ao.push_back(uni(rng)), Bo.push_back(uni(rng));
+        Ao.push_back(1), Bo.push_back(1);
     }
     clock_t begin;
     /** EMaxx **/
-    begin = clock();
-    for (int i = 0; i < Ao.size(); i++) {
-        A[i] = Ao[i], B[i] = Bo[i];
-    }
-    fft1->emxMultiply(A, B);
-    cout << "emaxx: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << A[Ao.size() / 2] << endl;
+    // begin = clock();
+    // for (int i = 0; i < Ao.size(); i++) {
+    //     A[i] = Ao[i], B[i] = Bo[i];
+    // }
+    // fft1->emxMultiply(A, B);
+    // cout << "emaxx: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << A[Ao.size() / 2] << endl;
+    /** ----------- **/
+    /** TankEngineer **/
+    // viA.clear(), viB.clear();
+    // for (int i = 0; i < Ao.size(); i++) {
+    //     viA.push_back(Ao[i]), viB.push_back(Bo[i]);
+    // }
+    // viA.resize(MAXN, 0), viB.resize(MAXN, 0);
+    // fft7.FFTInit();
+    // begin = clock();
+    // fft7.mul(&viA[0], &viB[0]);
+    // cout << "TankEngineer: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << viA[Ao.size() / 2] << endl;
     /** ----------- **/
 
     /** KACTL Custom **/
-    for (int i = 0; i < Ao.size(); i++) {
-        cA[i] = Ao[i], cB[i] = Bo[i];
-    }
-    begin = clock();
-    fft3.multiply(cA, cB);
-    cout << "kactl custom: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << cA[Ao.size() / 2].x << endl;
+    // fill(cA, cA + MAXN, 0), fill(cB, cB + MAXN, 0);
+    // for (int i = 0; i < Ao.size(); i++) {
+    //     cA[i] = Ao[i], cB[i] = Bo[i];
+    // }
+    // begin = clock();
+    // fft3.multiply(cA, cB);
+    // cout << "kactl custom: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << cA[Ao.size() / 2].x << endl;
     /** ----------- **/
 
-    /** Neal **/
-    vcA.clear(), vcB.clear();
-    for (int i = 0; i < Ao.size(); i++) {
-        vcA.push_back(Ao[i]), vcB.push_back(Bo[i]);
-    }
-    begin = clock();
-    vector<double> res;
-    res = FFT4::multiply<double, double>(vcA, vcB);
-    // cout << res.size() << ' ' << Ao.size() * 2 << endl;
-    cout << "neal: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << res[Ao.size() / 2] << endl;
-    /** ----------- **/
     /** KACTL 2-in-1 **/
     vcA.clear(), vcB.clear();
     for (int i = 0; i < Ao.size(); i++) {
@@ -790,24 +839,35 @@ signed main() {
     begin = clock();
     fft5.precompute();
     fft5.multiply(&vcA[0], &vcB[0]);
-
     cout << "2-in-1: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << fft5.h[Ao.size() / 2] << endl;
     /** ----------- **/
-    /** KACTL **/
+    /** Neal **/
+    vcA.clear(), vcB.clear();
     for (int i = 0; i < Ao.size(); i++) {
-        A[i] = Ao[i], B[i] = Bo[i];
+        vcA.push_back(Ao[i]), vcB.push_back(Bo[i]);
     }
     begin = clock();
-    fft2.multiply(A, B);
-    cout << "kactl: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << A[Ao.size() / 2] << endl;
+    vector<double> res;
+    res = FFT4::multiply<double, double>(vcA, vcB);
+    cout << "neal: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << res[Ao.size() / 2] << endl;
     /** ----------- **/
-    /** tfg **/
-    viA.clear(), viB.clear();
-    for (int i = 0; i < Ao.size(); i++) {
-        viA.push_back(Ao[i]), viB.push_back(Bo[i]);
-    }
-    begin = clock();
-    auto restfg = fft6.mul(viA, viB);
-    cout << "tfg: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << restfg[Ao.size() / 2] << endl;
+    /** KACTL **/
+    // fill(A, A + MAXN, 0);
+    // fill(B, B + MAXN, 0);
+    // for (int i = 0; i < Ao.size(); i++) {
+    //     A[i] = Ao[i], B[i] = Bo[i];
+    // }
+    // begin = clock();
+    // fft2.multiply(A, B);
+    // cout << "kactl: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << A[Ao.size() / 2] << endl;
+    // /** ----------- **/
+    // /** tfg **/
+    // viA.clear(), viB.clear();
+    // for (int i = 0; i < Ao.size(); i++) {
+    //     viA.push_back(Ao[i]), viB.push_back(Bo[i]);
+    // }
+    // begin = clock();
+    // auto restfg = fft6.mul(viA, viB);
+    // cout << "tfg: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << restfg[Ao.size() / 2] << endl;
     /** ----------- **/
 }
