@@ -8,22 +8,20 @@ using namespace std;
 const int MAXN = 1e6;
 
 int A[MAXN];
-struct Node;
-Node *newNode();
-struct Node {
-    Node *pl, *pr;
+struct Tree {
+    Tree *pl, *pr;
     int nl = 0, nr = 0, val = 0;
 
     void updateVal() { val = pl->val + pr->val; }
 
-    void build(int l, int r) {
+    Tree(int l, int r, int A[]) {
         nl = l, nr = r;
         if (nl + 1 == nr) {
             val = A[nl];
             return;
         }
-        (pl = newNode())->build(nl, nl + nr >> 1);
-        (pr = newNode())->build(nl + nr >> 1, nr);
+        pl = new Tree(nl, nl + nr >> 1, A);
+        pr = new Tree(nl + nr >> 1, nr, A);
         updateVal();
     }
     void modify(int p, int x) {
@@ -32,7 +30,6 @@ struct Node {
         }
         if (nl + 1 == nr) {
             val = x;
-            // A[nl] = x;
             return;
         }
         pl->modify(p, x);
@@ -47,10 +44,6 @@ struct Node {
         return pl->query(l, r) + pr->query(l, r);
     }
 };
-
-int bufSize = MAXN * 2;
-Node buf[MAXN * 2];
-Node *newNode() { return &buf[--bufSize]; }
 
 struct Seg {
     int seg[2 * MAXN];
@@ -99,68 +92,59 @@ struct Seg3 {
         return sum(v * 2, tl, tm, l, min(r, tm)) + sum(v * 2 + 1, tm + 1, tr, max(l, tm + 1), r);
     }
 };
-template <class Node_CItr, class Node_Itr, class Cmp_Fn,
-          class _Alloc>
-struct my_node_update // custom node update class
-{
-    typedef long long metadata_type;
 
-    long long query(int x, int y, Node_Itr it = node_begin()) {
-        long long ans = 1;
-        if (it == node_end())
-            return ans;
-        // if (it != node_begin()) {
-        auto l = it.get_l_child();
-        auto r = it.get_r_child();
-        if (x <= (**it).first && y >= (**it).first) {
-            ans *= it.get_metadata();
-            ans *= query(x, y, l);
-            ans *= query(x, y, r);
-        } else if (x > (**it).first) {
-            ans *= query(x, y, r);
-        } else if (y < (**it).first) {
-            ans *= query(x, y, l);
+template <typename T> struct Seg4 {
+    const int N;
+    vector<T> seg;
+    T unit;
+    const function<T(T, T)> combine;
+    Seg4(int n, T arr[], int u, function<T(T, T)> cF) : N(n), unit(u), combine(cF), seg(N * 2) {
+        for (int i = 0; i < N; i++)
+            seg[i + N] = arr[i];
+        build();
+    }
+    void build() {
+        for (int i = N - 1; i > 0; --i)
+            seg[i] = combine(seg[i << 1], seg[i << 1 | 1]);
+    }
+
+    void modify(int p, T value) {
+        for (seg[p += N] = value; p >>= 1;)
+            seg[p] = combine(seg[p << 1], seg[p << 1 | 1]);
+    }
+
+    T query(int l, int r) {
+        T resl = unit;
+        T resr = unit;
+        for (l += N, r += N; l < r; l >>= 1, r >>= 1) {
+            if (l & 1)
+                resl = combine(resl, seg[l++]);
+            if (r & 1)
+                resr = combine(seg[--r], resr);
         }
-        // }
-        return ans;
+        return combine(resl, resr);
     }
-
-    void operator()(Node_Itr it, Node_CItr end_it) // this is called for each node update (and then recursively for subsequently updated nodes)
-    {
-        auto l = it.get_l_child();
-        auto r = it.get_r_child();
-        long long left = 1, right = 1;
-        if (l != end_it)
-            left = l.get_metadata();
-        if (r != end_it)
-            right = r.get_metadata();
-        const_cast<long long &>(it.get_metadata()) = left * right * (**it).second; // product of sub-tree
-    }
-
-    virtual Node_CItr node_begin() const = 0;
-
-    virtual Node_CItr node_end() const = 0;
 };
-typedef tree<long long, long long, less<long long>, rb_tree_tag, my_node_update> Seg4;
-Node *seg = newNode();
+Tree *seg;
 Seg seg2;
 Seg3 seg3;
-Seg4 seg4;
+Seg4<int> *seg4;
 
 const int NUMMOD = 1e5;
-const int NUMQUERY = 1e2;
+const int NUMQUERY = 1e6;
 random_device rd;
 mt19937 rng(0);
 uniform_int_distribution<int> uni(1, MAXN);
+int mx(int a, int b) { return a + b; }
 signed main() {
     for (int i = 0; i < MAXN; i++) {
         A[i] = rand() % 10;
         seg2.seg[i + MAXN] = A[i];
-        seg4.insert({i, A[i]});
     }
-    seg->build(0, MAXN);
+    seg = new Tree(0, MAXN, A);
     seg3.build(A, 1, 0, MAXN - 1);
     seg2.build();
+    seg4 = new Seg4<int>(MAXN, A, 0, [](int a, int b) { return a + b; });
     vector<array<int, 2>> queries;
     for (int i = 0; i < NUMQUERY; i++) {
         int a = uni(rng), b = uni(rng);
@@ -170,12 +154,6 @@ signed main() {
     }
     clock_t begin;
     int ans;
-    begin = clock();
-    ans = 0;
-    for (auto i : queries) {
-        ans += seg->query(i[0], i[1]);
-    }
-    cout << "pointer; " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << ans << endl;
     begin = clock();
     ans = 0;
     for (auto i : queries) {
@@ -191,7 +169,19 @@ signed main() {
     begin = clock();
     ans = 0;
     for (auto i : queries) {
-        ans += seg4.query(i[0], i[1], seg4.node_begin());
+        ans += seg->query(i[0], i[1]);
     }
-    cout << "arvind " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << ans << endl;
+    cout << "pointer; " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << ans << endl;
+    // begin = clock();
+    // ans = 0;
+    // for (auto i : queries) {
+    //     ans += seg4.query(i[0], i[1], seg4.node_begin());
+    // }
+    // cout << "arvind " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << ans << endl;
+    begin = clock();
+    ans = 0;
+    for (auto i : queries) {
+        ans += seg4->query(i[0], i[1]);
+    }
+    cout << "abstract iterative; " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << ans << endl;
 }

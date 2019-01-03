@@ -8,38 +8,45 @@ const ll MAXN = 1e5 + 5;
 
 ll N, M;
 ll V[MAXN];
-ll dfsCnt = 0;
 vector<int> sccs[MAXN];
 
 vector<ll> adj[MAXN];
-int num[MAXN], low[MAXN];
-bool isProcess[MAXN];
-stack<int> curVis;
-
-void tarjans(int cur) {
-    num[cur] = low[cur] = dfsCnt++;
-    isProcess[cur] = true;
-    curVis.push(cur);
-    for (auto i : adj[cur]) {
-        if (num[i] == -1)
-            tarjans(i);
-        if (isProcess[i])
-            low[cur] = min(low[cur], low[i]);
-    }
-    if (num[cur] == low[cur]) {
-        int t = -1;
-        while (t != cur) {
-            t = curVis.top();
+template <int MAXN> struct SCC {
+    int num[MAXN], low[MAXN];
+    bool curProcess[MAXN];
+    stack<int> curVis;
+    int dfsCnt = 0;
+    SCC() { fill(begin(num), end(num), -1), fill(begin(low), end(low), -1); }
+    void dfs(int cur) {
+        num[cur] = low[cur] = dfsCnt++;
+        curProcess[cur] = true;
+        curVis.push(cur);
+        for (auto v : adj[cur]) {
+            if (num[v] == -1)
+                dfs(v);
+            if (curProcess[v])
+                low[cur] = min(low[cur], low[v]);
+        }
+        if (num[cur] == low[cur]) {
+            while (curVis.top() != cur) {
+                int t = curVis.top();
+                curVis.pop();
+                low[t] = low[cur];
+                curProcess[t] = false;
+            }
             curVis.pop();
-            low[t] = num[cur];
-            isProcess[t] = false;
+            curProcess[cur] = false;
         }
     }
-}
+    void tarjans() {
+        for (int i = 0; i < N; i++)
+            if (num[i] == -1)
+                dfs(i);
+    }
+};
+SCC<MAXN> scc;
 
 int main() {
-    fill(num, num + MAXN, -1);
-    fill(low, low + MAXN, -1);
     cin >> N;
     for (ll i = 0; i < N; i++) {
         cin >> V[i];
@@ -51,12 +58,9 @@ int main() {
         a--, b--;
         adj[a].push_back(b);
     }
-    for (ll i = 0; i < N; i++) {
-        if (num[i] == -1)
-            tarjans(i);
-    }
+    scc.tarjans();
     for (int i = 0; i < N; i++) {
-        sccs[low[i]].push_back(i);
+        sccs[scc.low[i]].push_back(i);
     }
     ll totalCost = 0;
     ll numSols = 1;

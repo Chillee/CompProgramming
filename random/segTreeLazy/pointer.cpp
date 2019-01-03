@@ -13,30 +13,32 @@ int N = 8;
 int A[MAXN];
 struct Tree {
     Tree *pl, *pr;
-    int nl = 0, nr = 0, val = 0;
+    int nl = 0, nr = 0, val = 0, lazy = 0;
 
     void updateVal() { val = pl->val + pr->val; }
+    void propagate() { pl->apply(lazy), pr->apply(lazy), lazy = 0; }
+    void apply(int x) { lazy += x, val += (nr - nl) * x; }
 
-    Tree(int l, int r) {
+    Tree(int l, int r, int A[]) {
         nl = l, nr = r;
         if (nl + 1 == nr) {
             val = A[nl];
             return;
         }
-        pl = new Tree(nl, nl + nr >> 1);
-        pr = new Tree(nl + nr >> 1, nr);
+        pl = new Tree(nl, nl + nr >> 1, A);
+        pr = new Tree(nl + nr >> 1, nr, A);
         updateVal();
     }
-    void modify(int p, int x) {
-        if (p < nl || nr <= p) {
+    void modify(int l, int r, int x) {
+        if (l <= nl && nr <= r) {
+            apply(x);
             return;
         }
-        if (nl + 1 == nr) {
-            val = x;
+        if (l >= nr || nl >= r)
             return;
-        }
-        pl->modify(p, x);
-        pr->modify(p, x);
+        propagate();
+        pl->modify(l, r, x);
+        pr->modify(l, r, x);
         updateVal();
     }
     int query(int l, int r) {
@@ -44,10 +46,10 @@ struct Tree {
             return val;
         if (l >= nr || nl >= r)
             return 0;
+        propagate();
         return pl->query(l, r) + pr->query(l, r);
     }
 };
-Tree *seg;
 
 signed main() {
     ios::sync_with_stdio(0);
@@ -57,7 +59,7 @@ signed main() {
     }
     clock_t begin;
     begin = clock();
-    seg = new Tree(0, N);
+    Tree *seg = new Tree(0, N, A);
     for (int i = 0; i < 1e5; i++) {
         int a = uni(rng), b = uni(rng);
         if (a > b) {

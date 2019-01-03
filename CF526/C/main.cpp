@@ -5,9 +5,8 @@ using namespace std;
 #define endl '\n'
 const int MAXN = 2e5 + 5;
 vector<int> adj[MAXN];
-struct LCA {
-    const static int MAXN = ::MAXN;
-    const static int MAXB = 24;
+template <int MAXN> struct LCA {
+    const static int MAXB = 32 - __builtin_clz(MAXN);
     int tim[MAXN], depth[MAXN];
     array<int, 2> st[MAXN * 2][MAXB];
     vector<array<int, 2>> euler;
@@ -43,7 +42,7 @@ struct LCA {
     }
 };
 
-LCA lca;
+LCA<MAXN> lca;
 int N;
 int par[MAXN];
 int P[MAXN];
