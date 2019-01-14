@@ -7,7 +7,7 @@ typedef long long ll;
 
 typedef complex<double> cpx;
 typedef complex<double> cd;
-const int LOGN = 21, MAXN = 1 << LOGN;
+const int LOGN = 23, MAXN = 1 << LOGN;
 random_device rd;
 mt19937 rng(0);
 uniform_int_distribution<int> uni(1, 10);
@@ -533,54 +533,11 @@ template <typename T> vector<T> mod_multiply(const vector<T> &left, const vector
 }
 } // namespace FFT4
 
-// 2-in-1 KACTL
-struct FFT5 {
-    typedef complex<double> cpx;
-
-    int rev[MAXN];
-    cpx rt[MAXN];
-    void precompute() {
-        rev[0] = 0;
-        rt[1] = cpx(1, 0);
-        for (int i = 0; i < MAXN; i++)
-            rev[i] = (rev[i / 2] | (i & 1) << LOGN) / 2;
-        for (int k = 2; k < MAXN; k *= 2) {
-            cpx z(cos(M_PI / k), sin(M_PI / k));
-            for (int i = k / 2; i < k; i++)
-                rt[2 * i] = rt[i], rt[2 * i + 1] = rt[i] * z;
-        }
-    }
-    void fft(cpx *a) {
-        for (int i = 0; i < MAXN; i++)
-            if (i < rev[i])
-                swap(a[i], a[rev[i]]);
-
-        for (int k = 1; k < MAXN; k *= 2)
-            for (int i = 0; i < MAXN; i += 2 * k)
-                for (int j = 0; j < k; j++) {
-                    auto x = (double *)&rt[j + k], y = (double *)&a[i + j + k];
-                    cpx z(x[0] * y[0] - x[1] * y[1], x[0] * y[1] + x[1] * y[0]);
-                    a[i + j + k] = a[i + j] - z;
-                    a[i + j] += z;
-                }
-    }
-
-    cpx in[MAXN], h[MAXN];
-    void multiply(double a[], double b[]) {
-        for (int i = 0; i < MAXN / 2; i++)
-            in[i].real(a[i]), in[i].imag(b[i]);
-
-        fft(in);
-        for (int i = 0; i < MAXN; i++) {
-            int j = (MAXN - i) & (MAXN - 1);
-            h[i] = (in[j] * in[j] - conj(in[i] * in[i])) * cpx{0, -0.25 / MAXN};
-        }
-        fft(h);
-    }
-};
 // tfg
 struct FFT6 {
     typedef double ld;
+
+    FFT6() { initFFT(); }
 
     const ld PI = acos(-1);
 
@@ -598,8 +555,19 @@ struct FFT6 {
 
     typedef std::vector<Complex> CVector;
 
-    int bits[1 << 22];
-    Complex root[1 << 22];
+    int bits[MAXN];
+    Complex root[MAXN];
+
+    void initFFT() {
+        root[1] = Complex(1);
+        for (int len = 2; len < MAXN; len += len) {
+            Complex z(cos(PI / len), sin(PI / len));
+            for (int i = len / 2; i < len; i++) {
+                root[2 * i] = root[i];
+                root[2 * i + 1] = root[i] * z;
+            }
+        }
+    }
 
     void pre(int n) {
         int LOG = 0;
@@ -614,22 +582,19 @@ struct FFT6 {
     CVector fft(CVector a, bool inv = false) {
         int n = a.size();
         pre(n);
+        if (inv) {
+            std::reverse(a.begin() + 1, a.end());
+        }
         for (int i = 0; i < n; i++) {
             int to = bits[i];
             if (to > i) {
                 std::swap(a[to], a[i]);
             }
         }
-
-        double angle = inv ? -PI : PI;
         for (int len = 1; len < n; len *= 2) {
-            for (int i = 0; i < len; i++) {
-                root[i] = Complex(cos(angle / len * i), sin(angle / len * i));
-            }
             for (int i = 0; i < n; i += 2 * len) {
                 for (int j = 0; j < len; j++) {
-                    Complex cur_root = root[j];
-                    Complex u = a[i + j], v = a[i + j + len] * cur_root;
+                    Complex u = a[i + j], v = a[i + j + len] * root[len + j];
                     a[i + j] = u + v;
                     a[i + j + len] = u - v;
                 }
@@ -783,23 +748,172 @@ struct FFT6 {
 //         }
 //     }
 // };
-// FFT1 *fft1;
-// FFT2 fft2;
-// FFT3 fft3;
-FFT5 fft5;
-// FFT6 fft6;
+
+// Tmwilliamlin168
+namespace FFT8 {
+template <typename T> struct cp {
+    T x, y;
+    cp<T> operator+(const cp &o) const { return {x + o.x, y + o.y}; }
+    cp<T> operator*(const cp &o) const { return {x * o.x - y * o.y, x * o.y + y * o.x}; }
+};
+template <typename T> struct fft {
+    static const int mxN = MAXN;
+    cp<T> rt[mxN];
+    void fi(int n) {
+        T PI = acos((T)-1);
+        for (int i = 0; i < n / 2; ++i) {
+            T an = 2 * PI * i / n;
+            rt[i + n / 2] = {cos(an), sin(an)};
+        }
+        for (int i = n / 2; --i >= 1;)
+            rt[i] = rt[2 * i];
+    }
+    void ac(vector<cp<T>> &a) {
+        int n = a.size();
+        for (int i = 0, j = 0; i < n; ++i) {
+            if (i > j)
+                swap(a[i], a[j]);
+            for (int k = n / 2; (j ^= k) < k; k /= 2)
+                ;
+        }
+        for (int st = 1; 2 * st <= n; st *= 2) {
+            for (int i = 0; i < n; i += 2 * st) {
+                for (int j = i; j < i + st; ++j) {
+                    cp<T> z = rt[j - i + st] * a[j + st];
+                    a[j + st] = a[j] + cp<T>{-1, 0} * z;
+                    a[j] = a[j] + z;
+                }
+            }
+        }
+    }
+    void mul(vector<cp<T>> &g, vector<cp<T>> &h) {
+        int n = g.size();
+        ac(g);
+        for (int i = 0; i < n; ++i) {
+            int j = (n - i) & (n - 1);
+            cp<T> g2 = g[i] * g[i];
+            g2.x = -g2.x;
+            h[i] = (g[j] * g[j] + g2) * cp<T>{(T)0, (T)-1 / 4 / n};
+        }
+        ac(h);
+    }
+};
+} // namespace FFT8
+
+struct FFT9 {
+    typedef valarray<complex<double>> carray;
+    // typedef vector<double> vd;
+    void fft(carray &x, carray &roots) {
+        int N = x.size();
+        if (N <= 1)
+            return;
+        carray even = x[slice(0, N / 2, 2)];
+        carray odd = x[slice(1, N / 2, 2)];
+        carray rs = roots[slice(0, N / 2, 2)];
+        fft(even, rs);
+        fft(odd, rs);
+        for (int k = 0; k < N / 2; k++) {
+            auto t = roots[k] * odd[k];
+            x[k] = even[k] + t;
+            x[k + N / 2] = even[k] - t;
+        }
+    }
+
+    typedef vector<double> vd;
+    vd conv(const vd &a, const vd &b) {
+        int s = a.size() + b.size() - 1, L = 32 - __builtin_clz(s), n = 1 << L;
+        if (s <= 0)
+            return {};
+        carray av(n), bv(n), roots(n);
+        for (int i = 0; i < n; i++)
+            roots[i] = polar(1.0, -2 * M_PI * i / n);
+        copy(a.begin(), a.end(), begin(av));
+        fft(av, roots);
+        copy(b.begin(), b.end(), begin(bv));
+        fft(bv, roots);
+        roots = roots.apply(conj);
+        carray cv = av * bv;
+        fft(cv, roots);
+        vd c(s);
+        for (int i = 0; i < s; i++)
+            c[i] = cv[i].real() / n;
+        return c;
+    }
+};
+
+// 2-in-1 KACTL
+template <int MAXN> struct FFT5 {
+    typedef complex<double> cpx;
+    const static int LOGN = 32 - __builtin_clz(MAXN - 1);
+    int rev[MAXN];
+    cpx rt[MAXN];
+    FFT5() {
+        rt[1] = cpx(1, 0);
+        for (int k = 2; k < MAXN; k *= 2) {
+            cpx z(cos(M_PI / k), sin(M_PI / k));
+            for (int i = k / 2; i < k; i++)
+                rt[2 * i] = rt[i], rt[2 * i + 1] = rt[i] * z;
+        }
+    }
+    void fft(cpx *a, int n) {
+        for (int i = 0; i < n; i++)
+            rev[i] = (rev[i / 2] | (i & 1) << (32 - __builtin_clz(n - 1))) / 2;
+        for (int i = 0; i < n; i++)
+            if (i < rev[i])
+                swap(a[i], a[rev[i]]);
+        for (int k = 1; k < n; k *= 2)
+            for (int i = 0; i < n; i += 2 * k)
+                for (int j = 0; j < k; j++) {
+                    auto x = (double *)&rt[j + k], y = (double *)&a[i + j + k];
+                    cpx z(x[0] * y[0] - x[1] * y[1], x[0] * y[1] + x[1] * y[0]);
+                    a[i + j + k] = a[i + j] - z;
+                    a[i + j] += z;
+                }
+    }
+
+    cpx in[MAXN], out[MAXN];
+    vector<double> multiply(const vector<double> &a, const vector<double> &b) {
+        int logn = 32 - __builtin_clz(a.size() + b.size() - 1), n = 1 << logn;
+        fill(in, in + n, cpx{0, 0}), fill(out, out + n, cpx{0, 0});
+        for (int i = 0; i < a.size(); i++)
+            in[i].real(a[i]);
+        for (int i = 0; i < b.size(); i++)
+            in[i].imag(b[i]);
+        fft(&in[0], n);
+        for (int i = 0; i < n; i++) {
+            int j = (n - i) & (n - 1);
+            out[i] = (in[j] * in[j] - conj(in[i] * in[i])) * cpx{0, -0.25 / n};
+        }
+        fft(&out[0], n);
+        vector<double> res(n);
+        for (int i = 0; i < n; i++)
+            res[i] = out[i].real();
+        return res;
+    }
+};
+
+FFT1 *fft1;
+FFT2 fft2;
+FFT3 fft3;
+FFT5<MAXN> fft5;
+FFT6 fft6;
 // FFT7 fft7;
+FFT8::fft<double> fft8;
+FFT9 fft9;
 cpx A[MAXN], B[MAXN];
 FFT3::complex<double> cA[MAXN], cB[MAXN];
+vector<FFT8::cp<double>> c8A, c8B;
 vector<double> vcA, vcB;
 vector<int> Ao, Bo, viA, viB;
 signed main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
     for (int i = 0; i < MAXN / 2; i++) {
-        // Ao.push_back(uni(rng)), Bo.push_back(uni(rng));
-        Ao.push_back(1), Bo.push_back(1);
+        Ao.push_back(uni(rng));
+        Bo.push_back(uni(rng));
+        // Ao.push_back(1), Bo.push_back(1);
     }
+    vector<double> res;
     clock_t begin;
     /** EMaxx **/
     // begin = clock();
@@ -831,23 +945,37 @@ signed main() {
     // cout << "kactl custom: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << cA[Ao.size() / 2].x << endl;
     /** ----------- **/
 
+    /** tmwilliamlin168 **/
+    // c8A.clear(), c8B.clear();
+    // for (int i = 0; i < Ao.size(); i++) {
+    //     c8A.push_back({Ao[i], Bo[i]});
+    //     // c8B.push_back({Bo[i], 0});
+    // }
+    // c8A.resize(MAXN, {0, 0}), c8B.resize(MAXN, {0, 0});
+    // begin = clock();
+    // fft8.fi(MAXN);
+    // fft8.mul(c8A, c8B);
+    // cout << "tmwilliamlin168: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << c8B[Ao.size() / 2].x << endl;
+    /** ----------- **/
     /** KACTL 2-in-1 **/
     vcA.clear(), vcB.clear();
     for (int i = 0; i < Ao.size(); i++) {
         vcA.push_back(Ao[i]), vcB.push_back(Bo[i]);
     }
+    // fft5.N = MAXN, fft5.LOGN = LOGN;
+    // fft5.calcRoots();
     begin = clock();
-    fft5.precompute();
-    fft5.multiply(&vcA[0], &vcB[0]);
-    cout << "2-in-1: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << fft5.h[Ao.size() / 2] << endl;
+    // res = fft5.multiply(vcA, vcB);
+    res = fft5.multiply(vcA, vcB);
+    cout << "2-in-1: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << res[Ao.size() / 2] << endl;
     /** ----------- **/
+
     /** Neal **/
     vcA.clear(), vcB.clear();
     for (int i = 0; i < Ao.size(); i++) {
         vcA.push_back(Ao[i]), vcB.push_back(Bo[i]);
     }
     begin = clock();
-    vector<double> res;
     res = FFT4::multiply<double, double>(vcA, vcB);
     cout << "neal: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << res[Ao.size() / 2] << endl;
     /** ----------- **/
@@ -860,8 +988,8 @@ signed main() {
     // begin = clock();
     // fft2.multiply(A, B);
     // cout << "kactl: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << A[Ao.size() / 2] << endl;
-    // /** ----------- **/
-    // /** tfg **/
+    /** ----------- **/
+    /** tfg **/
     // viA.clear(), viB.clear();
     // for (int i = 0; i < Ao.size(); i++) {
     //     viA.push_back(Ao[i]), viB.push_back(Bo[i]);
@@ -869,5 +997,14 @@ signed main() {
     // begin = clock();
     // auto restfg = fft6.mul(viA, viB);
     // cout << "tfg: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << restfg[Ao.size() / 2] << endl;
+    /** ----------- **/
+    /** KACTL orig **/
+    // vcA.clear(), vcB.clear();
+    // for (int i = 0; i < Ao.size(); i++) {
+    //     vcA.push_back(Ao[i]), vcB.push_back(Bo[i]);
+    // }
+    // begin = clock();
+    // res = fft9.conv(vcA, vcB);
+    // cout << "kactl orig: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << res[Ao.size() / 2] << endl;
     /** ----------- **/
 }

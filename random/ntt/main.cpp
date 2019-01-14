@@ -3,12 +3,16 @@
 using namespace std;
 
 typedef long long ll;
-const ll MAXN = 2e5 + 5;
-ll N, K;
-
+const ll LOGN = 21, MAXN = 1 << LOGN;
+random_device rd;
+mt19937 rng(0);
+uniform_int_distribution<int> uni(1, 10);
 const ll MOD = 998244353;
+const ll root = 3;
+
 template <int maxn> struct NTT {
-    const static int MAXN = 1 << (32 - __builtin_clz(maxn - 1));
+    constexpr static int lg2(int n) { return 32 - __builtin_clz(n - 1); }
+    const static int MAXN = 1 << lg2(maxn);
     const static int MOD = 998244353;
     const static int root = 3;
     int rev[MAXN], rt[MAXN];
@@ -33,12 +37,9 @@ template <int maxn> struct NTT {
             }
         }
     }
-    void calcRev(int n) {
-        for (int i = 0; i < n; i++)
-            rev[i] = (rev[i / 2] | (i & 1) << (32 - __builtin_clz(n - 1))) / 2;
-    }
     void ntt(int *a, int n) {
-        calcRev(n);
+        for (int i = 0; i < n; i++)
+            rev[i] = (rev[i / 2] | (i & 1) << lg2(n)) / 2;
         for (int i = 0; i < n; i++)
             if (i < rev[i])
                 swap(a[i], a[rev[i]]);
@@ -50,48 +51,27 @@ template <int maxn> struct NTT {
                     a[i + j] = add(a[i + j], z);
                 }
     }
-    int rght[MAXN];
+    int in[2][MAXN];
     vector<int> multiply(const vector<int> &a, const vector<int> &b) {
-        int s = a.size() + b.size() - 1;
-        int logn = 32 - __builtin_clz(s), n = 1 << logn;
-        vector<int> lft(n);
-        fill(begin(lft), end(lft), 0), fill(begin(rght), end(rght), 0);
-        copy(a.begin(), a.end(), begin(lft)), copy(b.begin(), b.end(), begin(rght));
-        ntt(&lft[0], n), ntt(rght, n);
+        int n = 1 << lg2(a.size() + b.size());
+        copy(a.begin(), a.end(), in[0]), copy(b.begin(), b.end(), in[1]);
+        ntt(in[0], n), ntt(in[1], n);
         int invN = binExp(n, MOD - 2);
         for (int i = 0; i < n; i++)
-            lft[i] = mul(mul(lft[i], rght[i]), invN);
-        reverse(lft.begin() + 1, lft.begin() + n);
-        ntt(&lft[0], n);
-        return lft;
+            in[0][i] = mul(mul(in[0][i], in[1][i]), invN);
+        reverse(in[0] + 1, in[0] + n);
+        ntt(in[0], n);
+        return vector<int>(begin(in[0]), end(in[0]));
     }
 };
-NTT<10 * MAXN> ntt;
-vector<int> fftExp(vector<int> a, ll pow) {
-    vector<int> ans(1, 1);
-    while (pow > 0) {
-        if (pow & 1)
-            ans = ntt.multiply(ans, a);
-        a = ntt.multiply(a, a);
-        pow >>= 1;
-    }
-    return ans;
-}
-vector<int> digits(10);
+NTT<MAXN> ntt;
+vector<int> a, b;
 signed main() {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    cin >> N >> K;
-    for (ll i = 0; i < K; i++) {
-        ll t;
-        cin >> t;
-        digits[t] = 1;
+    for (int i = 0; i < MAXN / 2; i++) {
+        a.push_back(uni(rng)), b.push_back(uni(rng));
     }
-    auto res = fftExp(digits, N / 2);
-    ll ans = 0;
-    for (auto i : res) {
-        ans += ((ll)i * i) % MOD;
-        ans %= MOD;
-    }
-    cout << ans << endl;
+    clock_t begin;
+    begin = clock();
+    auto res = ntt.multiply(a, b);
+    cout << "kactl: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << res[a.size() / 2] << endl;
 }
