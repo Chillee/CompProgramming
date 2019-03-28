@@ -481,7 +481,7 @@ struct NTT6 {
         return lft;
     }
 };
-template <int maxn> struct NTT1 {
+template <int maxn> struct NTT {
     constexpr static int lg2(int n) { return 32 - __builtin_clz(n - 1); }
     const static int MAXN = 1 << lg2(maxn);
     const static int MOD = 998244353;
@@ -497,7 +497,7 @@ template <int maxn> struct NTT1 {
             return 1;
         return mul(binExp(mul(base, base), exp / 2), exp & 1 ? base : 1);
     }
-    NTT1() {
+    NTT() {
         int curL = (MOD - 1) >> 2;
         rt[1] = 1;
         for (int k = 2; k < MAXN; k *= 2) {
@@ -536,7 +536,7 @@ template <int maxn> struct NTT1 {
     }
 };
 
-NTT1<MAXN> ntt1;
+NTT<MAXN> ntt1;
 NTT2 ntt2;
 NTT3 ntt3;
 NTT4 ntt4;

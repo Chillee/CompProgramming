@@ -14,6 +14,7 @@ set<int> *dfs(int cur, int p) {
             continue;
         curp.push_back(dfs(i, cur));
     }
+    vector<int> x;
     sort(curp.begin(), curp.end(), [](set<int> *a, set<int> *b) { return a->size() > b->size(); });
     for (int i = 1; i < curp.size(); i++) {
         for (auto j : *curp[i]) {

@@ -7,7 +7,7 @@ typedef long long ll;
 
 typedef complex<double> cpx;
 typedef complex<double> cd;
-const int LOGN = 23, MAXN = 1 << LOGN;
+const int LOGN = 21, MAXN = 1 << LOGN;
 random_device rd;
 mt19937 rng(0);
 uniform_int_distribution<int> uni(1, 10);
@@ -842,22 +842,23 @@ struct FFT9 {
 };
 
 // 2-in-1 KACTL
-template <int MAXN> struct FFT5 {
+template <int maxn> struct FFT {
+    constexpr static int lg2(int n) { return 32 - __builtin_clz(n - 1); }
+    const static int MAXN = 1 << lg2(maxn);
     typedef complex<double> cpx;
-    const static int LOGN = 32 - __builtin_clz(MAXN - 1);
     int rev[MAXN];
     cpx rt[MAXN];
-    FFT5() {
-        rt[1] = cpx(1, 0);
+    FFT() {
+        rt[1] = cpx{1, 0};
         for (int k = 2; k < MAXN; k *= 2) {
-            cpx z(cos(M_PI / k), sin(M_PI / k));
-            for (int i = k / 2; i < k; i++)
-                rt[2 * i] = rt[i], rt[2 * i + 1] = rt[i] * z;
+            cpx z[] = {1, polar(1.0, M_PI / k)};
+            for (int i = k; i < 2 * k; i++)
+                rt[i] = rt[i / 2] * z[i & 1];
         }
     }
     void fft(cpx *a, int n) {
         for (int i = 0; i < n; i++)
-            rev[i] = (rev[i / 2] | (i & 1) << (32 - __builtin_clz(n - 1))) / 2;
+            rev[i] = (rev[i / 2] | (i & 1) << lg2(n)) / 2;
         for (int i = 0; i < n; i++)
             if (i < rev[i])
                 swap(a[i], a[rev[i]]);
@@ -873,21 +874,20 @@ template <int MAXN> struct FFT5 {
 
     cpx in[MAXN], out[MAXN];
     vector<double> multiply(const vector<double> &a, const vector<double> &b) {
-        int logn = 32 - __builtin_clz(a.size() + b.size() - 1), n = 1 << logn;
+        int n = 1 << lg2(a.size() + b.size() - 1);
         fill(in, in + n, cpx{0, 0}), fill(out, out + n, cpx{0, 0});
-        for (int i = 0; i < a.size(); i++)
-            in[i].real(a[i]);
+        copy(a.begin(), a.end(), begin(in));
         for (int i = 0; i < b.size(); i++)
             in[i].imag(b[i]);
-        fft(&in[0], n);
-        for (int i = 0; i < n; i++) {
-            int j = (n - i) & (n - 1);
-            out[i] = (in[j] * in[j] - conj(in[i] * in[i])) * cpx{0, -0.25 / n};
-        }
-        fft(&out[0], n);
+        fft(in, n);
+        for (int i = 0; i < n; i++)
+            in[i] *= in[i];
+        for (int i = 0; i < n; i++)
+            out[i] = in[(n - i) & (n - 1)] - conj(in[i]);
+        fft(out, n);
         vector<double> res(n);
         for (int i = 0; i < n; i++)
-            res[i] = out[i].real();
+            res[i] = out[i].imag() / (4 * n);
         return res;
     }
 };
@@ -895,7 +895,7 @@ template <int MAXN> struct FFT5 {
 FFT1 *fft1;
 FFT2 fft2;
 FFT3 fft3;
-FFT5<MAXN> fft5;
+FFT<MAXN> fft5;
 FFT6 fft6;
 // FFT7 fft7;
 FFT8::fft<double> fft8;
@@ -916,12 +916,12 @@ signed main() {
     vector<double> res;
     clock_t begin;
     /** EMaxx **/
-    // begin = clock();
-    // for (int i = 0; i < Ao.size(); i++) {
-    //     A[i] = Ao[i], B[i] = Bo[i];
-    // }
-    // fft1->emxMultiply(A, B);
-    // cout << "emaxx: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << A[Ao.size() / 2] << endl;
+    begin = clock();
+    for (int i = 0; i < Ao.size(); i++) {
+        A[i] = Ao[i], B[i] = Bo[i];
+    }
+    fft1->emxMultiply(A, B);
+    cout << "emaxx: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << A[Ao.size() / 2] << endl;
     /** ----------- **/
     /** TankEngineer **/
     // viA.clear(), viB.clear();
@@ -946,17 +946,18 @@ signed main() {
     /** ----------- **/
 
     /** tmwilliamlin168 **/
-    // c8A.clear(), c8B.clear();
-    // for (int i = 0; i < Ao.size(); i++) {
-    //     c8A.push_back({Ao[i], Bo[i]});
-    //     // c8B.push_back({Bo[i], 0});
-    // }
-    // c8A.resize(MAXN, {0, 0}), c8B.resize(MAXN, {0, 0});
-    // begin = clock();
-    // fft8.fi(MAXN);
-    // fft8.mul(c8A, c8B);
-    // cout << "tmwilliamlin168: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << c8B[Ao.size() / 2].x << endl;
+    c8A.clear(), c8B.clear();
+    for (int i = 0; i < Ao.size(); i++) {
+        c8A.push_back({Ao[i], Bo[i]});
+        // c8B.push_back({Bo[i], 0});
+    }
+    c8A.resize(MAXN, {0, 0}), c8B.resize(MAXN, {0, 0});
+    begin = clock();
+    fft8.fi(MAXN);
+    fft8.mul(c8A, c8B);
+    cout << "tmwilliamlin168: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << c8B[Ao.size() / 2].x << endl;
     /** ----------- **/
+
     /** KACTL 2-in-1 **/
     vcA.clear(), vcB.clear();
     for (int i = 0; i < Ao.size(); i++) {

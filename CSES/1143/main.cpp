@@ -1,78 +1,66 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-#include <ext/pb_ds/assoc_container.hpp>
-using namespace __gnu_pbds;
+struct Tree {
+    Tree *pl, *pr;
+    int nl = 0, nr = 0, val = 0;
 
-unsigned hash_f(unsigned x) {
-    x = ((x >> 16) ^ x) * 0x45d9f3b;
-    x = ((x >> 16) ^ x) * 0x45d9f3b;
-    x = (x >> 16) ^ x;
-    return x;
-}
-struct chash {
-    int operator()(int x) const { return hash_f(x); }
+    void updateVal() { val = max(pl->val, pr->val); }
+
+    Tree(int l, int r, int A[]) {
+        nl = l, nr = r;
+        if (nl + 1 == nr) {
+            val = A[nl];
+            return;
+        }
+        pl = new Tree(nl, nl + nr >> 1, A);
+        pr = new Tree(nl + nr >> 1, nr, A);
+        updateVal();
+    }
+    void modify(int p, int x) {
+        if (p < nl || nr <= p) {
+            return;
+        }
+        if (nl + 1 == nr) {
+            val += x;
+            return;
+        }
+        pl->modify(p, x);
+        pr->modify(p, x);
+        updateVal();
+    }
+    int query(int v) {
+        if (val < v)
+            return -1;
+        if (nl + 1 == nr) {
+            if (val >= v)
+                return nl;
+            else
+                return -1;
+        }
+        int res = pl->query(v);
+        if (res == -1)
+            res = pr->query(v);
+        return res;
+    }
 };
-
-const int INF = 1e9 + 5;
-const int MAXN = 2 * 1e5 + 5;
-gp_hash_table<int, int, chash> seg;
-gp_hash_table<int, set<int>, chash> elems;
+Tree *tree;
+const int MAXN = 2e5 + 5;
 int N, M;
-int H[MAXN];
-int R[MAXN];
-
-int get(int x) { return (seg.find(x) == seg.end()) ? INF : seg[x]; }
-void modify(int p, int val) {
-    for (seg[p += INF] = val; p > 0; p >>= 1) {
-        seg[p >> 1] = min(get(p), get(p ^ 1));
-    }
-}
-
-int query(int l, int r) {
-    int res = INF;
-    for (l += INF, r += INF; l < r; l >>= 1, r >>= 1) {
-        if (l & 1)
-            res = min(res, get(l++));
-        if (r & 1)
-            res = min(get(--r), res);
-    }
-    return res;
-}
+int H[MAXN], R[MAXN];
 signed main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
     cin >> N >> M;
-    for (int i = 0; i < N; i++) {
+    for (int i = 0; i < N; i++)
         cin >> H[i];
-    }
-    for (int i = 0; i < M; i++) {
+    for (int i = 0; i < M; i++)
         cin >> R[i];
-    }
-    for (int i = 0; i < N; i++) {
-        elems[H[i]].insert(i);
-    }
-    for (auto i : elems) {
-        modify(i.first, *i.second.begin());
-    }
+    tree = new Tree(0, N, H);
     for (int i = 0; i < M; i++) {
-        int resIdx = query(R[i], INF);
-        if (resIdx == INF) {
-            cout << 0 << ' ';
-            continue;
-        }
-        elems[H[resIdx]].erase(*elems[H[resIdx]].begin());
-        if (elems[H[resIdx]].size() == 0) {
-            modify(H[resIdx], INF);
-        } else {
-            modify(H[resIdx], *elems[H[resIdx]].begin());
-        }
-        H[resIdx] -= R[i];
-        if (elems.find(H[resIdx]) == elems.end() || resIdx < *elems[H[resIdx]].begin()) {
-            modify(H[resIdx], resIdx);
-        }
-        elems[H[resIdx]].insert(resIdx);
-        cout << resIdx + 1 << ' ';
+        int res = tree->query(R[i]);
+        cout << res + 1 << endl;
+        if (res != -1)
+            tree->modify(res, -R[i]);
     }
-    cout << endl;
 }

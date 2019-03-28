@@ -29,15 +29,10 @@ template <int maxn> struct FFT {
         for (int k = 1; k < n; k *= 2)
             for (int i = 0; i < n; i += 2 * k)
                 for (int j = 0; j < k; j++) {
-                    auto __restrict__ x = (double *)&rt[j + k];
-                    auto __restrict__ y = (double *)&a[i + j + k];
-                    // cpx z(x[0] * y[0] - x[1] * y[1], x[0] * y[1] + x[1] * y[0]);
-                    double re = x[0] * y[0] - x[1] * y[1];
-                    double imag = x[0] * y[1] + x[1] * y[0];
-                    a[i + j + k].real(a[i + j].real() - re);
-                    a[i + j + k].imag(a[i + j].imag() - imag);
-                    // = {a[i + j].real() - re, a[i + j].imag() - imag};
-                    // a[i + j] = {a[i + j].real() + re, a[i + j].imag() + imag};
+                    auto x = (double *)&rt[j + k], y = (double *)&a[i + j + k];
+                    cpx z(x[0] * y[0] - x[1] * y[1], x[0] * y[1] + x[1] * y[0]);
+                    a[i + j + k] = a[i + j] - z;
+                    a[i + j] += z;
                 }
     }
 

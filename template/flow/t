@@ -1,0 +1,118 @@
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+const long long MAXN = 5005;
+template <long long MAXN> struct HLPP {
+    const long long INF = 1e18 + 5;
+    struct edge {
+        long long to, f, index;
+    };
+    long long s = MAXN - 1, t = MAXN - 2;
+    vector<edge> edges[MAXN];
+    vector<long long> lst[MAXN], excess;
+    long long height[MAXN], cnt[MAXN];
+    typedef list<long long> List;
+    List::iterator iter[MAXN];
+    List dlist[MAXN];
+    long long highest, highestActive;
+    void addEdge(long long u, long long to, long long f, bool isDirected = true) {
+        edges[u].push_back({to, f, edges[to].size()});
+        edges[to].push_back({u, isDirected ? 0 : f, edges[u].size() - 1});
+    }
+    void globalRelabel() {
+        fill(begin(height), end(height), MAXN);
+        fill(begin(cnt), end(cnt), 0);
+        height[t] = 0;
+        queue<long long> q({t});
+        while (!q.empty()) {
+            long long u = q.front();
+            q.pop();
+            long long h = height[u] + 1;
+            for (auto &p : edges[u])
+                if (height[p.to] == MAXN && edges[p.to][p.index].f > 0)
+                    cnt[height[p.to] = h]++, q.push(p.to);
+        }
+        for (long long i = 0; i < MAXN; ++i)
+            lst[i].clear(), dlist[i].clear();
+        for (long long u = 0; u < MAXN; ++u)
+            if (height[u] < MAXN) {
+                iter[u] = dlist[height[u]].insert(dlist[height[u]].begin(), u);
+                if (excess[u] > 0)
+                    lst[height[u]].push_back(u);
+            }
+        highest = (highestActive = height[q.back()]);
+    }
+    void push(long long u, edge &e) {
+        long long df = min((long long)excess[u], e.f);
+        e.f -= df;
+        edges[e.to][e.index].f += df;
+        excess[u] -= df;
+        excess[e.to] += df;
+        if (0 < excess[e.to] && excess[e.to] <= df)
+            lst[height[e.to]].push_back(e.to);
+    }
+    void discharge(long long u) {
+        long long nh = MAXN;
+        for (auto &p : edges[u]) {
+            if (p.f > 0) {
+                if (height[u] == height[p.to] + 1) {
+                    push(u, p);
+                    if (!excess[u])
+                        return;
+                } else
+                    nh = min(nh, height[p.to] + 1);
+            }
+        }
+        long long h = height[u];
+        if (cnt[h] == 1) {
+            for (long long i = h; i <= highest; ++i) {
+                for (auto p : dlist[i])
+                    cnt[height[p]]--, height[p] = MAXN;
+                dlist[i].clear();
+            }
+            highest = h - 1;
+        } else {
+            cnt[h]--, iter[u] = dlist[h].erase(iter[u]), height[u] = nh;
+            if (nh == MAXN)
+                return;
+            cnt[nh]++, iter[u] = dlist[nh].insert(dlist[nh].begin(), u);
+            highest = max(highest, highestActive = nh), lst[nh].push_back(u);
+        }
+    }
+    long long calc() {
+        highestActive = highest = 0;
+        fill(begin(cnt), end(cnt), 0);
+        // cnt[0] = MAXN - 1;
+        excess.assign(MAXN, 0), excess[s] = INF, excess[t] = -INF;
+        for (auto &e : edges[s])
+            push(s, e);
+        globalRelabel();
+        while (highestActive >= 0) {
+            if (lst[highestActive].empty()) {
+                --highestActive;
+                continue;
+            }
+            long long u = lst[highestActive].back();
+            lst[highestActive].pop_back();
+            discharge(u);
+        }
+        return excess[t] + INF;
+    }
+};
+HLPP<MAXN> hlpp;
+ 
+signed main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    long long n, m;
+    cin >> n >> m;
+    long long s = 1, t = n;
+    // cin >> s >> t;
+    for (long long i = 0, u, v, f; i < m; ++i) {
+        cin >> u >> v >> f;
+        hlpp.addEdge(u, v, f, false);
+    }
+    hlpp.s = s, hlpp.t = t;
+    cout << hlpp.calc() << endl;
+} 

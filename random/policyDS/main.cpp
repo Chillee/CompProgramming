@@ -97,12 +97,13 @@ vector<vec_t> generateVec(int max_val, bool shuffled) {
     }
     return vals;
 }
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
     // benchmark("linear insertion", generateVec(1e7, false), 1);
     // benchmark("linear read/write", generateVec(1e5, false), 1000);
-    benchmark("random insertion", generateVec(1e5, true), 100);
-    // benchmark("random read/write", generateVec(1e5, true), 1000);
+    benchmark("random insertion", generateVec(1e5, true), 1000);
+    benchmark("random read/write", generateVec(1e5, true), 1000);
 }
