@@ -38,15 +38,16 @@ bool isPrime(ull p) {
     }
     return true;
 }
+#define all(x) x.begin(), x.end()
 ull isPrime2(ull n) {
     vector<ull> ps({2, 3, 5, 13, 19, 73, 193, 407521, 299210837});
     vector<ull> cs({2, 325, 9375, 28178, 450775, 9780504, 1795265022});
-    if (n <= 1 || any_of(ps.begin(), ps.end(), [&](ull p) { return n % p == 0; }))
-        return (count(ps.begin(), ps.end(), n) > 0);
+    if (n == 1 || any_of(all(ps), [&](ull p) { return n % p == 0; }))
+        return count(all(ps), n) > 0;
     ull d = n - 1, s = 0;
     while (!(d & 1))
         d >>= 1, s++;
-    return !any_of(cs.begin(), cs.end(), [&](ull a) {
+    return !any_of(all(cs), [&](ull a) {
         for (ull i = 0, p = binExp(a, d, n); i < s; i++, p = binExp(p, 2, n))
             if (p == n - 1 || p == 1)
                 return false;
@@ -57,7 +58,7 @@ signed main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
     vector<ull> primes, primes2;
-    const ull start = 1e16, uller = 1e6;
+    const ull start = 0, uller = 1e6;
     clock_t begin;
     begin = clock();
     for (ull i = start; i < start + uller; i++)
