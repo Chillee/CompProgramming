@@ -4,6 +4,7 @@
 using namespace std;
 
 const int MAXN = 5005;
+
 template <int MAXN, class T = int> struct HLPP {
     const T INF = numeric_limits<T>::max();
     struct edge {
@@ -12,8 +13,7 @@ template <int MAXN, class T = int> struct HLPP {
     };
     int s = MAXN - 1, t = MAXN - 2;
     vector<edge> adj[MAXN];
-    vector<int> lst[MAXN];
-    vector<int> proc;
+    vector<int> lst[MAXN], gap[MAXN];
     T excess[MAXN];
     int highest, height[MAXN], cnt[MAXN], work;
     void addEdge(int from, int to, int f, bool isDirected = true) {
@@ -28,6 +28,7 @@ template <int MAXN, class T = int> struct HLPP {
         if (nh == MAXN)
             return;
         cnt[nh]++, highest = nh;
+        gap[nh].push_back(v);
         if (excess[v] > 0)
             lst[nh].push_back(v);
     }
@@ -35,8 +36,8 @@ template <int MAXN, class T = int> struct HLPP {
         work = 0;
         fill(begin(height), end(height), MAXN);
         fill(begin(cnt), end(cnt), 0);
-        for (int i = 0; i <= highest; i++)
-            lst[i].clear();
+        for (int i = 0; i < highest; i++)
+            lst[i].clear(), gap[i].clear();
         height[t] = 0;
         queue<int> q({t});
         while (!q.empty()) {
@@ -70,14 +71,10 @@ template <int MAXN, class T = int> struct HLPP {
         if (cnt[height[v]] > 1)
             updHeight(v, nh);
         else {
-            for (auto i : proc)
-                if (height[i] >= highest)
-                    updHeight(i, MAXN);
-            for (int i = height[v]; i <= highest + 1; i++) {
-                for (auto j : lst[i])
+            for (int i = height[v]; i <= highest; i++) {
+                for (auto j : gap[i])
                     updHeight(j, MAXN);
-
-                lst[i].clear();
+                gap[i].clear();
             }
         }
     }
@@ -91,7 +88,6 @@ template <int MAXN, class T = int> struct HLPP {
             while (!lst[highest].empty()) {
                 int v = lst[highest].back();
                 lst[highest].pop_back();
-                proc.push_back(v);
                 discharge(v);
                 if (work > 4 * heur_n)
                     globalRelabel();
@@ -100,7 +96,6 @@ template <int MAXN, class T = int> struct HLPP {
         return excess[t] + INF;
     }
 };
-
 HLPP<MAXN, long long> hlpp;
 
 inline void scan_int(int *p) {
