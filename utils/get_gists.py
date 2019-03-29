@@ -8,6 +8,7 @@ import os
 import json
 import argparse
 
+os.chdir('../gists')
 
 COLOR_LIGHT_CYAN = "\033[1;36m"
 COLOR_END = "\033[0m"
