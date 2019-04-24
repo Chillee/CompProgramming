@@ -7,7 +7,7 @@ typedef long long ll;
 
 typedef complex<double> cpx;
 typedef complex<double> cd;
-const int LOGN = 21, MAXN = 1 << LOGN;
+const int LOGN = 22, MAXN = 1 << LOGN;
 random_device rd;
 mt19937 rng(0);
 uniform_int_distribution<int> uni(1, 10);
@@ -120,12 +120,16 @@ struct FFT3 {
         }
         complex<float_t> operator+(const complex<float_t> &other) const { return complex<float_t>(*this) += other; }
         complex<float_t> operator-(const complex<float_t> &other) const { return complex<float_t>(*this) -= other; }
-        complex<float_t> operator*(const complex<float_t> &other) const { return {x * other.x - y * other.y, x * other.y + other.x * y}; }
+        complex<float_t> operator*(const complex<float_t> &other) const {
+            return {x * other.x - y * other.y, x * other.y + other.x * y};
+        }
         complex<float_t> operator/(const float_t &other) const { return {x / other, y / other}; }
     };
     template <typename float_t> complex<float_t> conj(const complex<float_t> &c) { return {c.x, -c.y}; }
 
-    template <typename float_t> complex<float_t> polar(float_t magnitude, float_t angle) { return {magnitude * cos(angle), magnitude * sin(angle)}; }
+    template <typename float_t> complex<float_t> polar(float_t magnitude, float_t angle) {
+        return {magnitude * cos(angle), magnitude * sin(angle)};
+    }
 
     typedef complex<double> cpx;
     int rev[MAXN];
@@ -185,12 +189,16 @@ template <typename float_t> struct complex {
     }
     complex<float_t> operator+(const complex<float_t> &other) const { return complex<float_t>(*this) += other; }
     complex<float_t> operator-(const complex<float_t> &other) const { return complex<float_t>(*this) -= other; }
-    complex<float_t> operator*(const complex<float_t> &other) const { return {x * other.x - y * other.y, x * other.y + other.x * y}; }
+    complex<float_t> operator*(const complex<float_t> &other) const {
+        return {x * other.x - y * other.y, x * other.y + other.x * y};
+    }
     complex<float_t> operator/(const float_t &other) const { return {x / other, y / other}; }
 };
 template <typename float_t> complex<float_t> conj(const complex<float_t> &c) { return {c.x, -c.y}; }
 
-template <typename float_t> complex<float_t> polar(float_t magnitude, float_t angle) { return {magnitude * cos(angle), magnitude * sin(angle)}; }
+template <typename float_t> complex<float_t> polar(float_t magnitude, float_t angle) {
+    return {magnitude * cos(angle), magnitude * sin(angle)};
+}
 typedef double float_t;
 const float_t ONE = 1;
 const float_t PI = acos(-ONE);
@@ -304,7 +312,8 @@ inline complex<float_t> extract(int N, const vector<complex<float_t>> &values, i
     int other = (N - index) & (N - 1);
     int sign = side == 0 ? +1 : -1;
     complex<float_t> multiplier = side == 0 ? complex<float_t>(0.5, 0) : complex<float_t>(0, -0.5);
-    return multiplier * complex<float_t>(values[index].real() + values[other].real() * sign, values[index].imag() - values[other].imag() * sign);
+    return multiplier * complex<float_t>(values[index].real() + values[other].real() * sign,
+                                         values[index].imag() - values[other].imag() * sign);
 }
 
 void invert_fft(int N, vector<complex<float_t>> &values) {
@@ -547,7 +556,9 @@ struct FFT6 {
         Complex(ld a = 0, ld b = 0) : real(a), imag(b) {}
         Complex operator+(const Complex &o) const { return Complex(real + o.real, imag + o.imag); }
         Complex operator-(const Complex &o) const { return Complex(real - o.real, imag - o.imag); }
-        Complex operator*(const Complex &o) const { return Complex(real * o.real - imag * o.imag, real * o.imag + imag * o.real); }
+        Complex operator*(const Complex &o) const {
+            return Complex(real * o.real - imag * o.imag, real * o.imag + imag * o.real);
+        }
         Complex operator/(ld o) const { return Complex(real / o, imag / o); }
         void operator*=(Complex o) { *this = *this * o; }
         void operator/=(ld o) { real /= o, imag /= o; }
@@ -631,7 +642,8 @@ struct FFT6 {
         }
     }
 
-    std::vector<long long> mod_mul(const std::vector<long long> &a, const std::vector<long long> &b, long long cut = 1 << 15) {
+    std::vector<long long> mod_mul(const std::vector<long long> &a, const std::vector<long long> &b,
+                                   long long cut = 1 << 15) {
         // TODO cut memory here by /2
         int n = (int)a.size();
         CVector C[4];
@@ -841,6 +853,153 @@ struct FFT9 {
     }
 };
 
+namespace FFT10 {
+template <typename dataType> struct Complex {
+    dataType re, im;
+    Complex() : re(0), im(0) {}
+    Complex(const dataType &a, const dataType &b) : re(a), im(b) {}
+    Complex(const complex<dataType> &c) : re(c.real()), im(c.imag()) {}
+    Complex &operator=(const complex<dataType> &c) {
+        this->re = c.real();
+        this->im = c.imag();
+        return *this;
+    }
+    dataType real() const { return this->re; }
+    dataType imag() const { return this->im; }
+    void real(dataType const &r) { this->re = r; }
+    void imag(dataType const &i) { this->im = i; }
+    void polar(const dataType &rho, const dataType &theta = 0) {
+        this->re = rho * cos(theta);
+        this->im = rho * sin(theta);
+    }
+    Complex conj() const { return Complex(this->re, -this->im); }
+    dataType norm() const { return sqrt(this->re * this->re + this->im * this->im); }
+    dataType normSquared() const { return this->re * this->re + this->im * this->im; }
+    Complex inverse() const { return this->conj() / this->normSquared(); }
+    Complex operator+(const Complex<dataType> &c) const { return Complex(this->re + c.re, this->im + c.im); }
+    Complex &operator+=(const Complex<dataType> &c) { return *this = *this + c; }
+    Complex operator-(const Complex<dataType> &c) const { return Complex(this->re - c.re, this->im - c.im); }
+    Complex &operator-=(const Complex<dataType> &c) { return *this = *this + c; }
+    Complex operator*(const Complex<dataType> &c) const {
+        return Complex(this->re * c.real() - this->im * c.imag(), this->re * c.imag() + this->im * c.real());
+    }
+    Complex &operator*=(const Complex<dataType> &c) { return *this = *this * c; }
+    Complex operator*(const dataType &c) const { return Complex(this->re * c, this->im * c); }
+    Complex &operator*=(const dataType &c) { return *this = *this * c; }
+    Complex operator/(const Complex<dataType> &c) const { return *this * c.inverse(); }
+    Complex &operator/=(const Complex<dataType> &c) { return *this = *this / c; }
+    Complex operator/(const dataType &c) const { return Complex(this->re / c, this->im / c); }
+    Complex &operator/=(const dataType &c) { return *this = *this / c; }
+    friend istream &operator>>(istream &stream, Complex &C) { return stream >> C.re >> C.im; }
+    friend ostream &operator<<(ostream &stream, const Complex &C) {
+        return stream << "(" << C.re << "," << C.im << ")";
+    }
+};
+
+using FFT_t = Complex<double>;
+int log2i(unsigned long long a) { return __builtin_clzll(1) - __builtin_clzll(a); }
+int get_size(int n) { return 1 << (log2i(n) + 1); }
+bool ispow2(int a) { return (a & -a) == a; }
+vector<FFT_t> roots;
+// pre-calculate complex roots, log(N) calls to sin/cos
+void gen_roots(int N) {
+    if ((int)roots.size() != N) {
+        roots.clear();
+        roots.resize(N);
+        for (int i = 0; i < N; ++i) {
+            if ((i & -i) == i) {
+                roots[i] = polar(1.0, 2.0 * 3.1415926535897932384626 * i / N);
+            } else {
+                roots[i] = roots[i & -i] * roots[i - (i & -i)];
+            }
+        }
+    }
+}
+void fft(FFT_t *a, int n, bool isInv = false) {
+    for (int i = 1, j = 0; i < n; ++i) {
+        int m = n >> 1;
+        for (; j >= m; m >>= 1)
+            j -= m;
+        j += m;
+        if (i < j)
+            swap(a[i], a[j]);
+    }
+    gen_roots(n);
+    assert((int)roots.size() == n);
+    for (int iter = 1, sh = log2i(n) - 1; iter < n; iter *= 2, --sh) {
+        for (int x = 0; x < n; x += 2 * iter) {
+            for (int y = 0; y < iter; ++y) {
+                FFT_t ome = roots[y << sh];
+                if (isInv)
+                    ome = ome.conj();
+                FFT_t v = a[x + y], w = a[x + y + iter];
+                a[x + y] = v + ome * w;
+                a[x + y + iter] = v - ome * w;
+            }
+        }
+    }
+}
+void fft(vector<FFT_t> &v, bool isInv = false) {
+    assert(ispow2(v.size()));
+    fft(v.data(), v.size(), isInv);
+}
+vector<FFT_t> conv(vector<long long> const &v, int n) {
+    assert(ispow2(n));
+    vector<FFT_t> a(n);
+    for (size_t i = 0; i < v.size(); ++i) {
+        a[i].real(v[i]);
+    }
+    fft(a, false);
+    return a;
+}
+vector<long long> convmul(vector<FFT_t> a, vector<FFT_t> const &b) {
+    assert(a.size() == b.size());
+    for (size_t i = 0; i < a.size(); ++i) {
+        a[i] *= b[i];
+    }
+    fft(a, true);
+    vector<long long> ret(a.size());
+    for (size_t i = 0; i < a.size(); ++i) {
+        ret[i] = llround(a[i].real() / (int)a.size());
+    }
+    return ret;
+}
+vector<long long> poly_mul(vector<long long> const &a, vector<long long> const &b) {
+    int n = get_size(a.size() + b.size() - 1);
+    vector<FFT_t> x = conv(a, n);
+    vector<FFT_t> y = conv(b, n);
+    vector<long long> ret = convmul(x, y);
+    ret.resize(a.size() + b.size() - 1);
+    return ret;
+}
+vector<long long> blockify(vector<long long> const &a) {
+    vector<long long> ret(3 * a.size());
+    for (size_t i = 0; i < a.size(); ++i) {
+        ret[3 * i] = a[i] % 30000;
+        ret[3 * i + 1] = a[i] / 30000;
+    }
+    return ret;
+}
+vector<long long> unblockify(vector<long long> const &a, long long const &mod) {
+    assert(a.size() % 3 == 0);
+    vector<long long> ret(a.size() / 3);
+    for (size_t i = 0; i < ret.size(); ++i) {
+        ret[i] = (((a[3 * i + 2]) % mod * 30000 + a[3 * i + 1]) % mod * 30000 + a[3 * i]) % mod;
+    }
+    return ret;
+}
+vector<long long> poly_mul_block(vector<long long> const &a, vector<long long> const &b, long long const &mod) {
+    vector<long long> c = blockify(a), d = blockify(b);
+    int n = get_size(c.size() + d.size() - 1);
+    vector<FFT_t> x = conv(c, n);
+    vector<FFT_t> y = conv(d, n);
+    vector<long long> ret = convmul(x, y);
+    ret.resize(3 * (a.size() + b.size() - 1));
+    vector<long long> r = unblockify(ret, mod);
+    return r;
+}
+} // namespace FFT10
+#define all(x) begin(x), end(x)
 // 2-in-1 KACTL
 template <int maxn> struct FFT {
     constexpr static int lg2(int n) { return 32 - __builtin_clz(n - 1); }
@@ -874,9 +1033,12 @@ template <int maxn> struct FFT {
 
     cpx in[MAXN], out[MAXN];
     vector<double> multiply(const vector<double> &a, const vector<double> &b) {
-        int n = 1 << lg2(a.size() + b.size() - 1);
-        fill(in, in + n, cpx{0, 0}), fill(out, out + n, cpx{0, 0});
-        copy(a.begin(), a.end(), begin(in));
+        fill(all(in), cpx{0, 0}), fill(all(out), cpx{0, 0});
+        if (a.empty() || b.empty())
+            return {};
+        int sz = a.size() + b.size() - 1, n = 1 << lg2(sz);
+        vector<double> res(sz);
+        copy(all(a), begin(in));
         for (int i = 0; i < b.size(); i++)
             in[i].imag(b[i]);
         fft(in, n);
@@ -885,8 +1047,7 @@ template <int maxn> struct FFT {
         for (int i = 0; i < n; i++)
             out[i] = in[(n - i) & (n - 1)] - conj(in[i]);
         fft(out, n);
-        vector<double> res(n);
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < sz; i++)
             res[i] = out[i].imag() / (4 * n);
         return res;
     }
@@ -905,6 +1066,7 @@ FFT3::complex<double> cA[MAXN], cB[MAXN];
 vector<FFT8::cp<double>> c8A, c8B;
 vector<double> vcA, vcB;
 vector<int> Ao, Bo, viA, viB;
+vector<ll> vlA, vlB;
 signed main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -916,12 +1078,12 @@ signed main() {
     vector<double> res;
     clock_t begin;
     /** EMaxx **/
-    begin = clock();
-    for (int i = 0; i < Ao.size(); i++) {
-        A[i] = Ao[i], B[i] = Bo[i];
-    }
-    fft1->emxMultiply(A, B);
-    cout << "emaxx: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << A[Ao.size() / 2] << endl;
+    // begin = clock();
+    // for (int i = 0; i < Ao.size(); i++) {
+    //     A[i] = Ao[i], B[i] = Bo[i];
+    // }
+    // fft1->emxMultiply(A, B);
+    // cout << "emaxx: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << A[Ao.size() / 2] << endl;
     /** ----------- **/
     /** TankEngineer **/
     // viA.clear(), viB.clear();
@@ -946,16 +1108,16 @@ signed main() {
     /** ----------- **/
 
     /** tmwilliamlin168 **/
-    c8A.clear(), c8B.clear();
-    for (int i = 0; i < Ao.size(); i++) {
-        c8A.push_back({Ao[i], Bo[i]});
-        // c8B.push_back({Bo[i], 0});
-    }
-    c8A.resize(MAXN, {0, 0}), c8B.resize(MAXN, {0, 0});
-    begin = clock();
-    fft8.fi(MAXN);
-    fft8.mul(c8A, c8B);
-    cout << "tmwilliamlin168: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << c8B[Ao.size() / 2].x << endl;
+    // c8A.clear(), c8B.clear();
+    // for (int i = 0; i < Ao.size(); i++) {
+    //     c8A.push_back({Ao[i], Bo[i]});
+    //     // c8B.push_back({Bo[i], 0});
+    // }
+    // c8A.resize(MAXN, {0, 0}), c8B.resize(MAXN, {0, 0});
+    // begin = clock();
+    // fft8.fi(MAXN);
+    // fft8.mul(c8A, c8B);
+    // cout << "tmwilliamlin168: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << c8B[Ao.size() / 2].x << endl;
     /** ----------- **/
 
     /** KACTL 2-in-1 **/
@@ -970,7 +1132,6 @@ signed main() {
     res = fft5.multiply(vcA, vcB);
     cout << "2-in-1: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << res[Ao.size() / 2] << endl;
     /** ----------- **/
-
     /** Neal **/
     vcA.clear(), vcB.clear();
     for (int i = 0; i < Ao.size(); i++) {
@@ -979,6 +1140,16 @@ signed main() {
     begin = clock();
     res = FFT4::multiply<double, double>(vcA, vcB);
     cout << "neal: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << res[Ao.size() / 2] << endl;
+    /** ----------- **/
+
+    /** Dacin **/
+    // vlA.clear(), vlB.clear();
+    // for (int i = 0; i < Ao.size(); i++) {
+    //     vlA.push_back(Ao[i]), vlB.push_back(Bo[i]);
+    // }
+    // begin = clock();
+    // vector<ll> resl = FFT10::poly_mul(vlA, vlB);
+    // cout << "Dacin: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << resl[Ao.size() / 2] << endl;
     /** ----------- **/
     /** KACTL **/
     // fill(A, A + MAXN, 0);

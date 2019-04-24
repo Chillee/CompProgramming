@@ -11,7 +11,6 @@ int order[MAXN];
 int dp[MAXN][26];
 
 bool vis[MAXN];
-
 void topodfs(int cur, vector<int> &ans) {
     if (vis[cur])
         return;

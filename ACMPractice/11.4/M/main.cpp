@@ -9,12 +9,8 @@ ll N;
 vector<array<ll, 2>> V[MAXN];
 ll idxs[MAXN];
 
-struct SuffixArray {
-    const static int MAXN = ::MAXN;
-    int n, alpha;
-    int sa[MAXN], lcp[MAXN];
-    int cur[MAXN], prv[MAXN];
-
+template <int MAXN, int lim = 256> struct SuffixArray {
+    int n, alpha, sa[MAXN], lcp[MAXN], cur[MAXN], prv[MAXN];
     void cntSort() {
         vector<int> w(max(alpha, n));
         for (int i = 0; i < n; ++i)
@@ -24,12 +20,10 @@ struct SuffixArray {
         for (int i = n - 1; i >= 0; --i)
             sa[--w[cur[prv[i]]]] = prv[i];
     }
-
     bool isEq(int a, int b, int l) { return (prv[a] == prv[b] && prv[a + l] == prv[b + l]); }
-    void process(vector<int> &a, int lim = 256) {
+    void process(vector<int> &a) {
         n = a.size(), alpha = lim;
-        for (int i = 0; i < n; ++i)
-            cur[i] = a[i], prv[i] = i;
+        copy(&a[0], &a[0] + n, cur), iota(prv, prv + n, 0);
         cntSort();
         int nClass = 1;
         for (int l = 1; nClass < n; l <<= 1, alpha = nClass) {
@@ -43,7 +37,6 @@ struct SuffixArray {
             for (int i = 1; i < n; i++)
                 cur[sa[i]] = isEq(sa[i - 1], sa[i], l) ? nClass - 1 : nClass++;
         }
-
         vector<int> c(n); // lcp
         for (int i = 0; i < n; i++)
             c[sa[i]] = i;
@@ -57,7 +50,7 @@ struct SuffixArray {
     }
 };
 
-SuffixArray test;
+SuffixArray<MAXN, 305> test;
 signed main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -74,7 +67,7 @@ signed main() {
         }
         combined.push_back(301);
     }
-    test.process(combined, 305);
+    test.process(combined);
     vector<ll> rank(combined.size());
     for (ll i = 0; i < test.n; i++) {
         rank[test.sa[i]] = i;

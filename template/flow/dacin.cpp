@@ -29,7 +29,7 @@ int q[MAXN];
 
 int cur[MAXN], h[MAXN], h_cnt[2 * MAXN];
 
-template <bool global_relabeling = true, bool min_cut_only = true, bool shuffle_edges = false> class Push_Relabel {
+template <bool global_relabeling = true, bool min_cut_only = false, bool shuffle_edges = false> class Push_Relabel {
   public:
     Push_Relabel(int n_) : n(n_), m(0) {}
     void add_edge(int u, int v, cap_t c, cap_t c_rev = 0) {
@@ -194,7 +194,17 @@ int main() {
         // readint(w);
         fl.add_edge(u, v, w, 0);
     }
-    cout << fl.max_flow(s, t) << endl;
+    // cout << fl.max_flow(s, t) << endl;
+    int ans = fl.max_flow(s, t);
+    vector<array<int, 3>> res;
+    // res.push_back({i, j.to, j.orig - j.f});
+    // if (hlpp.adj[i].size())
+    //     cout << endl;
+    // cout << ans << endl;
+    // cout << n << ' ' << ans << ' ' << res.size() << endl;
+    // for (auto i : res) {
+    //     cout << i[0] << ' ' << i[1] << ' ' << i[2] << endl;
+    // }
     // printf("%lld\n", fl.max_flow(s, t));
 
     return 0;

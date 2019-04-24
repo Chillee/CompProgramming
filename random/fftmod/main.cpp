@@ -2,14 +2,15 @@
 
 using namespace std;
 
+#define all(x) begin(x), end(x)
 typedef long long ll;
 // #define double long double
 const ll LOGN = 20, MAXN = 1 << LOGN;
 random_device rd;
 mt19937 rng(0);
-uniform_int_distribution<int> uni(1, 1e5);
 const ll MOD = 998244353;
 const ll root = 3;
+uniform_int_distribution<int> uni(1, 1e6);
 template <int maxn> struct FFT {
     constexpr static int lg2(int n) { return 32 - __builtin_clz(n - 1); }
     const static int MAXN = 1 << lg2(maxn);
@@ -62,14 +63,12 @@ template <int maxn> struct FFT {
 };
 template <int maxn> struct NTT {
     constexpr static int lg2(int n) { return 32 - __builtin_clz(n - 1); }
-    const static int MAXN = 1 << lg2(maxn);
-    const static int MOD = 998244353;
-    const static int root = 3;
+    const static int MAXN = 1 << lg2(maxn), MOD = (119 << 23) + 1, root = 3;
     int rev[MAXN], rt[MAXN];
 
-    inline int mul(const int a, const int b) { return (long long)a * b % MOD; }
-    inline int sub(const int a, const int b) { return b > a ? a - b + MOD : a - b; }
-    inline int add(const int a, const int b) { return a + b >= MOD ? a + b - MOD : a + b; }
+    int mul(int a, int b) { return (long long)a * b % MOD; }
+    int sub(int a, int b) { return b > a ? a - b + MOD : a - b; }
+    int add(int a, int b) { return a + b >= MOD ? a + b - MOD : a + b; }
 
     int binExp(int base, long long exp) {
         if (exp == 0)
@@ -77,14 +76,11 @@ template <int maxn> struct NTT {
         return mul(binExp(mul(base, base), exp / 2), exp & 1 ? base : 1);
     }
     NTT() {
-        int curL = (MOD - 1) >> 2;
         rt[1] = 1;
-        for (int k = 2; k < MAXN; k *= 2) {
-            int z = binExp(root, curL);
-            curL >>= 1;
-            for (int i = k / 2; i < k; i++) {
-                rt[2 * i] = rt[i], rt[2 * i + 1] = mul(rt[i], z);
-            }
+        for (int k = 1; k < lg2(MAXN); k++) {
+            int z[] = {1, binExp(root, (MOD - 1) >> (k + 1))};
+            for (int i = (1 << k); i < 2 << k; i++)
+                rt[i] = mul(rt[i / 2], z[i & 1]);
         }
     }
     void ntt(int *a, int n) {
@@ -103,17 +99,74 @@ template <int maxn> struct NTT {
     }
     int in[2][MAXN];
     vector<int> multiply(const vector<int> &a, const vector<int> &b) {
-        int n = 1 << lg2(a.size() + b.size());
-        copy(a.begin(), a.end(), in[0]), copy(b.begin(), b.end(), in[1]);
+        fill(all(in[0]), 0), fill(all(in[1]), 0);
+        if (a.empty() || b.empty())
+            return {};
+        int sz = a.size() + b.size() - 1, n = 1 << lg2(sz);
+        copy(all(a), in[0]), copy(all(b), in[1]);
         ntt(in[0], n), ntt(in[1], n);
         int invN = binExp(n, MOD - 2);
         for (int i = 0; i < n; i++)
             in[0][i] = mul(mul(in[0][i], in[1][i]), invN);
         reverse(in[0] + 1, in[0] + n);
         ntt(in[0], n);
-        return vector<int>(begin(in[0]), end(in[0]));
+        return vector<int>(in[0], in[0] + sz);
     }
 };
+// template <int maxn> struct NTT {
+//     constexpr static int lg2(int n) { return 32 - __builtin_clz(n - 1); }
+//     const static int MAXN = 1 << lg2(maxn);
+//     const static int MOD = 998244353;
+//     const static int root = 3;
+//     int rev[MAXN], rt[MAXN];
+
+//     inline int mul(const int a, const int b) { return (long long)a * b % MOD; }
+//     inline int sub(const int a, const int b) { return b > a ? a - b + MOD : a - b; }
+//     inline int add(const int a, const int b) { return a + b >= MOD ? a + b - MOD : a + b; }
+
+//     int binExp(int base, long long exp) {
+//         if (exp == 0)
+//             return 1;
+//         return mul(binExp(mul(base, base), exp / 2), exp & 1 ? base : 1);
+//     }
+//     NTT() {
+//         int curL = (MOD - 1) >> 2;
+//         rt[1] = 1;
+//         for (int k = 2; k < MAXN; k *= 2) {
+//             int z = binExp(root, curL);
+//             curL >>= 1;
+//             for (int i = k / 2; i < k; i++) {
+//                 rt[2 * i] = rt[i], rt[2 * i + 1] = mul(rt[i], z);
+//             }
+//         }
+//     }
+//     void ntt(int *a, int n) {
+//         for (int i = 0; i < n; i++)
+//             rev[i] = (rev[i / 2] | (i & 1) << lg2(n)) / 2;
+//         for (int i = 0; i < n; i++)
+//             if (i < rev[i])
+//                 swap(a[i], a[rev[i]]);
+//         for (int k = 1; k < n; k *= 2)
+//             for (int i = 0; i < n; i += 2 * k)
+//                 for (int j = 0; j < k; j++) {
+//                     int z = mul(rt[j + k], a[i + j + k]);
+//                     a[i + j + k] = sub(a[i + j], z);
+//                     a[i + j] = add(a[i + j], z);
+//                 }
+//     }
+//     int in[2][MAXN];
+//     vector<int> multiply(const vector<int> &a, const vector<int> &b) {
+//         int n = 1 << lg2(a.size() + b.size());
+//         copy(a.begin(), a.end(), in[0]), copy(b.begin(), b.end(), in[1]);
+//         ntt(in[0], n), ntt(in[1], n);
+//         int invN = binExp(n, MOD - 2);
+//         for (int i = 0; i < n; i++)
+//             in[0][i] = mul(mul(in[0][i], in[1][i]), invN);
+//         reverse(in[0] + 1, in[0] + n);
+//         ntt(in[0], n);
+//         return vector<int>(begin(in[0]), end(in[0]));
+//     }
+// };
 
 namespace FFTNeal {
 template <typename float_t> struct complex {
@@ -135,12 +188,16 @@ template <typename float_t> struct complex {
     }
     complex<float_t> operator+(const complex<float_t> &other) const { return complex<float_t>(*this) += other; }
     complex<float_t> operator-(const complex<float_t> &other) const { return complex<float_t>(*this) -= other; }
-    complex<float_t> operator*(const complex<float_t> &other) const { return {x * other.x - y * other.y, x * other.y + other.x * y}; }
+    complex<float_t> operator*(const complex<float_t> &other) const {
+        return {x * other.x - y * other.y, x * other.y + other.x * y};
+    }
     complex<float_t> operator/(const float_t &other) const { return {x / other, y / other}; }
 };
 template <typename float_t> complex<float_t> conj(const complex<float_t> &c) { return {c.x, -c.y}; }
 
-template <typename float_t> complex<float_t> polar(float_t magnitude, float_t angle) { return {magnitude * cos(angle), magnitude * sin(angle)}; }
+template <typename float_t> complex<float_t> polar(float_t magnitude, float_t angle) {
+    return {magnitude * cos(angle), magnitude * sin(angle)};
+}
 typedef double float_t;
 const float_t ONE = 1;
 const float_t PI = acos(-ONE);
@@ -254,7 +311,8 @@ inline complex<float_t> extract(int N, const vector<complex<float_t>> &values, i
     int other = (N - index) & (N - 1);
     int sign = side == 0 ? +1 : -1;
     complex<float_t> multiplier = side == 0 ? complex<float_t>(0.5, 0) : complex<float_t>(0, -0.5);
-    return multiplier * complex<float_t>(values[index].real() + values[other].real() * sign, values[index].imag() - values[other].imag() * sign);
+    return multiplier * complex<float_t>(values[index].real() + values[other].real() * sign,
+                                         values[index].imag() - values[other].imag() * sign);
 }
 
 void invert_fft(int N, vector<complex<float_t>> &values) {
@@ -572,8 +630,10 @@ signed main() {
     cout << "ntt: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << res2[a.size() / 2] << endl;
     begin = clock();
     auto res3 = fft.multiply(ad, bd);
-    cout << "fft: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << (ll)round(res3[a.size() / 2]) % MOD << endl;
-    // for (int i = 0; i < res.size(); i++) {
+    ll val = round(res3[a.size() / 2]);
+    val %= MOD;
+    cout << "fft: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << val << endl;
+    //  for (int i = 0; i < res.size(); i++) {
     //     assert(res[i] == res2[i]);
     //     assert(res[i] == ((ll)round(res3[i]) % MOD));
     // }

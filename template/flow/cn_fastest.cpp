@@ -16,7 +16,7 @@ template <int MAXN, class T = int> struct HLPP {
     vector<int> lst[MAXN], gap[MAXN];
     T excess[MAXN];
     int highest, height[MAXN], cnt[MAXN], work;
-    void addEdge(int from, int to, int f, bool isDirected = true) {
+    void addEdge(int from, int to, T f, bool isDirected = true) {
         adj[from].push_back({to, adj[to].size(), f});
         adj[to].push_back({from, adj[from].size() - 1, isDirected ? 0 : f});
     }
@@ -34,8 +34,8 @@ template <int MAXN, class T = int> struct HLPP {
     }
     void globalRelabel() {
         work = 0;
-        fill(begin(height), end(height), MAXN);
-        fill(begin(cnt), end(cnt), 0);
+        fill(height, height + MAXN, MAXN);
+        fill(cnt, cnt + MAXN, 0);
         for (int i = 0; i < highest; i++)
             lst[i].clear(), gap[i].clear();
         height[t] = 0;
@@ -96,26 +96,42 @@ template <int MAXN, class T = int> struct HLPP {
         return excess[t] + INF;
     }
 };
-HLPP<MAXN, long long> hlpp;
-
-inline void scan_int(int *p) {
+void read_uint() {}
+template <class T, class... S> inline void read_uint(T &a, S &... b) {
     static char c;
-    while ((c = getchar_unlocked()) < '0')
-        ; // just to be safe
-    for (*p = c - '0'; (c = getchar_unlocked()) >= '0'; *p = *p * 10 + c - '0')
+    while (isspace(c = getchar_unlocked()))
         ;
+    for (a = c - '0'; isdigit(c = getchar_unlocked()); a = a * 10 + c - '0')
+        ;
+    read_uint(b...);
 }
+HLPP<MAXN> hlpp;
 signed main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
     int n, m, p;
-    scan_int(&n), scan_int(&m);
+    read_uint(n, m);
     int s = 1, t = n;
-    scan_int(&s), scan_int(&t);
+    read_uint(s), read_uint(t);
     for (int i = 0, u, v, f; i < m; ++i) {
-        scan_int(&u), scan_int(&v), scan_int(&f);
+        read_uint(u), read_uint(v), read_uint(f);
         hlpp.addEdge(u, v, f, true);
     }
     hlpp.s = s, hlpp.t = t;
-    cout << hlpp.calc() << endl;
+    int ans = hlpp.calc(n);
+    cout << ans << endl;
+    return 0;
+    // vector<array<int, 3>> res;
+    // for (int i = 0; i < MAXN; i++) {
+    //     for (auto j : hlpp.adj[i]) {
+    //         if (j.f < j.orig)
+    //             res.push_back({i, j.to, j.orig - j.f});
+    //     }
+    //     // if (hlpp.adj[i].size())
+    //     //     cout << endl;
+    // }
+    // cout << n << ' ' << ans << ' ' << res.size() << endl;
+    // for (auto i : res) {
+    //     cout << i[0] << ' ' << i[1] << ' ' << i[2] << endl;
+    // }
 }

@@ -1,12 +1,14 @@
+// #pragma GCC optimize("O2")
 #include <bits/stdc++.h>
 
+#define all(x) begin(x), end(x)
 using namespace std;
 
 typedef long long ll;
-const ll LOGN = 21, MAXN = 1 << LOGN;
+const ll LOGN = 23, MAXN = 1 << LOGN;
 random_device rd;
 mt19937 rng(0);
-uniform_int_distribution<int> uni(1, 10);
+uniform_int_distribution<int> uni(1, 9);
 const ll MOD = 998244353;
 const ll root = 3;
 
@@ -485,12 +487,12 @@ template <int maxn> struct NTT {
     constexpr static int lg2(int n) { return 32 - __builtin_clz(n - 1); }
     const static int MAXN = 1 << lg2(maxn);
     const static int MOD = 998244353;
-    const static int root = 3;
+    const static int root = 62;
     int rev[MAXN], rt[MAXN];
 
-    inline int mul(const int a, const int b) { return (long long)a * b % MOD; }
-    inline int sub(const int a, const int b) { return b > a ? a - b + MOD : a - b; }
-    inline int add(const int a, const int b) { return a + b >= MOD ? a + b - MOD : a + b; }
+    int mul(int a, int b) { return (long long)a * b % MOD; }
+    int sub(int a, int b) { return b > a ? a - b + MOD : a - b; }
+    int add(int a, int b) { return a + b >= MOD ? a + b - MOD : a + b; }
 
     int binExp(int base, long long exp) {
         if (exp == 0)
@@ -498,14 +500,11 @@ template <int maxn> struct NTT {
         return mul(binExp(mul(base, base), exp / 2), exp & 1 ? base : 1);
     }
     NTT() {
-        int curL = (MOD - 1) >> 2;
         rt[1] = 1;
-        for (int k = 2; k < MAXN; k *= 2) {
-            int z = binExp(root, curL);
-            curL >>= 1;
-            for (int i = k / 2; i < k; i++) {
-                rt[2 * i] = rt[i], rt[2 * i + 1] = mul(rt[i], z);
-            }
+        for (int k = 1; k < lg2(MAXN); k++) {
+            int z[] = {1, binExp(root, (MOD - 1) >> (k + 1))};
+            for (int i = (1 << k); i < 2 << k; i++)
+                rt[i] = mul(rt[i / 2], z[i & 1]);
         }
     }
     void ntt(int *a, int n) {
@@ -524,15 +523,18 @@ template <int maxn> struct NTT {
     }
     int in[2][MAXN];
     vector<int> multiply(const vector<int> &a, const vector<int> &b) {
-        int n = 1 << lg2(a.size() + b.size());
-        copy(a.begin(), a.end(), in[0]), copy(b.begin(), b.end(), in[1]);
+        fill(all(in[0]), 0), fill(all(in[1]), 0);
+        if (a.empty() || b.empty())
+            return {};
+        int sz = a.size() + b.size() - 1, n = 1 << lg2(sz);
+        copy(all(a), in[0]), copy(all(b), in[1]);
         ntt(in[0], n), ntt(in[1], n);
         int invN = binExp(n, MOD - 2);
         for (int i = 0; i < n; i++)
             in[0][i] = mul(mul(in[0][i], in[1][i]), invN);
         reverse(in[0] + 1, in[0] + n);
         ntt(in[0], n);
-        return vector<int>(begin(in[0]), end(in[0]));
+        return vector<int>(in[0], in[0] + sz);
     }
 };
 
@@ -543,35 +545,62 @@ NTT4 ntt4;
 NTT6 ntt6;
 vector<int> a, b;
 vector<ll> al, bl;
+const int RANDOM =
+    (long long)(make_unique<char>().get()) ^ chrono::high_resolution_clock::now().time_since_epoch().count();
+
 signed main() {
+    srand(RANDOM);
+    clock_t begin;
+    vector<int> res;
+    // for (int _t = 0; _t < 100; _t++) {
+
+    //     for (int i = 0; i < 30; i++) {
+    //         a.push_back(uni(rng)), b.push_back(uni(rng));
+    //         al.push_back(a.back()), bl.push_back(b.back());
+    //     }
+    //     a.resize(rand() % 10);
+    //     b.resize(rand() % 10);
+    //     cout << "size: " << a.size() << ' ' << b.size() << endl;
+    //     vector<ll> resl;
+
+    //     begin = clock();
+    //     auto resM = ntt1.multiply(a, b);
+    //     cout << "custom: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << resM.size() << endl;
+
+    //     begin = clock();
+    //     res = NTT5::mod_multiply(a, b);
+    //     cout << "neal: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << res.size() << endl;
+
+    //     for (int i = 0; i < res.size(); i++) {
+    //         cout << res[i] << ' ' << resM[i] << endl;
+    //         assert(resM[i] == res[i]);
+    //     }
+    // }
     for (int i = 0; i < MAXN / 2; i++) {
         a.push_back(uni(rng)), b.push_back(uni(rng));
         al.push_back(a.back()), bl.push_back(b.back());
     }
-    clock_t begin;
-    vector<int> res;
-    vector<ll> resl;
     begin = clock();
-    res = ntt1.multiply(a, b);
-    cout << "custom: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << res[a.size() / 2] << endl;
+    res = NTT5::mod_multiply(a, b);
+    cout << "neal: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << res.size() << endl;
 
     begin = clock();
-    resl = ntt3.multiply(al, bl);
-    cout << "old custom: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << resl[a.size() / 2] << endl;
+    auto resM = ntt1.multiply(a, b);
+    cout << "custom: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << resM.size() << endl;
+
+    // begin = clock();
+    // resl = ntt3.multiply(al, bl);
+    // cout << "old custom: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << resl[a.size() / 2] << endl;
 
     // begin = clock();
     // resl = ntt2.conv(al, bl);
     // cout << "kactl: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << resl[a.size() / 2] << endl;
 
-    begin = clock();
-    res = ntt4.multiply(a, b);
-    cout << "optimized custom: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << res[a.size() / 2] << endl;
+    // begin = clock();
+    // res = ntt4.multiply(a, b);
+    // cout << "optimized custom: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << res[a.size() / 2] << endl;
 
-    begin = clock();
-    res = NTT5::mod_multiply(a, b);
-    cout << "neal: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << res[a.size() / 2] << endl;
-
-    begin = clock();
-    resl = ntt6.multiply(al, bl);
-    cout << "william: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << resl[a.size() / 2] << endl;
+    // begin = clock();
+    // resl = ntt6.multiply(al, bl);
+    // cout << "william: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << resl[a.size() / 2] << endl;
 }

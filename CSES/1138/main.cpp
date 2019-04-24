@@ -1,0 +1,87 @@
+#pragma GCC optimize("O3")
+#include <bits/stdc++.h>
+
+#define all(x) x.begin(), x.end()
+using namespace std;
+
+typedef long long ll;
+const ll MAXN = 2e5 + 5;
+typedef long long ll;
+
+vector<ll> adj[MAXN];
+ll N, Q;
+ll tim = 0;
+ll val[MAXN];
+ll begT[MAXN], endT[MAXN];
+ll tour[2 * MAXN];
+void dfs(ll cur, ll p = -1) {
+    begT[cur] = tim++;
+    tour[begT[cur]] = val[cur];
+    for (auto i : adj[cur]) {
+        if (i != p)
+            dfs(i, cur);
+    }
+    endT[cur] = tim++;
+    tour[endT[cur]] = -val[cur];
+}
+template <typename T> struct Seg {
+    const ll N;
+    vector<T> seg;
+    T unit;
+    const function<T(T, T)> combine;
+    Seg(ll n, T arr[], T u, function<T(T, T)> cF) : N(n), unit(u), combine(cF), seg(N * 2) {
+        for (ll i = 0; i < N; i++)
+            seg[i + N] = arr[i];
+        build();
+    }
+    void build() {
+        for (ll i = N - 1; i > 0; --i)
+            seg[i] = combine(seg[i << 1], seg[i << 1 | 1]);
+    }
+
+    void modify(ll p, T value) {
+        for (seg[p += N] = value; p > 0; p >>= 1)
+            seg[p >> 1] = combine(seg[p], seg[p ^ 1]);
+    }
+
+    T query(ll l, ll r) {
+        T resl = unit;
+        T resr = unit;
+        for (l += N, r += N; l < r; l >>= 1, r >>= 1) {
+            if (l & 1)
+                resl = combine(resl, seg[l++]);
+            if (r & 1)
+                resr = combine(seg[--r], resr);
+        }
+        return combine(resl, resr);
+    }
+};
+signed main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> N >> Q;
+    for (ll i = 0; i < N; i++)
+        cin >> val[i];
+    for (ll i = 0; i < N - 1; i++) {
+        ll a, b;
+        cin >> a >> b;
+        a--, b--;
+        adj[a].push_back(b);
+        adj[b].push_back(a);
+    }
+    dfs(0);
+
+    Seg<ll> *seg = new Seg<ll>(2 * N, tour, 0, [](ll a, ll b) { return a + b; });
+    for (ll i = 0; i < Q; i++) {
+        ll t, s;
+        cin >> t >> s;
+        s--;
+        if (t == 1) {
+            ll x;
+            cin >> x;
+            seg->modify(begT[s], x), seg->modify(endT[s], -x);
+        } else {
+            cout << seg->query(0, begT[s] + 1) << endl;
+        }
+    }
+}

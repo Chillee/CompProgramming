@@ -33,7 +33,8 @@ template <int maxn> struct FFT {
 
     cpx in[MAXN], out[MAXN];
     vector<double> multiply(const vector<double> &a, const vector<double> &b) {
-        int n = 1 << lg2(a.size() + b.size() - 1);
+        vector<double> res(a.size() + b.size() - 1);
+        int n = 1 << lg2(res.size());
         fill(in, in + n, cpx{0, 0}), fill(out, out + n, cpx{0, 0});
         copy(a.begin(), a.end(), begin(in));
         for (int i = 0; i < b.size(); i++)
@@ -44,8 +45,7 @@ template <int maxn> struct FFT {
         for (int i = 0; i < n; i++)
             out[i] = in[(n - i) & (n - 1)] - conj(in[i]);
         fft(out, n);
-        vector<double> res(n);
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < res.size(); i++)
             res[i] = out[i].imag() / (4 * n);
         return res;
     }

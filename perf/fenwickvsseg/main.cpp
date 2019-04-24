@@ -41,9 +41,8 @@ const int MAXB = 28;
 int st[N * 2][MAXB];
 int lg[N + 1];
 int stquery(int a, int b) {
-    // int k = 31 - __builtin_clz(b - a);
-    int k = lg[b - a + 1];
-    return min(st[a][k], st[b - (1 << k)][k]);
+    int k = 31 - __builtin_clz(b - a);
+    return max(st[a][k], st[b - (1 << k)][k]);
 }
 
 int A[N];
@@ -64,15 +63,12 @@ signed main() {
         A[i] = uni(rng);
 
     for (int i = 0; i < N; i++)
+        modify(i, A[i]);
+    for (int i = 0; i < N; i++)
         st[i][0] = A[i];
     for (int j = 1; j <= MAXB; j++)
         for (int i = 0; i + (1 << j) <= N; i++)
-            st[i][j] = min(st[i][j - 1], st[i + (1 << (j - 1))][j - 1]);
-
-    lg[1] = 0;
-    for (int i = 2; i < N; i++)
-        lg[i] = lg[i / 2] + 1;
-
+            st[i][j] = max(st[i][j - 1], st[i + (1 << (j - 1))][j - 1]);
     int ans;
     begin = clock();
     ans = 0;

@@ -18,42 +18,40 @@ ull binExp(ull b, ull pw, ull MOD) {
         return 1;
     return modMul(binExp(modMul(b, b, MOD), pw / 2, MOD), (pw & 1 ? b : 1), MOD);
 };
-bool isPrime(ull p) {
-    if (p == 2)
-        return true;
-    if (p == 1 || p % 2 == 0)
+bool isPrime2(ull n) {
+    if (n <= 1)
         return false;
-    ull s = p - 1;
-    while (s % 2 == 0)
-        s /= 2;
-    for (ull i = 0; i < 15; ++i) {
-        ull a = rand() % (p - 1) + 1, tmp = s;
-        ull mod = binExp(a, s, p);
-        while (tmp != p - 1 && mod != 1 && mod != p - 1) {
-            mod = binExp(mod, 2, p);
-            tmp *= 2;
-        }
-        if (mod != p - 1 && tmp % 2 == 0)
+    for (ull p : {2, 3, 5, 13, 19, 73, 193, 407521, 299210837})
+        if (n % p == 0)
+            return (n == p);
+    ull d = n - 1;
+    while (!(d & 1))
+        d >>= 1;
+    for (ull a : {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {
+        ull p = binExp(a, d, n), i = d;
+        while (p != n - 1 && i != n - 1 && p != 1)
+            i <<= 1, p = binExp(p, 2, n);
+        if (p != n - 1 && i != d)
             return false;
     }
     return true;
 }
 #define all(x) x.begin(), x.end()
-bool isPrime2(ull n) {
-    vector<ull> ps({2, 3, 5, 13, 19, 73, 193, 407521, 299210837});
-    vector<ull> cs({2, 325, 9375, 28178, 450775, 9780504, 1795265022});
-    if (n <= 1 || any_of(all(ps), [&](ull p) { return n % p == 0; }))
-        return count(all(ps), n) > 0;
-    ull d = n - 1, s = 0;
-    while (!(d & 1))
-        d >>= 1, s++;
-    return !any_of(all(cs), [&](ull a) {
-        for (ull i = 0, p = binExp(a, d, n); i < s; i++, p = binExp(p, 2, n))
-            if (p == n - 1 || (i == 0 && p == 1))
-                return false;
-        return true;
-    });
+// Works for up to 10^9 with normal binExp, use 64 bit binExp for higher values
+bool isPrime(ull n) {
+    if (n < 2 || n % 2 == 0 || n % 3 == 0)
+        return n - 2 < 2;
+    ull s = __builtin_ctzll(n - 1), d = n >> s; // counts trailing zeros
+    for (auto a : {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {
+        ull p = binExp(a, d, n), i = s;
+        while (p != 1 && p != n - 1 && a < n && i--)
+            p = binExp(p, 2, n);
+        if (p != n - 1 && i != s)
+            return 0;
+    }
+    return 1;
 }
+
 // ull isPrime2(ull n) {
 //     vector<ull> ps({2, 3, 5, 13, 19, 73, 193, 407521, 299210837});
 //     if (count(ps.begin(), ps.end(), n))
@@ -77,26 +75,26 @@ bool isPrime2(ull n) {
 signed main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    cout << isPrime2(162401) << ' ' << isPrime(162401) << endl;
-    // return 0;
+    srand(time(0));
     vector<ull> primes, primes2;
+    cout << isPrime(4033) << endl;
     const ull start = 0, uller = 1e6;
     clock_t begin;
     begin = clock();
     for (ull i = start; i < start + uller; i++)
-        if (isPrime(i))
+        if (isPrime2(i))
             primes.push_back(i);
-    cout << "kactl: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << primes.size() << endl;
+    cout << "old: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << primes.size() << endl;
     begin = clock();
     for (ull i = start; i < start + uller; i++)
-        if (isPrime2(i))
+        if (isPrime(i))
             primes2.push_back(i);
-    cout << "horse: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << primes2.size() << endl;
-    for (ull i = 0; i < 78500; i++) {
-        // cout << primes[i] << ' ' << primes2[i] << endl;
+    cout << "kactl: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << primes2.size() << endl;
+    for (int i = 0; i < primes2.size(); i++) {
         if (primes[i] != primes2[i]) {
             cout << primes[i] << ' ' << primes2[i] << endl;
-            return 0;
+            assert(false);
         }
     }
+    primes2.clear();
 }
