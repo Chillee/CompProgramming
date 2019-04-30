@@ -1,4 +1,4 @@
-#pragma GCC optimize("O3")
+// #pragma GCC optimize("O3")
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -17,7 +17,8 @@ typedef vector<double> vd;
 void fft(vector<C> &a, vector<C> &rt, vi &rev, int n) {
     rep(i, 0, n) if (i < rev[i]) swap(a[i], a[rev[i]]);
     for (int k = 1; k < n; k *= 2)
-        for (int i = 0; i < n; i += 2 * k)
+        for (int i = 0; i < n; i += 2 * k) {
+#pragma ivdep
             rep(j, 0, k) {
                 // C z = rt[j+k] * a[i+j+k]; // (25% faster if hand-rolled)  /// include-line
                 auto x = (double *)&rt[j + k], y = (double *)&a[i + j + k]; /// exclude-line
@@ -25,6 +26,7 @@ void fft(vector<C> &a, vector<C> &rt, vi &rev, int n) {
                 a[i + j + k] = a[i + j] - z;
                 a[i + j] += z;
             }
+        }
 }
 
 vd conv(const vd &a, const vd &b) {

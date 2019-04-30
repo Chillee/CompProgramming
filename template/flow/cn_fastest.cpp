@@ -3,6 +3,7 @@
 
 using namespace std;
 
+typedef long long ll;
 const int MAXN = 5005;
 
 template <int MAXN, class T = int> struct HLPP {
@@ -105,20 +106,20 @@ template <class T, class... S> inline void read_uint(T &a, S &... b) {
         ;
     read_uint(b...);
 }
-HLPP<MAXN> hlpp;
+HLPP<MAXN, ll> hlpp;
 signed main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
     int n, m, p;
     read_uint(n, m);
     int s = 1, t = n;
-    read_uint(s), read_uint(t);
+    // read_uint(s), read_uint(t);
     for (int i = 0, u, v, f; i < m; ++i) {
         read_uint(u), read_uint(v), read_uint(f);
-        hlpp.addEdge(u, v, f, true);
+        hlpp.addEdge(u, v, f, false);
     }
     hlpp.s = s, hlpp.t = t;
-    int ans = hlpp.calc(n);
+    ll ans = hlpp.calc(n);
     cout << ans << endl;
     return 0;
     // vector<array<int, 3>> res;

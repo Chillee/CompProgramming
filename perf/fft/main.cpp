@@ -1015,7 +1015,7 @@ template <int maxn> struct FFT {
                 rt[i] = rt[i / 2] * z[i & 1];
         }
     }
-    void fft(cpx *a, int n) {
+    void fft(cpx __restrict *a, int n) {
         for (int i = 0; i < n; i++)
             rev[i] = (rev[i / 2] | (i & 1) << lg2(n)) / 2;
         for (int i = 0; i < n; i++)
@@ -1067,6 +1067,7 @@ vector<FFT8::cp<double>> c8A, c8B;
 vector<double> vcA, vcB;
 vector<int> Ao, Bo, viA, viB;
 vector<ll> vlA, vlB;
+
 signed main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -1162,13 +1163,13 @@ signed main() {
     // cout << "kactl: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << A[Ao.size() / 2] << endl;
     /** ----------- **/
     /** tfg **/
-    // viA.clear(), viB.clear();
-    // for (int i = 0; i < Ao.size(); i++) {
-    //     viA.push_back(Ao[i]), viB.push_back(Bo[i]);
-    // }
-    // begin = clock();
-    // auto restfg = fft6.mul(viA, viB);
-    // cout << "tfg: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << restfg[Ao.size() / 2] << endl;
+    viA.clear(), viB.clear();
+    for (int i = 0; i < Ao.size(); i++) {
+        viA.push_back(Ao[i]), viB.push_back(Bo[i]);
+    }
+    begin = clock();
+    auto restfg = fft6.mul(viA, viB);
+    cout << "tfg: " << (double)(clock() - begin) / CLOCKS_PER_SEC << ' ' << restfg[Ao.size() / 2] << endl;
     /** ----------- **/
     /** KACTL orig **/
     // vcA.clear(), vcB.clear();

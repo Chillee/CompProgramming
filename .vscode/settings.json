@@ -72,5 +72,6 @@
         "charconv": "cpp",
         "climits": "cpp"
     },
+    "editor.formatOnSave": false,
     "python.linting.enabled": false
 }
